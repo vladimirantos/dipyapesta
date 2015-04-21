@@ -1,0 +1,10 @@
+{* Latte template *}
+
+{block content}
+<div id="menu" class="clearfix">
+    <a>Upravit</a>
+</div>
+<h1>#{$new->id_article .' '.$new->title}</h1>
+<p>{$new->content}</p>
+<h4 style="font-style:italic ">Ze dne: {$new->date}</h4>
+{/block}

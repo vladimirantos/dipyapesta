@@ -1,0 +1,37 @@
+<html>
+    <head>
+        <script src="{$basePath}/js/jquery.js" type="text/javascript"></script>
+        <link href="{$basePath}/css/admin.less" rel="stylesheet" type="text/less"/>
+        <script src="{$basePath}/js/libs/less/less.min.js" type="text/javascript"></script>
+        <script src="{$basePath}/js/jquery.dataTables.js" type="text/javascript"></script>
+        <link href="{$basePath}/css/jquery.dataTables.css" rel="stylesheet" type="text/css"/>
+        <script src="{$basePath}/js/nette.ajax.js" type="text/javascript"></script>
+        <script src="{$basePath}/js/main.js" type="text/javascript"></script>
+        <script>
+            $(document).ready(function () {
+                $('#dataTable').DataTable();
+                $("#dataTable").show();
+            });
+        </script>
+    </head>
+    <body>
+        <header>
+            <div id="logo">
+                Pomazánky | Administrace
+                <div id="user">Bruno Puzják</div>
+            </div>
+        </header>
+        <menu>
+            <ul>
+                <a n:href="News:"><li class="{$active['novinky']}">Novinky</li></a>
+                <a><li class="{$active['produkty']}">Produkty</li></a>
+                <li class="{$active['recepty']}">Recepty</li>
+                <li class="{$active['uzivatele']}">Uživatelé</li>
+            </ul>
+        </menu>
+        <section id="content">
+            {include content}
+        </section>
+        <footer>ahoj</footer>
+    </body>
+</html>

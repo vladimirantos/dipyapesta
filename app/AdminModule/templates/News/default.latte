@@ -1,0 +1,27 @@
+{* Latte template *}
+
+{block content}
+<div id="menu" class="clearfix">
+    <a>Vytvořit</a>
+</div>
+<table class="center" id ="dataTable" >
+    <thead>
+        <tr>
+            <td>#ID</td>
+            <td>Nadpis</td>
+            <td>Obsah</td>
+            <td>Datum</td>
+        </tr>
+    </thead>
+    <tbody>
+        {foreach $news as $new}
+            <tr class="clickMe">
+                <td><a n:href="News:detail $new->id_article"></a>#{$new->id_article}</td>
+                <td>{$new->title}</td>
+                <td>{$new->content}</td>
+                <td>{$new->date}</td>
+            </tr>
+        {/foreach}
+    </tbody>
+</table>
+{/block} 
