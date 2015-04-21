@@ -33,5 +33,20 @@ class NewsManager extends ModelContainer {
                 throw new \Exception($e->getMessage());
         }
     }
+    
+    public function edit($data){
+        try{
+        $data['date'] = $this->database->query("SELECT CURRENT_TIMESTAMP as 'date' FROM dual")->fetch()->date;
+        $this->database->table(self::table)->where(self::id,$data->id_article)->update($data);
+        } catch (\PDOException $e) {
+            if ($e->getCode() == 23000)
+                throw new \Nette\InvalidArgumentException("Novinka s tímto nadpisem již existuje");
+            else
+                throw new \Exception($e->getMessage());
+        }
+    }
 
+    public function delete($id){
+        $this->database->table(self::table)->where(self::id,$id)->delete();
+    }
 }

@@ -2,7 +2,8 @@
 
 {block content}
 <div id="menu" class="clearfix">
-    <a>Upravit</a>
+    <a n:href="News:edit $new->id_article">Upravit</a>
+    <a onclick="if (!confirm('Opravdu chcete odstranit tuto novinku? Takováto změna již nepůjde vrátit zpět!')) { return false; }" n:href="delete! $new->id_article" style="background-color: transparent;"><img src="{$basePath}/images/trash.png"></a>
 </div>
 <h1>#{$new->id_article .' '.$new->title}</h1>
 <p>{$new->content}</p>

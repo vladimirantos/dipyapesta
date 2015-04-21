@@ -1,0 +1,24 @@
+{* Latte template *}
+
+{block content}
+{form edit}
+
+    <table style="width:50%;" class="center">
+        <tr>
+            <td>{label title/}</td>
+            <td>{input title}</td>
+        </tr>
+
+        <tr>
+            <td>{label content/}</td>
+            <td>{input content style=>'width:100%'}</td>
+        </tr>
+
+        <tr>
+            <td class="textCenter" colspan="2">{input submit}</td>
+        </tr>
+    </table>
+     <br>
+     <br>
+    
+{/form}

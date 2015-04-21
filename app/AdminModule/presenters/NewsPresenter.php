@@ -30,8 +30,15 @@ class NewsPresenter extends AdminPresenter {
         $this->template->new = $this->news->get($id);
     }
 
-    public function renderNew() {
-        
+    public function renderEdit($id) {
+        $data = $this->news->get($id);
+        $this['edit']->setDefaults($data);
+    }
+
+    public function handleDelete($id) {
+        $this->news->delete($id);
+        $this->flashMessage("Novinka byla úspěšně odstraněna","success");
+        $this->redirect("News:");
     }
 
     protected function createComponentCreateNew() {
@@ -51,6 +58,29 @@ class NewsPresenter extends AdminPresenter {
             $done = $this->news->add($values);
             $this->flashMessage("Novinka byla úspěšně vytvořena", "success");
             $this->redirect("News:detail", $done);
+        } catch (\Nette\InvalidArgumentException $e) {
+            $this->flashMessage($e->getMessage(), "error");
+            $this->redrawControl("messages");
+        }
+    }
+
+    protected function createComponentEdit() {
+        $form = new UI\Form();
+        $form->addText("title", "Nadpis:")
+                ->setRequired("Zvolte prosím nadpis novinky");
+        $form->addTextArea("content", "Obsah:")
+                ->setRequired("Zadejte prosím obsah novinky");
+        $form->addHidden("id_article");
+        $form->addSubmit("submit", "Upravit");
+        $form->onSubmit[] = $this->edit;
+        return $form;
+    }
+
+    public function edit(UI\Form $form) {
+        try {
+            $this->news->edit($form->getValues());
+            $this->flashMessage("Novinka byla úspěšně upravena", "success");
+            $this->redirect("News:detail", $form->getValues()->id_article);
         } catch (\Nette\InvalidArgumentException $e) {
             $this->flashMessage($e->getMessage(), "error");
             $this->redrawControl("messages");
