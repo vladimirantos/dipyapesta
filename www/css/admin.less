@@ -26,6 +26,11 @@ and open the template in the editor.
     margin: 0;
     padding: 0;
 }
+a{
+    text-decoration: none;
+    color:black;
+    
+}
 .menuBtn{
     padding: 2px;
     padding-left: 5px;
@@ -76,7 +81,7 @@ body{
         border-top: 1px solid black;
         ul{
             .emptyMargin;
-            margin-top: @menuHeight / 4; 
+            margin-top: @menuHeight / 8; 
             width: 100%;
             text-align: center;
             a{
@@ -98,7 +103,7 @@ body{
 
     #content{
         width: 100%;
-        min-height: 724px - @headerHeight - @menuHeight - @footerHeight;
+        min-height: 710px - @headerHeight - @menuHeight - @footerHeight;
         max-width: @contentWidth;
         margin:0 auto;
         padding-top:50px;
@@ -108,7 +113,7 @@ body{
             float:right;
             margin-bottom: 20px;
             padding-bottom: 5px;
-            border-bottom:1px solid black;
+            border-bottom:3px solid black;
             a{
                 float:right;
                 .menuBtn;
@@ -118,6 +123,9 @@ body{
 
         .center{
             margin:0 auto;
+        }
+        .textCenter{
+            text-align: center;
         }
 
         #dataTable{

@@ -1,0 +1,58 @@
+body {
+    font-size: 15px;
+    line-height: 1.6;
+    color: #333;
+    background: white;
+}
+
+
+#ajax-spinner {
+    margin: 15px 0 0 15px;
+    padding: 13px;
+    background: white url('../images/spinner.gif') no-repeat 50% 50%;
+    font-size: 0;
+    z-index: 123456;
+    display: none;
+}
+
+div.flash {
+    color: black;
+    background: #FFF9D7;
+    margin-top:10px;
+    padding: 5px;
+    border: 1px solid #E2C822;
+    text-align: center;
+}
+div.flash.error{
+    background: #ec9488;
+}
+div.flash.success{
+    background: #00AB99;
+}
+
+a[href^="#error:"] {
+    background: red;
+    color: white;
+}
+
+form th, form td {
+    vertical-align: top;
+    font-weight: normal;
+}
+
+form th {
+    text-align: right;
+}
+
+form .required label {
+    font-weight: bold;
+}
+
+form .error {
+    color: #D00;
+    font-weight: bold;
+}
+
+html.js .jshidden {
+    display: none;
+}
