@@ -5,7 +5,7 @@ namespace App\AdminModule\Presenters;
 use App\Model,
     \Nette\Application\UI;
 
-class ProductsPresenter extends AdminPresenter {
+class ProduktyPresenter extends AdminPresenter {
 
     /**
      * @var Model\ProductManager @inject

@@ -2,9 +2,15 @@
 
 namespace App\AdminModule\Presenters;
 
+use App\Model;
+
 class AdminPresenter extends \App\Presenters\BasePresenter {
 
-    private $active = array("novinky"=>"","produkty"=>"","recepty"=>"","uzivatele"=>"");
+    /**
+     * @var Model\IngredientsManager @inject
+     */
+    public $ingredients;
+    private $active = array("novinky" => "", "produkty" => "", "recepty" => "", "uzivatele" => "");
 
     public function setActive($id) {
         $this->active[$id] = "active";
@@ -13,6 +19,10 @@ class AdminPresenter extends \App\Presenters\BasePresenter {
     public function afterRender() {
         parent::afterRender();
         $this->template->active = $this->active;
+        $session = $this->session->getSection("ingredients");
+        if (!is_null($session->title)) {
+            $this->ingredients->delete($session->title);
+        }
     }
 
 }

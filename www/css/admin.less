@@ -14,6 +14,7 @@ and open the template in the editor.
 */
 @colorOne: #ffa500;
 @colorTwo: #ff8c00; 
+@gray : #d3d3d3;
 
 /* Výšky elementů */
 @headerHeight:100px;
@@ -29,7 +30,7 @@ and open the template in the editor.
 a{
     text-decoration: none;
     color:black;
-    
+
 }
 .menuBtn{
     padding: 2px;
@@ -43,7 +44,33 @@ a{
         background-color: @colorTwo;
     }
 }
-
+.section{
+    width: 100%;
+    background-color: @gray;
+    color:@colorOne;
+    padding-left: 10px;
+    border:1px solid black;
+    border-radius: 5px 5px 5px 5px ;
+}
+.center{
+    margin:0 auto;
+}
+.textCenter{
+    text-align: center;
+}
+.ingredient{
+    border: 1px solid black;
+    border-radius: 5px 5px 5px 5px;
+    .textCenter;
+    display: inline-block;
+    padding: 5px;
+    margin: 10px;
+    background-color: @colorOne;
+    img{
+        margin-top:-20px;
+        margin-right: -20px;
+    }
+}
 body{
     .emptyMargin;
     min-width:@bodyMinWidth;
@@ -122,12 +149,7 @@ body{
             }
         }
 
-        .center{
-            margin:0 auto;
-        }
-        .textCenter{
-            text-align: center;
-        }
+
 
         #dataTable{
             display:none;

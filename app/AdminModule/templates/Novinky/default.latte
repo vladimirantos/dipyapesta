@@ -2,7 +2,7 @@
 
 {block content}
 <div id="menu" class="clearfix">
-    <a n:href="News:new">Vytvořit</a>
+    <a n:href="Novinky:new">Vytvořit</a>
 </div>
 <table class="center" id ="dataTable" >
     <thead>
@@ -16,7 +16,7 @@
     <tbody>
         {foreach $news as $new}
             <tr class="clickMe">
-                <td><a n:href="News:detail $new->id_article"></a>#{$new->id_article}</td>
+                <td><a n:href="Novinky:detail $new->id_article"></a>#{$new->id_article}</td>
                 <td>{$new->title}</td>
                 <td>{$new->content}</td>
                 <td>{$new->date}</td>

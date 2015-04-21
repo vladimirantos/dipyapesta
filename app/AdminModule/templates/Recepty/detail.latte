@@ -1,0 +1,26 @@
+{* Latte template *}
+
+{block content}
+<div id="menu" class="clearfix">
+    <a n:href="Recepty:edit $recipe->title">Upravit</a>
+    <a onclick="if (!confirm('Opravdu chcete odstranit tento recept? Takováto změna již nepůjde vrátit zpět!')) {
+                return false;
+            }" n:href="delete! $recipe->title" style="background-color: transparent;"><img src="{$basePath}/images/trash.png"></a>
+</div>
+<h1>{$recipe->title}</h1>
+{if !empty($recipe->image)}
+    <img style="width:20%" src="{$basePath}/images/gallery/recipes/{$recipe->image}">
+{/if}
+{if !empty($ingredients)}
+    <table>
+        <tr>
+            <td>Ingredience</td>
+            <td>Množství</td>
+        </tr>
+        <tr n:foreach="$ingredients as $ingredient">
+            <td>{$ingredient->ingredient}</td>
+            <td>{$ingredient->quantity}</td>
+        </tr>
+    </table>
+{/if}
+<p>{$recipe->description}</p>

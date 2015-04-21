@@ -10,7 +10,7 @@ use App\Model,
  *
  * @author Bruno
  */
-class NewsPresenter extends AdminPresenter {
+class NovinkyPresenter extends AdminPresenter {
 
     /**
      * @var Model\NewsManager @inject

@@ -1,0 +1,23 @@
+{* Latte template *}
+
+{block content}
+<div id="menu" class="clearfix">
+    <a n:href="Recepty:new">Vytvořit</a>
+</div>
+<table class="center" id ="dataTable" >
+    <thead>
+        <tr>
+            <td>Nadpis</td>
+            <td>Popis</td>
+        </tr>
+    </thead>
+    <tbody>
+        {foreach $recipes as $recipe}
+            <tr class="clickMe">
+                <td><a n:href="Recepty:detail $recipe->title"></a>{$recipe->title}</td>
+                <td>{$recipe->description}</td>
+            </tr>
+        {/foreach}
+    </tbody>
+</table>
+{/block} 

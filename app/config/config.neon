@@ -25,5 +25,7 @@ services:
 	- App\Model\UserManager
 	- App\Model\NewsManager
 	- App\Model\ProductManager
+	- App\Model\RecipesManager
+	- App\Model\IngredientsManager
 	- App\RouterFactory
 	router: @App\RouterFactory::createRouter
