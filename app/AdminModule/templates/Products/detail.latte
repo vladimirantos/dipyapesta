@@ -1,0 +1,16 @@
+{* Latte template *}
+
+{block content}
+<div id="menu" class="clearfix">
+    <a n:href="Products:edit $product->title">Upravit</a>
+    <a onclick="if (!confirm('Opravdu chcete odstranit tento produkt? Takováto změna již nepůjde vrátit zpět!')) {
+                return false;
+            }" n:href="delete! $product->title" style="background-color: transparent;"><img src="{$basePath}/images/trash.png"></a>
+</div>
+<h1>{$product->title}</h1>
+<img style="width:20%" src="{$basePath}/images/gallery/{$product->main_image}">
+<p>{$product->short_description}</p>
+<p>{$product->description}</p>
+<p>{$product->preparation}</p>
+<h4 style="font-style:italic ">Ze dne: {$product->date}</h4>
+{/block}

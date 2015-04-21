@@ -24,5 +24,6 @@ nette:
 services:
 	- App\Model\UserManager
 	- App\Model\NewsManager
+	- App\Model\ProductManager
 	- App\RouterFactory
 	router: @App\RouterFactory::createRouter

@@ -1,0 +1,40 @@
+{* Latte template *}
+
+{block content}
+{form edit}
+
+    <table style="width:50%;" class="center">
+        <tr>
+            <td>{label title/}</td>
+            <td>{input title}</td>
+        </tr>
+
+        <tr>
+            <td>{label short_description/}</td>
+            <td>{input short_description style=>'width:100%'}</td>
+        </tr>
+        <tr>
+            <td>{label description/}</td>
+            <td>{input description style=>'width:100%'}</td>
+        </tr>
+        <tr>
+            <td>{label preparation/}</td>
+            <td>{input preparation style=>'width:100%'}</td>
+        </tr>
+
+        <tr>
+            <td>{label main_image/}</td>
+            <td>
+                <img src="{$basePath}/images/gallery/{$product->main_image}">
+                {input main_image}
+            </td>
+        </tr>
+
+        <tr>
+            <td class="textCenter" colspan="2">{input submit value=>'Upravit'}</td>
+        </tr>
+    </table>
+    <br>
+    <br>
+
+{/form}
