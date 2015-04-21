@@ -38,7 +38,7 @@ class NovinkyPresenter extends AdminPresenter {
     public function handleDelete($id) {
         $this->news->delete($id);
         $this->flashMessage("Novinka byla úspěšně odstraněna","success");
-        $this->redirect("News:");
+        $this->redirect("Novinky:");
     }
 
     protected function createComponentCreateNew() {
@@ -57,7 +57,7 @@ class NovinkyPresenter extends AdminPresenter {
         try {
             $done = $this->news->add($values);
             $this->flashMessage("Novinka byla úspěšně vytvořena", "success");
-            $this->redirect("News:detail", $done);
+            $this->redirect("Novinky:detail", $done);
         } catch (\Nette\InvalidArgumentException $e) {
             $this->flashMessage($e->getMessage(), "error");
             $this->redrawControl("messages");
@@ -80,7 +80,7 @@ class NovinkyPresenter extends AdminPresenter {
         try {
             $this->news->edit($form->getValues());
             $this->flashMessage("Novinka byla úspěšně upravena", "success");
-            $this->redirect("News:detail", $form->getValues()->id_article);
+            $this->redirect("Novinky:detail", $form->getValues()->id_article);
         } catch (\Nette\InvalidArgumentException $e) {
             $this->flashMessage($e->getMessage(), "error");
             $this->redrawControl("messages");
