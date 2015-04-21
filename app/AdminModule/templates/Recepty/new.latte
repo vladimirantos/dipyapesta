@@ -2,7 +2,7 @@
 
 {block content}
 <h2 class="section">Ingredience:</h2>
-{form ingredients class=>''}
+{form ingredients class=>'ajax'}
 
     <table style="width:50%;" class="center">
         <tr>
@@ -28,7 +28,7 @@
         {if isset($ingredients)}
             <ul>
                 <li n:foreach="$ingredients as $ingredient" class="ingredient">
-                    {$ingredient->ingredient .' '.$ingredient->quantity.' '.$ingredient->unit} <a n:href="deleteIngredient! $ingredient->id_ingredient"><img src="{$basePath}/images/close.png"></a>
+                    {$ingredient->ingredient .' '.$ingredient->quantity.' '.$ingredient->unit} <a class="ajax" n:href="deleteIngredient! $ingredient->id_ingredient"><img src="{$basePath}/images/close.png"></a>
                 </li>
             </ul>
         {/if}

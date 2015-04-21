@@ -20,7 +20,7 @@ class AdminPresenter extends \App\Presenters\BasePresenter {
         parent::afterRender();
         $this->template->active = $this->active;
         $session = $this->session->getSection("ingredients");
-        if (!is_null($session->title)) {
+        if (!is_null($session->title) and ($this->presenter->name!="Admin:Recepty" )) {
             $this->ingredients->delete($session->title);
         }
     }

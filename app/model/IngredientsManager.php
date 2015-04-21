@@ -23,7 +23,7 @@ class IngredientsManager extends ModelContainer {
     }
 
     public function add($data, $title) {
-        $data['recipes'] = $title;
+        $data->recipes = $title;
         $this->database->table(self::table)->insert($data);
     }
 
