@@ -26,11 +26,13 @@ class RecipesManager extends ModelContainer {
 
     public function add($data) {
         try {
-            if (isset($data->image)) {
+            $image = null;
+            if ($data->image->isImage()) {
                 $image = $data->image;
                 unset($data->image);
             }
             $this->database->table(self::table)->insert($data);
+            if($image != null)
             $this->addMainImage($image, $data->title);
         } catch (\PDOException $e) {
             if ($e->getCode() == 23000)
