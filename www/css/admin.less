@@ -15,6 +15,7 @@ and open the template in the editor.
 @colorOne: #ffa500;
 @colorTwo: #ff8c00; 
 @gray : #d3d3d3;
+@silver : #c0c0c0;
 
 /* Výšky elementů */
 @headerHeight:100px;
@@ -45,14 +46,18 @@ a{
     }
 }
 .section{
-    width: 100%;
-    background-color: @gray;
-    color:@colorOne;
-    padding-left: 10px;
+    width: 99%;
+    background-color: @silver;
+    color:orange;
+    padding-left: 1%;
     border:1px solid black;
     border-radius: 5px 5px 5px 5px ;
     text-shadow: 1px 1px black;
-    
+    margin-bottom: 0;
+    font-family: Times New Roman, serif;
+    + p{
+        padding-left: 20px;
+    }
 }
 .center{
     margin:0 auto;
@@ -139,16 +144,15 @@ body{
         padding-top:50px;
 
         #menu{
-            width: 50%;
             float:right;
             margin-bottom: 20px;
             padding-bottom: 5px;
-            border-bottom:3px solid black;
             a{
+                box-shadow: 2px 2px black;
                 float:right;
                 .menuBtn;
                 background-color: @colorOne;
-                margin-right: 10px;
+                margin-right: 5px;
             }
         }
 
@@ -163,7 +167,23 @@ body{
                 background-color:@colorOne;
             }
         }
-
+        input[type="submit"]{
+            background-color: @colorOne;
+            padding: 5px;
+            font-size: 12pt;
+            border-color: black;
+            border-radius: 5px 5px 5px 5px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        form{
+            padding-top: 50px;
+            padding-bottom: 10px;
+            border: 1px solid black;    
+            border-top:0;
+            background-color: @gray;
+            width: 100%;
+        }
     }
     footer{
         width: 100%;
