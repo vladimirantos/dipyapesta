@@ -17,7 +17,11 @@ class ReceptyPresenter extends AdminPresenter {
         parent::__construct();
         $this->setActive("recepty");
     }
-    
+
+    public function startup(){
+        parent::startup();
+    }
+
     public function renderDefault() {
         $this->template->recipes = $this->recipes->getAll();
     }

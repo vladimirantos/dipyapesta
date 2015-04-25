@@ -12,6 +12,12 @@ class AdminPresenter extends \App\Presenters\BasePresenter {
     public $ingredients;
     private $active = array("novinky" => "", "produkty" => "", "recepty" => "", "uzivatele" => "");
 
+    public function startup(){
+        parent::startup();
+        if(!$this->getUser()->isLoggedIn())
+            $this->redirect(":Sign:in");
+    }
+
     public function setActive($id) {
         $this->active[$id] = "active";
     }

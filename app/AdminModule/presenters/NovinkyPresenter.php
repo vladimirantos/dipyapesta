@@ -22,6 +22,10 @@ class NovinkyPresenter extends AdminPresenter {
         $this->setActive("novinky");
     }
 
+    public function startup(){
+        parent::startup();
+    }
+
     public function renderDefault() {
         $this->template->news = $this->news->getAll();
     }
