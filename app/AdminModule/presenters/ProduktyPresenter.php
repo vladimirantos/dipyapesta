@@ -12,6 +12,11 @@ class ProduktyPresenter extends AdminPresenter {
      */
     public $product;
 
+    public function __construct() {
+        parent::__construct();
+        $this->setActive("produkty");
+    }
+    
     public function renderDefault() {
         $this->template->products = $this->product->getAll();
     }
@@ -29,7 +34,7 @@ class ProduktyPresenter extends AdminPresenter {
     public function handleDelete($title) {
         $this->product->delete($title);
         $this->flashMessage("Produkt byl úspěšně odstraněn", "success");
-        $this->redirect("Products:");
+        $this->redirect("Produkty:");
     }
 
     protected function createComponentCreateNew() {
@@ -79,7 +84,7 @@ class ProduktyPresenter extends AdminPresenter {
         try {
             $this->product->add($data);
             $this->flashMessage("Produkt byl úspěšně vytvořen", 'success');
-            $this->redirect("Products:detail", $data->title);
+            $this->redirect("Produkty:detail", $data->title);
         } catch (\Nette\InvalidArgumentException $e) {
             $this->flashMessage($e->getMessage(), 'error');
             $this->redrawControl("messages");
@@ -92,7 +97,7 @@ class ProduktyPresenter extends AdminPresenter {
         try {
             $this->product->update($data);
             $this->flashMessage("Produkt byl úspěšně upraven", 'success');
-            $this->redirect("Products:detail", $title);
+            $this->redirect("Produkty:detail", $title);
         } catch (\Nette\InvalidArgumentException $e) {
             $this->flashMessage($e->getMessage(), 'error');
             $this->redrawControl("messages");

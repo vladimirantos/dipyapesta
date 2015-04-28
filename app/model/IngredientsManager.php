@@ -24,7 +24,14 @@ class IngredientsManager extends ModelContainer {
 
     public function add($data, $title) {
         $data->recipes = $title;
-        $this->database->table(self::table)->insert($data);
+        try {
+            $this->database->table(self::table)->insert($data);
+        } catch (\PDOException $e) {
+            if ($e->getCode() == 23000)
+                throw new \Nette\InvalidArgumentException("Nelze přidat dvě ingredience se stejným názvem k jednomu receptu");
+            else
+                throw new \Exception($e->getMessage());
+        }
     }
 
     public function changeTitle($old, $new) {

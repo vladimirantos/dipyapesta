@@ -9,18 +9,16 @@
 </div>
 <h1>{$recipe->title}</h1>
 {if !empty($recipe->image)}
-    <img style="width:20%" src="{$basePath}/images/gallery/recipes/{$recipe->image}">
+    <img style="width:20%" src="{$basePath}/images/recipes/{$recipe->image}">
 {/if}
 {if !empty($ingredients)}
-    <table>
-        <tr>
-            <td>Ingredience</td>
-            <td>Množství</td>
-        </tr>
-        <tr n:foreach="$ingredients as $ingredient">
-            <td>{$ingredient->ingredient}</td>
-            <td>{$ingredient->quantity}</td>
-        </tr>
-    </table>
+    <h2 class="section">Ingredience:</h2>
+    <ul>
+        <li n:foreach="$ingredients as $ingredient" class="ingredient">
+            {$ingredient->ingredient .' '.$ingredient->quantity.' '.$ingredient->unit}
+        </li>
+    </ul>
 {/if}
+<h2 class="section">Popis:</h2>
+
 <p>{$recipe->description}</p>

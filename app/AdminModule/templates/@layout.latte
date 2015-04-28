@@ -35,7 +35,9 @@
                 <li class="{$active['uzivatele']}">Uživatelé</li>
             </ul>
         </menu>
-        <div n:foreach="$flashes as $flash" class="flash {$flash->type}">{$flash->message}</div>
+        {snippet messages}
+            <div n:foreach="$flashes as $flash" class="flash {$flash->type}">{$flash->message}</div>
+        {/snippet}
         <section id="content">
             {include content}
         </section>

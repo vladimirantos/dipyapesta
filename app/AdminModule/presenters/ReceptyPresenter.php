@@ -13,8 +13,11 @@ class ReceptyPresenter extends AdminPresenter {
      */
     public $recipes;
 
+    public function __construct() {
+        parent::__construct();
+        $this->setActive("recepty");
+    }
     
-
     public function renderDefault() {
         $this->template->recipes = $this->recipes->getAll();
     }
@@ -78,23 +81,33 @@ class ReceptyPresenter extends AdminPresenter {
 
     public function createNew(UI\Form $form) {
         $data = $form->getValues();
-        $this->recipes->add($data);
-        $session = $this->session->getSection("ingredients");
-        $this->ingredients->changeTitle($session->title, $data->title);
-        $session->title=null;
-        $this->flashMessage("Recept byl úspěšně vytvořen");
-        $this->redirect("Recepty:detail",$data->title);
+        try {
+            $this->recipes->add($data);
+            $session = $this->session->getSection("ingredients");
+            $this->ingredients->changeTitle($session->title, $data->title);
+            $session->title = null;
+            $this->flashMessage("Recept byl úspěšně vytvořen", "success");
+            $this->redirect("Recepty:detail", $data->title);
+        } catch (Nette\InvalidArgumentException $e) {
+            $this->flashMessage($e->getMessage(),"error");
+            $this->redrawControl("messages");
+        }
     }
 
     public function newIngredient(UI\Form $form) {
         $data = $form->getValues();
-        $session = $this->session->getSection("ingredients");
-        if (!isset($session->title)) {
-            $session->title = Nette\Utils\Strings::random(5);
+        try {
+            $session = $this->session->getSection("ingredients");
+            if (!isset($session->title)) {
+                $session->title = Nette\Utils\Strings::random(5);
+            }
+            $this->ingredients->add($data, $session->title);
+            $this->flashMessage("Ingredience byla přidána.", "success");
+            $this->redrawControl("ingredients");
+        } catch (Nette\InvalidArgumentException $e) {
+            $this->flashMessage($e->getMessage(), "error");
+            $this->redrawControl("messages");
         }
-        $this->ingredients->add($data, $session->title);
-        $this->flashMessage("Ingredience byla přidána.");
-        $this->redrawControl("ingredients");
     }
 
 }
