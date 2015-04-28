@@ -10,7 +10,13 @@ class AdminPresenter extends \App\Presenters\BasePresenter {
      * @var Model\IngredientsManager @inject
      */
     public $ingredients;
-    private $active = array("novinky" => "", "produkty" => "", "recepty" => "", "uzivatele" => "");
+    private $active = array("novinky" => "", "produkty" => "", "recepty" => "", "odhlasit" => "");
+
+    public function startup(){
+        parent::startup();
+        if(!$this->getUser()->isLoggedIn())
+            $this->redirect(":Sign:in");
+    }
 
     public function setActive($id) {
         $this->active[$id] = "active";

@@ -26,12 +26,15 @@ class RecipesManager extends ModelContainer {
 
     public function add($data) {
         try {
-            if (isset($data->image)) {
+            $image = null;
+            if ($data->image->isImage()) {
                 $image = $data->image;
                 unset($data->image);
             }
             $this->database->table(self::table)->insert($data);
-            $this->addMainImage($image, $data->title);
+
+            if ($image != null)
+                $this->addMainImage($image, $data->title);
         } catch (\PDOException $e) {
             if ($e->getCode() == 23000)
                 throw new \Nette\InvalidArgumentException("Recept s tímto názvem již existuje");

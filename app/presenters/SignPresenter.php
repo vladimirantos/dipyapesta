@@ -12,6 +12,10 @@ use Nette,
 class SignPresenter extends BasePresenter
 {
 
+    /**
+     * @var Model\UserManager @inject
+     */
+    public $userManager;
 
 	/**
 	 * Sign-in form factory.
@@ -19,45 +23,31 @@ class SignPresenter extends BasePresenter
 	 */
 	protected function createComponentSignInForm()
 	{
-		$form = new Nette\Application\UI\Form;
-		$form->addText('username', 'Username:')
-			->setRequired('Please enter your username.');
-
-		$form->addPassword('password', 'Password:')
-			->setRequired('Please enter your password.');
-
-		$form->addCheckbox('remember', 'Keep me signed in');
-
-		$form->addSubmit('send', 'Sign in');
-
-		// call method signInFormSucceeded() on success
-		$form->onSuccess[] = $this->signInFormSucceeded;
-		return $form;
+        b(Nette\Security\Passwords::hash(12345));
+        $form = new Nette\Application\UI\Form();
+        $form->addText("email", "Email")->setRequired("Nezadal jsi email");
+        $form->addPassword("password", "Heslo")->setRequired("Nezadal jsi heslo");
+        $form->addSubmit("send", "Přihlásit se");
+        $form->onSuccess[] = $this->signInFormSucceeded;
+        return $form;
 	}
 
 
 	public function signInFormSucceeded($form, $values)
 	{
-		if ($values->remember) {
-			$this->getUser()->setExpiration('14 days', FALSE);
-		} else {
-			$this->getUser()->setExpiration('20 minutes', TRUE);
-		}
-
-		try {
-			$this->getUser()->login($values->username, $values->password);
-			$this->redirect('Homepage:');
-
-		} catch (Nette\Security\AuthenticationException $e) {
-			$form->addError($e->getMessage());
-		}
+        try{
+            $this->getUser()->login($values->email, $values->password);
+            $this->redirect("Admin:Homepage:");
+        }catch (Nette\Security\AuthenticationException $e){
+            $form->addError($e->getMessage());
+        }
 	}
 
 
 	public function actionOut()
 	{
 		$this->getUser()->logout();
-		$this->flashMessage('You have been signed out.');
+		$this->flashMessage('Byl jsi úspěšně odhlášen');
 		$this->redirect('in');
 	}
 

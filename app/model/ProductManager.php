@@ -47,14 +47,15 @@ class ProductManager extends ModelContainer {
     }
 
     public function add($data) {
-        if (isset($data->main_image)) {
+        $image = null;
+        if ($data->main_image->isImage()) {
             $image = $data->main_image;
             unset($data->main_image);
         }
         $title = $data->title;
         try {
             $this->database->table(self::table)->insert($data);
-            if (isset($image))
+            if ($image != null)
                 $this->addMainImage($image, $title);
         } catch (\PDOException $e) {
             if ($e->getCode() == 23000)
@@ -82,6 +83,12 @@ class ProductManager extends ModelContainer {
         return $filename;
     }
 
+    /**
+     * TODO: zmenšení obrázku
+     * @param Nette\Http\FileUpload $image
+     * @param $title
+     * @throws \Exception
+     */
     public function addMainImage(\Nette\Http\FileUpload $image, $title) {
         $imageName = $this->createImageName($image->name);
         $this->path = $this->galleryPath . $imageName;

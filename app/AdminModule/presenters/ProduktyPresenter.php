@@ -16,7 +16,7 @@ class ProduktyPresenter extends AdminPresenter {
         parent::__construct();
         $this->setActive("produkty");
     }
-    
+
     public function renderDefault() {
         $this->template->products = $this->product->getAll();
     }
