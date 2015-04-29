@@ -21,237 +21,499 @@
 .light{
     color: @light;
 }
-body{
-    font-family: 'Roboto', sans-serif;
-    margin:0;
-    padding: 0;
-    .content{
-        width: 1000px;
-        margin: 0 auto;
-        .clearfix;
-    }
-
-    header{
-        background-color: @menuColor;
+@media (max-device-width: 1000px){
+    body{
         width: 100%;
-        color:white;
-        nav{
-            width: 1000px;
+        font-family: 'Roboto', sans-serif;
+        margin:0;
+        padding: 0;
+        .content{
+            padding-left:2%;
+            padding-right:2%;
+            width: 100%;
             margin: 0 auto;
-            height: 50px;
-            #logo{
-                float: left;
-                width:10%;
-                height: 100%;
-                text-align: left;
-                img{
+            margin-left: 1%;
+            .clearfix;
+        }
+
+        header{
+            background-color: @menuColor;
+            width: 100%;
+            color:white;
+            padding-right:2%;
+            nav{
+                padding-left:2%;
+                padding-right:2%;
+                width: 100%;
+                margin: 0 auto;
+                height: 50px;
+                #logo{
+                    float: left;
+                    width:10%;
                     height: 100%;
+                    text-align: left;
+                    img{
+                        height: 100%;
+                    }
+                }
+                #menu{
+                    width:50%;
+                    margin-right: 5%;
+                    float: right;
+                    text-align: center;
+                    img{
+                        float: right;
+                        height:50px;
+                        width: 50px;
+                    }
+                    ul{
+                        display:none;
+                        width:100%;
+                        height:10%;
+                        margin:0;
+                        margin-top:50px;
+                        li{
+                            padding-top:15px;
+                            padding-left:20px;
+                            padding-right:20px;
+                            height: 100%;
+                            display:block;
+                            text-align:center;
+                            img{
+                                display: none;
+                            }
+                            &:hover{
+                                background-color: @darkMenuColor;
+                            }
+                            &.active{
+                                text-align: center;
+                                background-color: @darkMenuColor;
+                                border-bottom:5px solid red;
+                            }
+                        }
+                    }
                 }
             }
-            #menu{
-                float:right;
-                width:90%;
+            nav.active{
+                #menu{
+                    display:none;
+                }
+            }
+        }
+
+        #foot{
+            width: 100%;
+            padding-right:2%;
+            background-color: @menuColor;
+            color:white;
+            .content{
+                span{
+                    display: inline-table;
+                }
+                #nav{
+                    width:15%;
+                    ul{
+                        list-style: none;
+                        margin: 0;
+                        padding: 0;
+                    }
+                }
+                #contact{
+                    width:20%;
+                    margin-left: 5%;
+                }
+                #recipe{
+                    width:50%;
+                    margin-left: 5%;
+                }
+            }
+        }
+
+        footer{
+            padding-top: 10px;
+            width: 100%;
+            height: 30px;
+            color:white;
+            padding-right:2%;
+            background-color: @darkMenuColor;
+            .content{
+                margin-right:2%;
+                .left{
+                    text-align:left;
+                }
+                .right{
+                    text-align:right;
+                }
+            }
+        }
+        aside{
+            display: none;
+        }
+
+        img.main{
+            padding-right:2%;
+            width: 102%;
+        }
+
+        .left{
+            width:100%;
+            margin: 0;
+        }
+        .right{
+            margin: 0;
+            width:100%;
+        }
+        .textCenter{
+            text-align: center;
+        }
+        .smaller{
+            font-size: 9pt;
+        }
+        .lightButton{
+            border: 2px solid @light;
+            padding: 10px;
+            background-color: white;
+            width: 100%;
+        }
+        section{
+            font-size:9pt;
+            .clearfix;
+            padding-left:2%;
+            padding-right:2%;
+            width: 100%;
+            margin: 0 auto;
+            min-height: 1000px;
+            margin-bottom:3%;
+            .photos{
+                margin-top:3%;
+                .photo{
+                    display: block;
+                    width:95%;
+                    margin-left:3%;
+                    margin-top: 2%;
+                }
+            }
+
+            h1{
                 text-align: center;
-                height: 100%;
-                ul{
+                font-size:20pt;
+            }
+            h2{
+                text-align: center;
+                font-size:13pt;
+                img{
+                    display: block;
+                    margin: 0 auto;
+                    margin-top:10px;
+                }
+            }
+            h3{
+                font-size:10pt;
+            }
+
+            .productHolder{
+                display: inline-table;
+                width:29%;
+                margin-left:3%;
+                h3{
+                    background-color: @light;
+                    color:white;
+                    padding: 10px;
+                    text-align: center;
+                }
+                img{
+                    width: 100%;
+                }
+                p{
                     width:100%;
+                    text-align: justify;
+                }
+                .lightButton{
+                    display: inherit;
+                    width: 93%;
+                    color: @light;
+                    text-align: center;
+                }   
+            }
+            .contact{
+                form{
+                    width:100%;
+                    label::after{
+                        content:"*";
+                        color: red;
+                    }
+                    input{
+                        width: 80%;
+                        &[type="submit"]{
+                            width: 20%;
+                            margin-right:17.5%;
+                            margin-top:10px;
+                        }
+                    }
+                    textarea{
+                        width: 80%;
+                    }
+                }
+            }
+            ul.contact{
+                text-align:center;
+                li{
+                    padding-top: 10px;
+                    padding-bottom: 10px;
+                    width: 20%;
+                    height: 12px;
+                    display:inline-block;
+                    img{
+                        height: 12px;
+                    }
+                }
+            }
+
+        }
+
+    }
+}
+@media (min-device-width: 1000px) {
+    body{
+        font-family: 'Roboto', sans-serif;
+        margin:0;
+        padding: 0;
+        .content{
+            width: 1000px;
+            margin: 0 auto;
+            .clearfix;
+        }
+
+        header{
+            background-color: @menuColor;
+            width: 100%;
+            color:white;
+            nav{
+                #menuBtn{
+                    display: none;
+                }
+                width: 1000px;
+                margin: 0 auto;
+                height: 50px;
+                #logo{
+                    float: left;
+                    width:10%;
                     height: 100%;
-                    margin:0;
-                    li{
-                        padding-top:15px;
-                        padding-left:20px;
-                        padding-right:20px;
-                        height: 70%;
-                        display: inline-block;
-                        img{
-                            display: none;
-                            margin: 0;
-                            width: 100%;
-                            margin-top: 5%;
-                        }
-                        &:hover{
-                            background-color: @darkMenuColor;
-                        }
-                        &.active{
-                            height: 62%;
-                            background-color: @darkMenuColor;
-                            border-bottom:5px solid red;
+                    text-align: left;
+                    img{
+                        height: 100%;
+                    }
+                }
+                #menu{
+                    float:right;
+                    width:90%;
+                    text-align: center;
+                    height: 100%;
+                    ul{
+                        width:100%;
+                        height: 100%;
+                        margin:0;
+                        li{
+                            cursor: pointer;
+                            padding-top:15px;
+                            padding-left:20px;
+                            padding-right:20px;
+                            height: 70%;
+                            display: inline-block;
                             img{
-                                display:block;
+                                display: none;
+                                margin: 0;
+                                width: 100%;
+                                margin-top: 5%;
+                            }
+                            &:hover{
+                                background-color: @darkMenuColor;
+                            }
+                            &.active{
+                                height: 62%;
+                                background-color: @darkMenuColor;
+                                border-bottom:5px solid red;
+                                img{
+                                    display:block;
+                                }
                             }
                         }
                     }
                 }
             }
         }
-    }
 
-    #foot{
-        width: 100%;
-        background-color: @menuColor;
-        color:white;
-        .content{
-            span{
-                display: inline-table;
-            }
-            #nav{
-                width:15%;
-                ul{
-                    list-style: none;
-                    margin: 0;
-                    padding: 0;
-                }
-            }
-            #contact{
-                width:20%;
-                margin-left: 5%;
-            }
-            #recipe{
-                width:50%;
-                margin-left: 5%;
-            }
-        }
-    }
-
-    footer{
-        padding-top: 10px;
-        height: 30px;
-        color:white;
-        background-color: @darkMenuColor;
-        .content{
-            .left{
-                text-align:left;
-            }
-            .right{
-                text-align:right;
-            }
-        }
-    }
-    aside{
-        @height: 40px;
-        position: fixed;
-        margin-top: 30%;
-        .clearfix;
-        float:left;
-        height: @height*2;
-        margin-right: 1%;
-        ul{
+        #foot{
             width: 100%;
-            margin: 0;
-            padding: 0;
-            li{
-                padding:0;
-                margin:0;
-                height: @height;
-                img{
-                    height: @height;
+            background-color: @menuColor;
+            color:white;
+            .content{
+                span{
+                    display: inline-table;
+                }
+                #nav{
+                    width:15%;
+                    ul{
+                        list-style: none;
+                        margin: 0;
+                        padding: 0;
+                    }
+                }
+                #contact{
+                    width:20%;
+                    margin-left: 5%;
+                }
+                #recipe{
+                    width:50%;
+                    margin-left: 5%;
                 }
             }
         }
-    }
 
-    img.main{
-        width: 100%;
-    }
-
-    .left{
-        width:45%;
-        float: left;
-        margin: 0;
-    }
-    .right{
-        margin: 0;
-        margin-left: 5%;
-        width:50%;
-        float: right;
-    }
-    .textCenter{
-        text-align: center;
-    }
-    .smaller{
-        font-size: 9pt;
-    }
-    .lightButton{
-        border: 2px solid @light;
-        padding: 10px;
-        background-color: white;
-        width: 100%;
-    }
-    section{
-        .clearfix;
-        width: 1000px;
-        margin: 0 auto;
-        min-height:460px;
-        margin-bottom:3%;
-        .photos{
-            margin-top:3%;
-            .photo{
-                display: inline-block;
-                width:20%;
-                margin-left:3%;
+        footer{
+            padding-top: 10px;
+            height: 30px;
+            color:white;
+            background-color: @darkMenuColor;
+            .content{
+                .left{
+                    text-align:left;
+                }
+                .right{
+                    text-align:right;
+                }
             }
         }
-
-        h1{
-            text-align: center;
-        }
-        h2{
-            text-align: center;
-            font-size:13pt;
-            img{
-                display: block;
-                margin: 0 auto;
-                margin-top:10px;
-            }
-        }
-
-        .productHolder{
-            display: inline-table;
-            width:29%;
-            margin-left:3%;
-            h3{
-                background-color: @light;
-                color:white;
-                padding: 10px;
-                text-align: center;
-            }
-            img{
+        aside{
+            cursor: pointer;
+            @height: 40px;
+            position: fixed;
+            margin-top: 30%;
+            .clearfix;
+            float:left;
+            height: @height*2;
+            margin-right: 1%;
+            ul{
                 width: 100%;
-            }
-            p{
-                width:100%;
-                text-align: justify;
-            }
-            .lightButton{
-                display: inherit;
-                width: 93%;
-                color: @light;
-                text-align: center;
-            }   
-        }
-        .contact{
-            label::after{
-                content:"*";
-                color: red;
-            }
-        }
-        ul.contact{
-            text-align:center;
-            li{
-                padding-top: 10px;
-                padding-bottom: 10px;
-                width: 20%;
-                height: 12px;
-                display:inline-block;
-                img{
-                    height: 12px;
+                margin: 0;
+                padding: 0;
+                li{
+                    padding:0;
+                    margin:0;
+                    height: @height;
+                    img{
+                        height: @height;
+                    }
                 }
             }
         }
 
-    }
+        img.main{
+            width: 100%;
+        }
 
+        .left{
+            width:45%;
+            float: left;
+            margin: 0;
+        }
+        .right{
+            margin: 0;
+            margin-left: 5%;
+            width:50%;
+            float: right;
+        }
+        .textCenter{
+            text-align: center;
+        }
+        .smaller{
+            font-size: 9pt;
+        }
+        .lightButton{
+            border: 2px solid @light;
+            padding: 10px;
+            background-color: white;
+            width: 100%;
+        }
+        section{
+            .clearfix;
+            width: 1000px;
+            margin: 0 auto;
+            min-height:460px;
+            margin-bottom:3%;
+            .photos{
+                margin-top:3%;
+                .photo{
+                    display: inline-block;
+                    width:20%;
+                    margin-left:3%;
+                }
+            }
+
+            h1{
+                text-align: center;
+            }
+            h2{
+                text-align: center;
+                font-size:13pt;
+                img{
+                    display: block;
+                    margin: 0 auto;
+                    margin-top:10px;
+                }
+            }
+
+            .productHolder{
+                display: inline-table;
+                width:29%;
+                margin-left:3%;
+                h3{
+                    background-color: @light;
+                    color:white;
+                    padding: 10px;
+                    text-align: center;
+                }
+                img{
+                    width: 100%;
+                }
+                p{
+                    width:100%;
+                    text-align: justify;
+                }
+                .lightButton{
+                    display: inherit;
+                    width: 93%;
+                    color: @light;
+                    text-align: center;
+                }   
+            }
+            .contact{
+                label::after{
+                    content:"*";
+                    color: red;
+                }
+            }
+            ul.contact{
+                text-align:center;
+                li{
+                    padding-top: 10px;
+                    padding-bottom: 10px;
+                    width: 20%;
+                    height: 12px;
+                    display:inline-block;
+                    img{
+                        height: 12px;
+                    }
+                }
+            }
+
+        }
+
+    }
 }
+
+
+
 
 
 

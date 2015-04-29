@@ -9,7 +9,7 @@
         <meta charset="utf-8">
 
         <title>{ifset #title}{include title|striptags} | {/ifset}Nette Sandbox</title>
-        <link href="{$basePath}/css/front.less" media="screen,projection,tv" rel="stylesheet" type="text/less"/>
+        <link href="{$basePath}/css/front.less" rel="stylesheet" type="text/less"/>
         <link href='http://fonts.googleapis.com/css?family=Roboto&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
         {block scripts}
         <script src="{$basePath}/js/libs/less/less.min.js" type="text/javascript"></script>
@@ -21,12 +21,13 @@
         {block head}{/block}
     </head>
 
-    <body>
+    <body class="clearfix">
         <header>
             <nav>
                 <span id="logo" class="ClickMe"><a n:href="Homepage:"><img src="{$basePath}/images/logo.gif" alt="dipit logo"/></a></span>
                 <span id="menu">
-                    <ul>
+                    <img src="{$basePath}/images/menu.png" id="menuBtn">
+                    <ul id="menuUl">
                         <li class="{$active['homepage']} ClickMe"> <a n:href="Homepage:"></a>ÚVOD
                             <img src="{$basePath}/images/activemenu.png">
                         </li>
