@@ -35,6 +35,15 @@ class ReceptyPresenter extends AdminPresenter {
             $this->template->ingredients = array();
     }
 
+    public function renderEdit($title) {
+        $data = $this->recipes->get($title);
+        $this->template->product = $data;
+        $this['createNew']->setDefaults($data);
+        $this->session->getSection("ingredients")->title = $data->title;
+        $this->template->ingredients = $this->ingredients->getAll($data->title);
+
+    }
+
     public function handleDelete($title) {
         $this->recipes->delete($title);
         $this->ingredients->delete($title);
@@ -56,6 +65,7 @@ class ReceptyPresenter extends AdminPresenter {
         $form->addTextArea("description", "Popis:")
                 ->setRequired("Popiště prosím recept");
 
+        $form->addHidden("action");
         $form->addSubmit("submit", "Vytvořit recept");
 
         $form->addUpload("image", "Obrázek:");
@@ -81,15 +91,26 @@ class ReceptyPresenter extends AdminPresenter {
 
     public function createNew(UI\Form $form) {
         $data = $form->getValues();
+        $action = $data->action;
+        unset($data->action);
         try {
-            $this->recipes->add($data);
             $session = $this->session->getSection("ingredients");
-            $this->ingredients->changeTitle($session->title, $data->title);
-            $session->title = null;
-            $this->flashMessage("Recept byl úspěšně vytvořen", "success");
-            $this->redirect("Recepty:detail", $data->title);
+            if ($data->title == $session->title) {
+                $this->recipes->update($data);
+            } else {
+                $this->recipes->add($data);
+                $this->ingredients->changeTitle($session->title, $data->title);
+                $session->title = $data->title;
+            }
+            if ($action == "done") {
+                $this->flashMessage("Recept byl úspěšně vytvořen", "success");
+                $this->redirect("Recepty:detail", $data->title);
+            } elseif ($action == "save") {
+                $this->flashMessage("Recept byl úspěšně uložen", "success");
+                $this->redrawControl("messages");
+            }
         } catch (Nette\InvalidArgumentException $e) {
-            $this->flashMessage($e->getMessage(),"error");
+            $this->flashMessage($e->getMessage(), "error");
             $this->redrawControl("messages");
         }
     }

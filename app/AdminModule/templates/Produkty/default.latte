@@ -10,6 +10,7 @@
             <td>Nadpis</td>
             <td>Krátký popis</td>
             <td>Datum</td>
+            <td>Akce</td>
         </tr>
     </thead>
     <tbody>
@@ -18,6 +19,7 @@
                 <td><a n:href="Produkty:detail $product->title"></a>{$product->title}</td>
                 <td>{$product->short_description}</td>
                 <td>{$product->date}</td>
+                <td class="noClick"><a n:href="Produkty:edit $product->title">Edit</a></td>
             </tr>
         {/foreach}
     </tbody>

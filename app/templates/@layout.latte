@@ -1,32 +1,101 @@
 {**
  * @param string   $basePath web base path
  * @param array    $flashes  flash messages
- *}
+*}
 
 <!DOCTYPE html>
 <html>
-<head>
-	<meta charset="utf-8">
+    <head>
+        <meta charset="utf-8">
 
-	<title>{ifset #title}{include title|striptags} | {/ifset}Nette Sandbox</title>
+        <title>{ifset #title}{include title|striptags} | {/ifset}Nette Sandbox</title>
+        <link href="{$basePath}/css/front.less" media="screen,projection,tv" rel="stylesheet" type="text/less"/>
+        {block scripts}
+        <script src="{$basePath}/js/libs/less/less.min.js" type="text/javascript"></script>
+        <script src="{$basePath}/js/jquery.js"></script>
+        <script src="{$basePath}/js/netteForms.js"></script>
+        <script src="{$basePath}/js/main.js"></script>
+        {/block}
+        <link rel="shortcut icon" href="{$basePath}/favicon.ico">
+        {block head}{/block}
+    </head>
 
-	<link rel="stylesheet" media="screen,projection,tv" href="{$basePath}/css/screen.css">
-	<link rel="stylesheet" media="print" href="{$basePath}/css/print.css">
-	<link rel="shortcut icon" href="{$basePath}/favicon.ico">
-	{block head}{/block}
-</head>
+    <body>
+        <header>
+            <nav>
+                <span id="logo" class="ClickMe"><a n:href="Homepage:"><img src="{$basePath}/images/logo.gif" alt="dipit logo"/></a></span>
+                <span id="menu">
+                    <ul>
+                        <li class="{$active['homepage']} ClickMe"> <a n:href="Homepage:"></a>ÚVOD
+                            <img src="{$basePath}/images/activemenu.png">
+                        </li>
+                        <li class="{$active['products']} ClickMe"> <a n:href="Products:"></a>PRODUKTY
+                            <img src="{$basePath}/images/activemenu.png">
+                        </li>
+                        <li>E-SHOP
+                            <img src="{$basePath}/images/activemenu.png">
+                        </li>
+                        <li class="{$active['news']} ClickMe"> <a n:href="News:"></a>NOVINKY
+                            <img src="{$basePath}/images/activemenu.png">
+                        </li>
+                        <li class="{$active['recipes']} ClickMe"> <a n:href="Recipes:"></a>RECEPTY
+                            <img src="{$basePath}/images/activemenu.png">
+                        </li>
+                        <li class="{$active['kontakt']} ClickMe"> <a n:href="Homepage:kontakt"></a>KONTAKT
+                            <img src="{$basePath}/images/activemenu.png">
+                        </li>
+                    </ul>
+                </span>
+            </nav>
+        </header>
+        <aside>
+            <ul>
+                <li>
+                    <img src="{$basePath}/images/facebook.png" alt="dipit facebook"/>
+                </li>
+                <li>
+                    <img src="{$basePath}/images/youtube.png" alt="dupip youtube"/>
+                </li>
+            </ul>
+        </aside>
+        <script> document.documentElement.className += ' js'</script>
+        <div  n:foreach="$flashes as $flash" class="flash {$flash->type}">{$flash->message}</div>
+        {include content}
 
-<body>
-	<script> document.documentElement.className+=' js' </script>
+        <div id="foot">
+            <div class="content">
+                <span id="nav">
+                    <h4>NAVIGACE</h4>
+                    <ul>
+                        <li>ÚVOD</li>
+                        <li>PRODUKTY</li>
+                        <li>E-SHOP</li>
+                        <li>NOVINKY</li>
+                        <li>RECEPTY</li>
+                        <li>KONTAKT</li>
+                    </ul>
+                </span>
+                <span id="contact">
+                    <h4>RYCHLÝ KONTAKT</h4>
+                    NÁZEV SPOLEČNOSTI<br>    
+                    IČO<br>    
+                    DIČ<br><br>    
+                    INFO@DIPIT.CZ<br>    
+                    +412 605 875 129
+                </span>
+                <span id="recipe">
+                    <h4>NÁHODNÝ RECEPT | <a class="light">všechny recepty</a> </h4>
+                    <p>        Pellentesque efficitur ligula vitae diam euismod, vel dignissim odio viverra. In hac habitasse platea dictumst. Maecenas ac purus ac dui ultricies interdum non ut nulla. Integer vulputate, lorem sit amet fermentum commodo, arcu arcu convallis neque, a vulputate metus nunc vitae est. Sed accumsan, risus in laoreet pretium, orci dolor varius purus, ut ultricies velit ante non felis. Interdum et malesuada fames ac ante ipsum primis in faucibus. Sed eleifend placerat dictum. Sed ac ante ornare, gravida mauris nec, fermentum dolor. Etiam in odio nulla.
+                    </p>
+                </span>
+            </div>
+        </div>
+        <footer>
+            <div class="content">
+                <span class="left">&copy 2015 Dip it | Všechna práva vyhrazena</span>
+                <span class="right">Code: <i>Bruno Puzják & Vladimír Antoš</i>  |  Graphic: <i>Tomáš Matucha</i></span>                
+            </div>
+        </footer>
 
-	<div  n:foreach="$flashes as $flash" class="flash {$flash->type}">{$flash->message}</div>
-
-	{include content}
-
-	{block scripts}
-	<script src="{$basePath}/js/jquery.js"></script>
-	<script src="{$basePath}/js/netteForms.js"></script>
-	<script src="{$basePath}/js/main.js"></script>
-	{/block}
-</body>
+    </body>
 </html>
