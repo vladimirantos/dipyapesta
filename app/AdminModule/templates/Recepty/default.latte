@@ -7,6 +7,7 @@
 <table class="center" id ="dataTable" >
     <thead>
         <tr>
+            <td>Jazyk</td>
             <td>Nadpis</td>
             <td>Popis</td>
         </tr>
@@ -14,7 +15,8 @@
     <tbody>
         {foreach $recipes as $recipe}
             <tr class="clickMe">
-                <td><a n:href="Recepty:detail $recipe->title"></a>{$recipe->title}</td>
+                <td>{$recipe->language}</td>
+                <td><a n:href="Recepty:detail $recipe->id_recipe, $recipe->language"></a>{$recipe->title}</td>
                 <td>{$recipe->description}</td>
             </tr>
         {/foreach}

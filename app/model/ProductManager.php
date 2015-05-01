@@ -12,7 +12,7 @@ use Nette;
 class ProductManager extends ModelContainer {
 
     const table = "products",
-            id = "title";
+            id = "id_product";
 
     public $galleryPath = __DIR__."/../../www/images/gallery/";
     public $path;
@@ -21,23 +21,26 @@ class ProductManager extends ModelContainer {
         return $this->database->table(self::table)->fetchAll();
     }
 
-    public function get($title) {
-        return $this->database->table(self::table)->where(self::id, $title)->fetch();
+    public function get($id, $language) {
+        return $this->database->table(self::table)->where(array(self::id => $id, "language" => $language))->fetch();
     }
 
-    public function delete($title) {
-        $this->database->table(self::table)->where(self::id, $title)->delete();
+    public function getAllNewsPair(){
+        return $this->database->table(self::table)->fetchPairs("id_product", "title");
     }
 
-    public function update($data) {
+    public function delete($id, $language) {
+        $this->database->table(self::table)->where(array(self::id => $id, "language" => $language))->delete();
+    }
+
+    public function update($data, $id, $language) {
         if (isset($data->main_image)) {
             $image = $data->main_image;
             unset($data->main_image);
         }
-        $title = $data['title'];
-        unset($data['title']);
+
         try {
-            $this->database->table(self::table)->where(self::id, $title)->update($data);
+            $this->database->table(self::table)->where(array(self::id => $id, "language" => $language))->update($data);
         } catch (\PDOException $e) {
             if ($e->getCode() == 23000)
                 throw new \Nette\InvalidArgumentException("Produkt s tímto nadpisem již existuje");
@@ -52,6 +55,11 @@ class ProductManager extends ModelContainer {
             $image = $data->main_image;
             unset($data->main_image);
         }
+
+        if($data->translate != null){
+            $data->id_product = $data->translate;
+        }
+        unset($data->translate);
         $title = $data->title;
         try {
             $this->database->table(self::table)->insert($data);

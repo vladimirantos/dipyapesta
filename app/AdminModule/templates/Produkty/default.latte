@@ -7,6 +7,7 @@
 <table class="center" id ="dataTable" >
     <thead>
         <tr>
+            <td>Jazyk</td>
             <td>Nadpis</td>
             <td>Krátký popis</td>
             <td>Datum</td>
@@ -16,7 +17,8 @@
     <tbody>
         {foreach $products as $product}
             <tr class="clickMe">
-                <td><a n:href="Produkty:detail $product->title"></a>{$product->title}</td>
+                <td>{$product->language}</td>
+                <td><a n:href="Produkty:detail $product->id_product, $product->language"></a>{$product->title}</td>
                 <td>{$product->short_description}</td>
                 <td>{$product->date}</td>
                 <td class="noClick"><a n:href="Produkty:edit $product->title">Edit</a></td>

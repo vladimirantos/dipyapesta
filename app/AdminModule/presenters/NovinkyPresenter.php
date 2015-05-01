@@ -30,23 +30,26 @@ class NovinkyPresenter extends AdminPresenter {
         $this->template->news = $this->news->getAll();
     }
 
-    public function renderDetail($id) {
-        $this->template->new = $this->news->get($id);
+    public function renderDetail($id, $language) {
+        $this->template->new = $this->news->get($id, $language);
     }
 
-    public function renderEdit($id) {
-        $data = $this->news->get($id);
+    public function renderEdit($id, $language) {
+        $data = $this->news->get($id, $language);
+        b($data);
         $this['edit']->setDefaults($data);
     }
 
-    public function handleDelete($id) {
-        $this->news->delete($id);
+    public function handleDelete($id, $language) {
+        $this->news->delete($id, $language);
         $this->flashMessage("Novinka byla úspěšně odstraněna","success");
         $this->redirect("Novinky:");
     }
 
     protected function createComponentCreateNew() {
         $form = new UI\Form();
+        $form->addSelect("translate", "Překlad článku: ", $this->news->getAllNewsPair())->setPrompt("Vyber článek který chceš překládat");
+        $form->addSelect("language", "Jazyk:", Model\Languages::toArray());
         $form->addText("title", "Nadpis:")
                 ->setRequired("Zvolte prosím nadpis novinky");
         $form->addTextArea("content", "Obsah:")
@@ -61,7 +64,7 @@ class NovinkyPresenter extends AdminPresenter {
         try {
             $done = $this->news->add($values);
             $this->flashMessage("Novinka byla úspěšně vytvořena", "success");
-            $this->redirect("Novinky:detail", $done);
+            $this->redirect("Novinky:detail", $done, $values->language);
         } catch (\Nette\InvalidArgumentException $e) {
             $this->flashMessage($e->getMessage(), "error");
             $this->redrawControl("messages");
@@ -70,6 +73,7 @@ class NovinkyPresenter extends AdminPresenter {
 
     protected function createComponentEdit() {
         $form = new UI\Form();
+        $form->addSelect("language", "Jazyk:", Model\Languages::toArray());
         $form->addText("title", "Nadpis:")
                 ->setRequired("Zvolte prosím nadpis novinky");
         $form->addTextArea("content", "Obsah:")
@@ -84,7 +88,7 @@ class NovinkyPresenter extends AdminPresenter {
         try {
             $this->news->edit($form->getValues());
             $this->flashMessage("Novinka byla úspěšně upravena", "success");
-            $this->redirect("Novinky:detail", $form->getValues()->id_article);
+            $this->redirect("Novinky:detail", $form->getValues()->id_article, $form->getValues()->language);
         } catch (\Nette\InvalidArgumentException $e) {
             $this->flashMessage($e->getMessage(), "error");
             $this->redrawControl("messages");

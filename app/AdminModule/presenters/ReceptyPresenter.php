@@ -22,31 +22,30 @@ class ReceptyPresenter extends AdminPresenter {
         $this->template->recipes = $this->recipes->getAll();
     }
 
-    public function renderDetail($title) {
-        $this->template->recipe = $this->recipes->get($title);
-        $this->template->ingredients = $this->ingredients->getAll($title);
+    public function renderDetail($id, $language) {
+        $this->template->recipe = $this->recipes->get($id, $language);
+        $this->template->ingredients = $this->ingredients->getAll($id, $language);
     }
 
     public function renderNew() {
         $session = $this->session->getSection("ingredients");
-        if (isset($session->title))
+       /* if (isset($session->title))
             $this->template->ingredients = $this->ingredients->getAll($session->title);
         else
-            $this->template->ingredients = array();
+            $this->template->ingredients = array();*/
     }
 
-    public function renderEdit($title) {
-        $data = $this->recipes->get($title);
+    public function renderEdit($id, $language) {
+        $data = $this->recipes->get($id, $language);
         $this->template->product = $data;
         $this['createNew']->setDefaults($data);
         $this->session->getSection("ingredients")->title = $data->title;
-        $this->template->ingredients = $this->ingredients->getAll($data->title);
-
+        //$this->template->ingredients = $this->ingredients->getAll($data->title);
     }
 
-    public function handleDelete($title) {
-        $this->recipes->delete($title);
-        $this->ingredients->delete($title);
+    public function handleDelete($id, $language) {
+        $this->recipes->delete($id, $language);
+        //$this->ingredients->delete($title); ASI NENI NUTNE? MAZAT? DELAT TO DB AUTOMATICKY - VYZKOUSET
         $this->flashMessage("Recept byl úspěšně odstraněn", "success");
         $this->redirect("Recepty:");
     }
@@ -59,6 +58,8 @@ class ReceptyPresenter extends AdminPresenter {
 
     protected function createComponentCreateNew() {
         $form = new UI\Form();
+        $form->addSelect("translate", "Překlad článku: ", $this->recipes->getAllNewsPair())->setPrompt("Vyber recept který chceš překládat");
+        $form->addSelect("language", "Jazyk:", Model\Languages::toArray());
         $form->addText("title", "Název:")
                 ->setRequired("Zadejte prosím název receptu");
 
@@ -75,6 +76,7 @@ class ReceptyPresenter extends AdminPresenter {
 
     protected function createComponentIngredients() {
         $form = new UI\Form();
+        $form->addSelect("language", "Jazyk:", Model\Languages::toArray());
         $form->addText("ingredient", "Ingredience:")
                 ->setRequired("Zadejte prosím ingredienci");
 

@@ -2,10 +2,10 @@
 
 {block content}
 <div id="menu" class="clearfix">
-    <a n:href="Recepty:edit $recipe->title">Upravit</a>
+    <a n:href="Recepty:edit $recipe->id_recipe, $recipe->language">Upravit</a>
     <a onclick="if (!confirm('Opravdu chcete odstranit tento recept? Takováto změna již nepůjde vrátit zpět!')) {
                 return false;
-            }" n:href="delete! $recipe->title" style="background-color: transparent;"><img src="{$basePath}/images/trash.png"></a>
+            }" n:href="delete! $recipe->id_recipe, $recipe->language" style="background-color: transparent;"><img src="{$basePath}/images/trash.png"></a>
 </div>
 <h1>{$recipe->title}</h1>
 {if !empty($recipe->image)}

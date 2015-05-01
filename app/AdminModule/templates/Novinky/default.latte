@@ -8,6 +8,7 @@
     <thead>
         <tr>
             <td>#ID</td>
+            <td>Jazyk</td>
             <td>Nadpis</td>
             <td>Obsah</td>
             <td>Datum</td>
@@ -17,7 +18,8 @@
     <tbody>
         {foreach $news as $new}
             <tr class="clickMe">
-                <td><a n:href="Novinky:detail $new->id_article"></a>#{$new->id_article}</td>
+                <td><a n:href="Novinky:detail $new->id_article, $new->language"></a>#{$new->id_article}</td>
+                <td>{$new->language}</td>
                 <td>{$new->title}</td>
                 <td>{$new->content}</td>
                 <td>{$new->date}</td>

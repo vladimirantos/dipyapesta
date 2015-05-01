@@ -10,8 +10,8 @@ class IngredientsManager extends ModelContainer {
             id = "id_ingredient",
             recipes = "recipes";
 
-    public function getAll($title) {
-        return $this->database->table(self::table)->where(self::recipes, $title)->fetchAll();
+    public function getAll($id, $language) {
+        return $this->database->table(self::table)->where(array("recipes" => $id, "language" => $language))->fetchAll();
     }
 
     public function delete($title) {

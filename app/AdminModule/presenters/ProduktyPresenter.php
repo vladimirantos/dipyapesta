@@ -21,25 +21,26 @@ class ProduktyPresenter extends AdminPresenter {
         $this->template->products = $this->product->getAll();
     }
 
-    public function renderDetail($title) {
-        $this->template->product = $this->product->get($title);
+    public function renderDetail($id, $language) {
+        $this->template->product = $this->product->get($id, $language);
     }
 
-    public function renderEdit($title) {
-        $data = $this->product->get($title);
+    public function renderEdit($id, $language) {
+        $data = $this->product->get($id, $language);
         $this->template->product = $data;
         $this['edit']->setDefaults($data);
     }
 
-    public function handleDelete($title) {
-        $this->product->delete($title);
+    public function handleDelete($id, $language) {
+        $this->product->delete($id, $language);
         $this->flashMessage("Produkt byl úspěšně odstraněn", "success");
         $this->redirect("Produkty:");
     }
 
     protected function createComponentCreateNew() {
         $form = new UI\Form();
-
+        $form->addSelect("translate", "Překlad článku: ", $this->product->getAllNewsPair())->setPrompt("Vyber produkt který chceš překládat");
+        $form->addSelect("language", "Jazyk:", Model\Languages::toArray());
         $form->addText("title", "Nadpis:")
                 ->setRequired("Zadejte prosím nadpis");
 
@@ -60,7 +61,7 @@ class ProduktyPresenter extends AdminPresenter {
 
     protected function createComponentEdit() {
         $form = new UI\Form();
-
+        $form->addSelect("language", "Jazyk:", Model\Languages::toArray());
         $form->addText("title", "Nadpis:")
                 ->setRequired("Zadejte prosím nadpis");
 
@@ -95,9 +96,10 @@ class ProduktyPresenter extends AdminPresenter {
         $data = $form->getValues();
         $title = $data->title;
         try {
-            $this->product->update($data);
+            b($this->params);
+            $this->product->update($data, $this->params["id"], $this->params["language"]);
             $this->flashMessage("Produkt byl úspěšně upraven", 'success');
-            $this->redirect("Produkty:detail", $title);
+            $this->redirect("Produkty:detail", $this->params["id"], $data->language);
         } catch (\Nette\InvalidArgumentException $e) {
             $this->flashMessage($e->getMessage(), 'error');
             $this->redrawControl("messages");

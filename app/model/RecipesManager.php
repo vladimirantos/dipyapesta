@@ -7,7 +7,7 @@ use Nette;
 class RecipesManager extends ModelContainer {
 
     const table = "recipes",
-            id = "title";
+            id = "id_recipe";
 
     private $galleryPath = __DIR__ . "/../../www/images/recipes/";
     private $path;
@@ -16,12 +16,16 @@ class RecipesManager extends ModelContainer {
         return $this->database->table(self::table)->fetchAll();
     }
 
-    public function get($title) {
-        return $this->database->table(self::table)->where(self::id, $title)->fetch();
+    public function get($id, $language) {
+        return $this->database->table(self::table)->where(array(self::id => $id, "language" => $language))->fetch();
     }
 
-    public function delete($title) {
-        $this->database->table(self::table)->where(self::id, $title)->delete();
+    public function getAllNewsPair(){
+        return $this->database->table(self::table)->fetchPairs("id_recipe", "title");
+    }
+
+    public function delete($id, $language) {
+        $this->database->table(self::table)->where(array(self::id => $id, "language" => $language))->delete();
     }
 
     public function add($data) {
@@ -31,6 +35,10 @@ class RecipesManager extends ModelContainer {
                 $image = $data->image;
                 unset($data->image);
             }
+            if($data->translate != null)
+                $data->id_recipe = $data->translate;
+            unset($data->translate);
+
             $this->database->table(self::table)->insert($data);
 
             if ($image != null)

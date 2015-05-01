@@ -23,7 +23,6 @@ class SignPresenter extends BasePresenter
 	 */
 	protected function createComponentSignInForm()
 	{
-        b(Nette\Security\Passwords::hash(12345));
         $form = new Nette\Application\UI\Form();
         $form->addText("email", "Email")->setRequired("Nezadal jsi email");
         $form->addPassword("password", "Heslo")->setRequired("Nezadal jsi heslo");
