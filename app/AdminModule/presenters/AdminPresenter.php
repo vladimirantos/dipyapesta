@@ -25,9 +25,10 @@ class AdminPresenter extends \App\Presenters\BasePresenter {
     public function afterRender() {
         parent::afterRender();
         $this->template->active = $this->active;
-        $session = $this->session->getSection("ingredients");
-        if (!is_null($session->title) and ($this->presenter->name!="Admin:Recepty" )) {
-            $this->ingredients->delete($session->title);
+        $session = $this->session->getSection("recipe");
+        if (!is_null($session->id_recipe) and ($this->presenter->name!="Admin:Recepty" or ($this->presenter->action!="new" and $this->presenter->action!="edit"))) {
+            $session->id_recipe=null;
+            $session->language=null;
         }
     }
 

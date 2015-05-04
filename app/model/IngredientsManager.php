@@ -22,8 +22,8 @@ class IngredientsManager extends ModelContainer {
         $this->database->table(self::table)->where(self::id, $id)->delete();
     }
 
-    public function add($data, $title) {
-        $data->recipes = $title;
+    public function add($data, $id_recipe) {
+        $data->recipes = $id_recipe;
         try {
             $this->database->table(self::table)->insert($data);
         } catch (\PDOException $e) {

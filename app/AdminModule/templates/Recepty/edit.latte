@@ -37,15 +37,11 @@
 {/form}
 <h2 class="section">Recept: </h2>
 
-{form createNew id=>'submit', class=>'ajax'}
+{form createNew id=>'submit', class=>''}
     <i class="status">Neuloženo</i>
     {input action}
 
     <table style="width:50%;" class="center">
-                <tr>
-                    <td>{label language /}</td>
-                    <td>{input language}</td>
-                </tr>
         <tr>
             <td>{label title/}</td>
             <td>{input title class=>'trigger'}</td>
@@ -61,8 +57,10 @@
             <td>{input image}</td>
         </tr>
         <tr>
-            <td class="textCenter"><button onclick="saveForm('save');">Uložit</button></td>
-            <td class="textCenter"><button onclick="saveForm('done');">Hotovo</button></td>
+            <td class="textCenter" colspan="2">
+                <button class="menuBtn" onclick="saveForm('save');">Uložit</button>
+                <button class="menuBtn" onclick="saveForm('done');">Hotovo</button>
+            </td>
         </tr>
     </table>
 

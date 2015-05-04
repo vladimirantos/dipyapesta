@@ -28,19 +28,21 @@ class ReceptyPresenter extends AdminPresenter {
     }
 
     public function renderNew() {
-        $session = $this->session->getSection("ingredients");
-       /* if (isset($session->title))
-            $this->template->ingredients = $this->ingredients->getAll($session->title);
+        $session = $this->session->getSection("recipe");
+        if (isset($session->id_recipe))
+            $this->template->ingredients = $this->ingredients->getAll($session->id_recipe, $session->language);
         else
-            $this->template->ingredients = array();*/
+            $this->template->ingredients = array();
     }
 
     public function renderEdit($id, $language) {
         $data = $this->recipes->get($id, $language);
         $this->template->product = $data;
         $this['createNew']->setDefaults($data);
-        $this->session->getSection("ingredients")->title = $data->title;
-        //$this->template->ingredients = $this->ingredients->getAll($data->title);
+        $session = $this->session->getSection("recipe");
+        $session->id_recipe= $data->id_recipe;
+        $session->language= $data->language;
+        $this->template->ingredients = $this->ingredients->getAll($data->id_recipe,$data->language);
     }
 
     public function handleDelete($id, $language) {
@@ -56,10 +58,16 @@ class ReceptyPresenter extends AdminPresenter {
         $this->redrawControl("ingredients");
     }
 
+    protected function createComponentMain() {
+        $form = new UI\Form();
+        $form->addSelect("translate", "Překlad článku: ", $this->recipes->getAllNewsPair())->setPrompt("Vyberte recept který chcete překládat");
+        $form->addSelect("language", "Jazyk:", Model\Languages::toArray());
+        $form->onSubmit[] = $this->mainInfo;
+        return $form;
+    }
+
     protected function createComponentCreateNew() {
         $form = new UI\Form();
-        $form->addSelect("translate", "Překlad článku: ", $this->recipes->getAllNewsPair())->setPrompt("Vyber recept který chceš překládat");
-        $form->addSelect("language", "Jazyk:", Model\Languages::toArray());
         $form->addText("title", "Název:")
                 ->setRequired("Zadejte prosím název receptu");
 
@@ -76,7 +84,6 @@ class ReceptyPresenter extends AdminPresenter {
 
     protected function createComponentIngredients() {
         $form = new UI\Form();
-        $form->addSelect("language", "Jazyk:", Model\Languages::toArray());
         $form->addText("ingredient", "Ingredience:")
                 ->setRequired("Zadejte prosím ingredienci");
 
@@ -96,17 +103,19 @@ class ReceptyPresenter extends AdminPresenter {
         $action = $data->action;
         unset($data->action);
         try {
-            $session = $this->session->getSection("ingredients");
-            if ($data->title == $session->title) {
+            $session = $this->session->getSection("recipe");
+            if (isset($session->id_recipe)) {
+                $data->language = $session->language;
+                $data->id_recipe = $session->id_recipe;
                 $this->recipes->update($data);
             } else {
-                $this->recipes->add($data);
-                $this->ingredients->changeTitle($session->title, $data->title);
-                $session->title = $data->title;
+                $session->language = "cs";
+                $data->language = $session->language;
+                $session->id_recipe = $this->recipes->add($data);
             }
             if ($action == "done") {
                 $this->flashMessage("Recept byl úspěšně vytvořen", "success");
-                $this->redirect("Recepty:detail", $data->title);
+                $this->redirect("Recepty:detail", $data->id_recipe,$data->language);
             } elseif ($action == "save") {
                 $this->flashMessage("Recept byl úspěšně uložen", "success");
                 $this->redrawControl("messages");
@@ -120,17 +129,38 @@ class ReceptyPresenter extends AdminPresenter {
     public function newIngredient(UI\Form $form) {
         $data = $form->getValues();
         try {
-            $session = $this->session->getSection("ingredients");
-            if (!isset($session->title)) {
-                $session->title = Nette\Utils\Strings::random(5);
+            $session = $this->session->getSection("recipe");
+            if (!isset($session->id_recipe)) {
+                $session->id_recipe = $this->recipes->createId("recipes", "id_recipe");
+                $session->language = "cs";
+                $this->recipes->createEmpty($session->id_recipe, $session->language);
             }
-            $this->ingredients->add($data, $session->title);
+            if (isset($session->language)) {
+                $data->language = $session->language;
+            }
+            $this->ingredients->add($data, $session->id_recipe);
             $this->flashMessage("Ingredience byla přidána.", "success");
             $this->redrawControl("ingredients");
         } catch (Nette\InvalidArgumentException $e) {
             $this->flashMessage($e->getMessage(), "error");
             $this->redrawControl("messages");
         }
+    }
+
+    /**
+     * Tato metoda ukládá informace do session (jazyk, id překládaného receptu)
+     * @param \Nette\Application\UI\Form $form     
+     */
+    public function mainInfo(UI\Form $form) {
+        $data = $form->getValues();
+        $session = $this->session->getSection("recipe");
+        if (!is_null($data->translate)) {
+            $session->id_recipe = $data->translate;
+        }else{
+            $session->id_recipe = $this->recipes->createId("recipes", "id_recipe");
+        }
+        $session->language = $data->language;
+        $this->recipes->createEmpty($session->id_recipe, $session->language);
     }
 
 }

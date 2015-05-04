@@ -30,12 +30,15 @@ class RecipesManager extends ModelContainer {
 
     public function add($data) {
         try {
+            if(empty($data['id_recipe'])){
+                $data['id_recipe'] = $this->createId(self::table, self::id);
+            }
             $image = null;
-            if ($data->image->isImage()) {
+            if (isset($data->image) and $data->image->isImage()) {
                 $image = $data->image;
                 unset($data->image);
             }
-            if($data->translate != null)
+            if(isset($data->translate) and $data->translate != null)
                 $data->id_recipe = $data->translate;
             unset($data->translate);
 
@@ -43,6 +46,7 @@ class RecipesManager extends ModelContainer {
 
             if ($image != null)
                 $this->addMainImage($image, $data->title);
+            return $data['id_recipe'];
         } catch (\PDOException $e) {
             if ($e->getCode() == 23000)
                 throw new \Nette\InvalidArgumentException("Recept s tímto názvem již existuje");
@@ -53,7 +57,7 @@ class RecipesManager extends ModelContainer {
 
     public function update($data) {
         try {
-            $this->database->table(self::table)->where(self::id, $data['title'])->update($data);
+            $this->database->table(self::table)->where(array(self::id => $data->id_recipe, "language" => $data->language))->update($data);
         } catch (\PDOException $e) {
             if ($e->getCode() == 23000)
                 throw new \Nette\InvalidArgumentException("Recept s tímto názvem již existuje");
@@ -61,6 +65,14 @@ class RecipesManager extends ModelContainer {
                 throw new \Exception($e->getMessage());
         }
     }
+
+    public function createEmpty($id,$lang){
+        $data=array("language"=>$lang,"title"=>"Rozpracované!","description"=>"Rozpracovaný recept","id_recipe"=>$id);
+        return $this->add($data);
+    }
+
+
+
 
 ################################################################################
 ##############################    Obrázky    ###################################
