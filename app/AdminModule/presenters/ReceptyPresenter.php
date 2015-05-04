@@ -39,6 +39,7 @@ class ReceptyPresenter extends AdminPresenter {
         $data = $this->recipes->get($id, $language);
         $this->template->product = $data;
         $this['createNew']->setDefaults($data);
+        $this['main']->setDefaults($data);
         $session = $this->session->getSection("recipe");
         $session->id_recipe= $data->id_recipe;
         $session->language= $data->language;

@@ -10,6 +10,7 @@
             <td>Jazyk</td>
             <td>Nadpis</td>
             <td>Popis</td>
+            <td>Akce</td>
         </tr>
     </thead>
     <tbody>
@@ -18,6 +19,12 @@
                 <td>{$recipe->language}</td>
                 <td><a n:href="Recepty:detail $recipe->id_recipe, $recipe->language"></a>{$recipe->title}</td>
                 <td>{$recipe->description}</td>
+                <td class="noClick">
+                    <a n:href="Recepty:edit $recipe->id_recipe, $recipe->language">Upravit</a> |
+                    <a onclick="if (!confirm('Opravdu chcete odstranit tento recept? Takováto změna již nepůjde vrátit zpět!')) {
+                return false;
+            }" n:href="delete! $recipe->id_recipe, $recipe->language" style="background-color: transparent;">Odstranit</a>
+                </td>
             </tr>
         {/foreach}
     </tbody>

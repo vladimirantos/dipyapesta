@@ -24,7 +24,12 @@
                 <td>{$new->content}</td>
                 <td>{$new->date}</td>
                 <td class="noClick">
-                    <a n:href="Novinky:edit $new->id_article">Upravit</a>
+                    <a n:href="Novinky:edit $new->id_article, $new->language">Upravit</a> |
+                    <a onclick="if (!confirm('Opravdu chcete odstranit tuto novinku? Takováto změna již nepůjde vrátit zpět!')) {
+                                return false;
+                            }"
+                       n:href="delete! $new->id_article, $new->language" style="background-color: transparent;">Odstranit</a>
+
                 </td>
             </tr>
         {/foreach}

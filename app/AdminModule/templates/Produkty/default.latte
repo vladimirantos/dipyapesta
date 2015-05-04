@@ -21,7 +21,12 @@
                 <td><a n:href="Produkty:detail $product->id_product, $product->language"></a>{$product->title}</td>
                 <td>{$product->short_description}</td>
                 <td>{$product->date}</td>
-                <td class="noClick"><a n:href="Produkty:edit $product->title">Edit</a></td>
+                <td class="noClick">
+                    <a n:href="Produkty:edit $product->id_product , $product->language">Upravit</a> |
+                    <a onclick="if (!confirm('Opravdu chcete odstranit tento produkt? Takováto změna již nepůjde vrátit zpět!')) {
+                                return false;
+                            }" n:href="delete! $product->id_product, $product->language" style="background-color: transparent;">Odstranit</a>
+                </td>
             </tr>
         {/foreach}
     </tbody>

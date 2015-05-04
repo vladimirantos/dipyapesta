@@ -1,6 +1,19 @@
 {* Latte template *}
 
 {block content}
+<h2 class="section">Obecné:</h2>
+{form main class=>'ajax'}
+    <table style="width:50%;" class="center">
+        <tr>
+            <td>{label translate /}</td>
+            <td>{input translate onchange=>'this.form.submit();'}</td>
+        </tr>
+        <tr>
+            <td>{label language /}</td>
+            <td>{input language onchange=>'this.form.submit();'}</td>
+        </tr>
+    </table>
+{/form}
 <h2 class="section">Ingredience:</h2>
 {form ingredients class=>'ajax'}
 
