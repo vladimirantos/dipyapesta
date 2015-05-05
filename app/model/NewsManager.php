@@ -18,13 +18,17 @@ class NewsManager extends ModelContainer {
         return $this->database->table(self::table)->fetchAll();
     }
 
+    public function getAllByLang($lang) {
+        return $this->database->table(self::table)->where('language',$lang)->fetchAll();
+    }
+
     public function get($id, $language) {
         return $this->database->table(self::table)->where(array(self::id => $id, "language" => $language))->fetch();
     }
 
     public function add($data) {
         try {
-            if($data->translate != null){
+            if ($data->translate != null) {
                 $data->id_article = $data->translate;
             }
             unset($data->translate);
@@ -38,11 +42,11 @@ class NewsManager extends ModelContainer {
                 throw new \Exception($e->getMessage());
         }
     }
-    
-    public function edit($data){
-        try{
-        $data['date'] = $this->database->query("SELECT CURRENT_TIMESTAMP as 'date' FROM dual")->fetch()->date;
-        $this->database->table(self::table)->where(self::id,$data->id_article)->update($data);
+
+    public function edit($data) {
+        try {
+            $data['date'] = $this->database->query("SELECT CURRENT_TIMESTAMP as 'date' FROM dual")->fetch()->date;
+            $this->database->table(self::table)->where(self::id, $data->id_article)->update($data);
         } catch (\PDOException $e) {
             if ($e->getCode() == 23000)
                 throw new \Nette\InvalidArgumentException("Novinka s tímto nadpisem již existuje");
@@ -51,11 +55,12 @@ class NewsManager extends ModelContainer {
         }
     }
 
-    public function delete($id, $language){
-        $this->database->table(self::table)->where(array(self::id=>$id, "language" => $language))->delete();
+    public function delete($id, $language) {
+        $this->database->table(self::table)->where(array(self::id => $id, "language" => $language))->delete();
     }
 
-    public function getAllNewsPair(){
+    public function getAllNewsPair() {
         return $this->database->table(self::table)->fetchPairs("id_article", "title");
     }
+
 }

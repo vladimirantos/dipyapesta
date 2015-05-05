@@ -86,9 +86,12 @@
                     +412 605 875 129
                 </span>
                 <span id="recipe">
-                    <h4>NÁHODNÝ RECEPT | <a class="light">všechny recepty</a> </h4>
-                    <p>        Pellentesque efficitur ligula vitae diam euismod, vel dignissim odio viverra. In hac habitasse platea dictumst. Maecenas ac purus ac dui ultricies interdum non ut nulla. Integer vulputate, lorem sit amet fermentum commodo, arcu arcu convallis neque, a vulputate metus nunc vitae est. Sed accumsan, risus in laoreet pretium, orci dolor varius purus, ut ultricies velit ante non felis. Interdum et malesuada fames ac ante ipsum primis in faucibus. Sed eleifend placerat dictum. Sed ac ante ornare, gravida mauris nec, fermentum dolor. Etiam in odio nulla.
-                    </p>
+                    <h4>NÁHODNÝ RECEPT | <a class="light" n:href="Recipes:" style="text-decoration: none">všechny recepty</a> </h4>
+                    <a n:href="Recipes:detail, $randomRecipe->id_recipe" style="text-decoration: none;color:white">
+                        <p>
+                            {$randomRecipe->description}
+                        </p>
+                    </a>
                 </span>
             </div>
         </div>

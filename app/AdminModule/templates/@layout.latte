@@ -26,7 +26,10 @@
         <header>
             <div id="logo">
                 Dip it | Administrace
-                <div id="user">Bruno Puzják</div>
+                <div id="user">
+                    <a n:href=":Sign:out"><img src="{$basePath}/images/logout.png" style="width:30px; margin-bottom:-8px;"></a>
+                    Bruno Puzják
+                </div>
             </div>
         </header>
         <menu>
@@ -34,7 +37,6 @@
                 <a n:href="Novinky:"><li class="{$active['novinky']}">Novinky</li></a>
                 <a n:href="Produkty:"><li class="{$active['produkty']}">Produkty</li></a>
                 <a n:href="Recepty:"><li class="{$active['recepty']}">Recepty</li></a>
-                <a n:href=":Sign:out"><li class="{$active['odhlasit']}">Odhlásit se</li></a>
             </ul>
         </menu>
         {snippet messages}

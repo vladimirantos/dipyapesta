@@ -1,0 +1,45 @@
+{* This is the welcome page, you can delete it *}
+
+{block content}
+<section class="clearfix">
+    <h1>{$recipe->title}</h1>
+    <h2>Vytvořte si vlastní dip, který se hodí ke každému salátu
+        <img src="{$basePath}/images/titleline.png">
+    </h2>
+    <article class="clearfix">
+        <span class="left">
+            {if !empty($recipe->image)}
+                <img style="width:100%" src="{$basePath}/images/gallery/{$recipe->image}">
+            {else}
+                <img style="width:100%" src="{$basePath}/images/dipy.png">
+            {/if}
+        </span>
+        <span class="right">
+            <h3>Ingredience</h3>
+            <ul>
+                {foreach $ingredients as $item}
+                    <li>{$item->ingredient} {$item->quantity} {$item->unit}</li>
+                {/foreach}
+            </ul>
+        </span>
+    </article>
+    <article>
+        <span class="center">
+            <h3>Popis</h3>
+            <p>
+                {$recipe->description}
+            </p>
+        </span>
+    </article>
+</section>
+{/block}
+
+{block scripts}
+{include parent}
+
+{/block}
+
+
+{block head}
+
+{/block}

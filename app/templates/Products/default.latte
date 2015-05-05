@@ -6,28 +6,21 @@
     <h2>U nás naleznete největší nabídku kvalitních koření do Vaší kuchyně
         <img src="{$basePath}/images/titleline.png">
     </h2>
-    <article class="productHolder">
-        <h3>DIPY</h3>
-        <img src="{$basePath}/images/dipy.png">
-        <p>
-            Quisque fringilla ornare odio, quis volutpat nunc scelerisque id. Sed consequat pellentesque justo, nec tincidunt dolor accumsan in. Proin eleifend odio eget accumsan dapibus. Nulla facilisi. Nullam ut risus hendrerit urna imperdiet molestie. Nulla porta consequat mauris et dapibus. Etiam euismod, purus vitae viverra feugiat, purus orci elementum velit, at feugiat risus orci at leo. Aliquam purus velit, accumsan sit amet risus sit amet, tempus cursus nulla. Cras lacinia magna sit amet sem tincidunt tempor. Proin quis congue ex. Mauris vehicula purus vitae sem euismod, vitae rhoncus enim euismod. Sed mollis orci a quam pellentesque pretium. Maecenas dapibus molestie libero, nec euismod justo tincidunt at. Vestibulum vitae felis dapibus, tincidunt nisi eu, fermentum nunc.
-        </p>
-        <a class="lightButton">VÍCE</a>
-    </article>
-    <article class="productHolder">
-        <h3>DIPY</h3>
-        <img src="{$basePath}/images/dipy.png">
-        <p>
-            Quisque fringilla ornare odio, quis volutpat nunc scelerisque id. Sed consequat pellentesque justo, nec tincidunt dolor accumsan in. Proin eleifend odio eget accumsan dapibus. Nulla facilisi. Nullam ut risus hendrerit urna imperdiet molestie. Nulla porta consequat mauris et dapibus. Etiam euismod, purus vitae viverra feugiat, purus orci elementum velit, at feugiat risus orci at leo. Aliquam purus velit, accumsan sit amet risus sit amet, tempus cursus nulla. Cras lacinia magna sit amet sem tincidunt tempor. Proin quis congue ex. Mauris vehicula purus vitae sem euismod, vitae rhoncus enim euismod. Sed mollis orci a quam pellentesque pretium. Maecenas dapibus molestie libero, nec euismod justo tincidunt at. Vestibulum vitae felis dapibus, tincidunt nisi eu, fermentum nunc.
-        </p>        <a class="lightButton">VÍCE</a>
-    </article>
-    <article class="productHolder">
-        <h3>DIPY</h3>
-        <img src="{$basePath}/images/dipy.png">
-        <p>
-            Quisque fringilla ornare odio, quis volutpat nunc scelerisque id. Sed consequat pellentesque justo, nec tincidunt dolor accumsan in. Proin eleifend odio eget accumsan dapibus. Nulla facilisi. Nullam ut risus hendrerit urna imperdiet molestie. Nulla porta consequat mauris et dapibus. Etiam euismod, purus vitae viverra feugiat, purus orci elementum velit, at feugiat risus orci at leo. Aliquam purus velit, accumsan sit amet risus sit amet, tempus cursus nulla. Cras lacinia magna sit amet sem tincidunt tempor. Proin quis congue ex. Mauris vehicula purus vitae sem euismod, vitae rhoncus enim euismod. Sed mollis orci a quam pellentesque pretium. Maecenas dapibus molestie libero, nec euismod justo tincidunt at. Vestibulum vitae felis dapibus, tincidunt nisi eu, fermentum nunc.
-        </p>        <a class="lightButton">VÍCE</a>
-    </article>
+    {foreach $products as $product}
+        <article class="productHolder">
+            <h3>{$product->title}</h3>
+            {if !empty($product->main_image)}
+                <img src="{$basePath}/images/gallery/{$product->main_image}">
+            {else}
+                <img src="{$basePath}/images/dipy.png">
+            {/if}
+            <p>
+                {$product->short_description}
+            </p>
+            <a class="lightButton" n:href="Products:detail, $product->id_product">VÍCE</a>
+        </article>
+    {/foreach}
+
 </section>
 {/block}
 

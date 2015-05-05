@@ -48,7 +48,6 @@ class ReceptyPresenter extends AdminPresenter {
 
     public function handleDelete($id, $language) {
         $this->recipes->delete($id, $language);
-        //$this->ingredients->delete($title); ASI NENI NUTNE? MAZAT? DELAT TO DB AUTOMATICKY - VYZKOUSET
         $this->flashMessage("Recept byl úspěšně odstraněn", "success");
         $this->redirect("Recepty:");
     }

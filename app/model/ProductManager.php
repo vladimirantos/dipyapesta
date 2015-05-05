@@ -14,18 +14,22 @@ class ProductManager extends ModelContainer {
     const table = "products",
             id = "id_product";
 
-    public $galleryPath = __DIR__."/../../www/images/gallery/";
+    public $galleryPath = __DIR__ . "/../../www/images/gallery/";
     public $path;
 
     public function getAll() {
         return $this->database->table(self::table)->fetchAll();
     }
 
+    public function getAllByLang($lang) {
+        return $this->database->table(self::table)->where("language",$lang)->fetchAll();
+    }
+
     public function get($id, $language) {
         return $this->database->table(self::table)->where(array(self::id => $id, "language" => $language))->fetch();
     }
 
-    public function getAllNewsPair(){
+    public function getAllNewsPair() {
         return $this->database->table(self::table)->fetchPairs("id_product", "title");
     }
 
@@ -56,7 +60,7 @@ class ProductManager extends ModelContainer {
             unset($data->main_image);
         }
 
-        if($data->translate != null){
+        if ($data->translate != null) {
             $data->id_product = $data->translate;
         }
         unset($data->translate);

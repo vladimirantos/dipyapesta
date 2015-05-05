@@ -10,6 +10,10 @@ use Nette,
  */
 abstract class BasePresenter extends Nette\Application\UI\Presenter {
 
+    /**
+     * @var Model\RecipesManager @inject
+     */
+    public $recipes;
     private $active = array("homepage" => "", "products" => "", "news" => "", "recipes" => "", "kontakt" => "");
 
     public function setActive($presenterMame) {
@@ -19,6 +23,7 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
     public function afterRender() {
         parent::afterRender();
         $this->template->active = $this->active;
+        $this->template->randomRecipe = $this->recipes->getRandom();
     }
 
 }

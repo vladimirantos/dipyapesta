@@ -2,38 +2,24 @@
 
 {block content}
 <section class="clearfix">
-    <h1>NÁZEV RECEPTU</h1>
-    <h2>Vytvořte si vlastní dip, který se hodí ke každému salátu
+    <h1>KOŘENÍ PRO PŘÍPRAVU PEST A DIPŮ</h1>
+    <h2>U nás naleznete největší nabídku kvalitních koření do Vaší kuchyně
         <img src="{$basePath}/images/titleline.png">
     </h2>
-    <article class="clearfix">
-        <span class="left"><img style="width:100%" src="{$basePath}/images/dipy.png"></span>
-        <span class="right">
-            <h3>POUŽITÍ</h3>
+    {foreach $recipes as $recipe}
+        <article class="productHolder">
+            <h3>{$recipe->title}</h3>
+            {if !empty($recipe->image)}
+                <img src="{$basePath}/images/gallery/{$recipe->image}">
+            {else}
+                <img src="{$basePath}/images/dipy.png">
+            {/if}
             <p>
-                Quisque fringilla ornare odio, quis volutpat nunc scelerisque id. Sed consequat pellentesque justo, nec tincidunt dolor accumsan in. Proin eleifend odio eget accumsan dapibus. Nulla facilisi. Nullam ut risus hendrerit urna imperdiet molestie. Nulla porta consequat mauris et dapibus. Etiam euismod, purus vitae viverra feugiat, purus orci elementum velit, at feugiat risus orci at leo. Aliquam purus velit, accumsan sit amet risus sit amet, tempus cursus nulla. Cras lacinia magna sit amet sem tincidunt tempor. Proin quis congue ex. Mauris vehicula purus vitae sem euismod, vitae rhoncus enim euismod. Sed mollis orci a quam pellentesque pretium. Maecenas dapibus molestie libero, nec euismod justo tincidunt at. Vestibulum vitae felis dapibus, tincidunt nisi eu, fermentum nunc.
+                {$recipe->description}
             </p>
-        </span>
-    </article>
-    <article class="clearfix">
-        <span class="right"><img style="width:100%" src="{$basePath}/images/dipy.png"></span>
-        <span class="left">
-            <h3>PŘÍPRAVA</h3>
-            <p>
-                Quisque fringilla ornare odio, quis volutpat nunc scelerisque id. Sed consequat pellentesque justo, nec tincidunt dolor accumsan in. Proin eleifend odio eget accumsan dapibus. Nulla facilisi. Nullam ut risus hendrerit urna imperdiet molestie. Nulla porta consequat mauris et dapibus. Etiam euismod, purus vitae viverra feugiat, purus orci elementum velit, at feugiat risus orci at leo. Aliquam purus velit, accumsan sit amet risus sit amet, tempus cursus nulla. Cras lacinia magna sit amet sem tincidunt tempor. Proin quis congue ex. Mauris vehicula purus vitae sem euismod, vitae rhoncus enim euismod. Sed mollis orci a quam pellentesque pretium. Maecenas dapibus molestie libero, nec euismod justo tincidunt at. Vestibulum vitae felis dapibus, tincidunt nisi eu, fermentum nunc.
-            </p>
-        </span>
-    </article>
-    <article class="photos">
-        <img class="photo" src="{$basePath}/images/balsamico.png">
-        <img class="photo" src="{$basePath}/images/balsamico.png">
-        <img class="photo" src="{$basePath}/images/balsamico.png">
-        <img class="photo" src="{$basePath}/images/balsamico.png">
-        <img class="photo" src="{$basePath}/images/balsamico.png">
-        <img class="photo" src="{$basePath}/images/balsamico.png">
-        <img class="photo" src="{$basePath}/images/balsamico.png">
-        <img class="photo" src="{$basePath}/images/balsamico.png">
-    </article>
+            <a class="lightButton" n:href="Recipes:detail, $recipe->id_recipe">VÍCE</a>
+        </article>
+    {/foreach}
 
 </section>
 {/block}

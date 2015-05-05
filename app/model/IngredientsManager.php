@@ -14,6 +14,10 @@ class IngredientsManager extends ModelContainer {
         return $this->database->table(self::table)->where(array("recipes" => $id, "language" => $language))->fetchAll();
     }
 
+    public function getAllDefault() {
+        return $this->database->table(self::table)->fetchAll();
+    }
+
     public function delete($title) {
         $this->database->table(self::table)->where(self::recipes, $title)->delete();
     }

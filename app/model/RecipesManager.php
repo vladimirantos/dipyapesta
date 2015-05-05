@@ -15,12 +15,15 @@ class RecipesManager extends ModelContainer {
     public function getAll() {
         return $this->database->table(self::table)->fetchAll();
     }
+    public function getAllByLang($lang) {
+        return $this->database->table(self::table)->where("language",$lang)->fetchAll();
+    }
 
     public function get($id, $language) {
         return $this->database->table(self::table)->where(array(self::id => $id, "language" => $language))->fetch();
     }
 
-    public function getAllNewsPair(){
+    public function getAllNewsPair() {
         return $this->database->table(self::table)->fetchPairs("id_recipe", "title");
     }
 
@@ -30,7 +33,7 @@ class RecipesManager extends ModelContainer {
 
     public function add($data) {
         try {
-            if(empty($data['id_recipe'])){
+            if (empty($data['id_recipe'])) {
                 $data['id_recipe'] = $this->createId(self::table, self::id);
             }
             $image = null;
@@ -38,7 +41,7 @@ class RecipesManager extends ModelContainer {
                 $image = $data->image;
                 unset($data->image);
             }
-            if(isset($data->translate) and $data->translate != null)
+            if (isset($data->translate) and $data->translate != null)
                 $data->id_recipe = $data->translate;
             unset($data->translate);
 
@@ -66,13 +69,14 @@ class RecipesManager extends ModelContainer {
         }
     }
 
-    public function createEmpty($id,$lang){
-        $data=array("language"=>$lang,"title"=>"Rozpracované!","description"=>"Rozpracovaný recept","id_recipe"=>$id);
+    public function createEmpty($id, $lang) {
+        $data = array("language" => $lang, "title" => "Rozpracované!", "description" => "Rozpracovaný recept", "id_recipe" => $id);
         return $this->add($data);
     }
 
-
-
+    public function getRandom() {
+        return $this->database->table(self::table)->order("RAND()")->limit(1)->fetch();
+    }
 
 ################################################################################
 ##############################    Obrázky    ###################################
