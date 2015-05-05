@@ -86,12 +86,14 @@
                     +412 605 875 129
                 </span>
                 <span id="recipe">
-                    <h4>NÁHODNÝ RECEPT | <a class="light" n:href="Recipes:" style="text-decoration: none">všechny recepty</a> </h4>
-                    <a n:href="Recipes:detail, $randomRecipe->id_recipe" style="text-decoration: none;color:white">
-                        <p>
-                            {$randomRecipe->description}
-                        </p>
-                    </a>
+                    {if !empty($randomRecipe)}
+                        <h4>NÁHODNÝ RECEPT | <a class="light" n:href="Recipes:" style="text-decoration: none">všechny recepty</a> </h4>
+                        <a n:href="Recipes:detail, $randomRecipe->id_recipe" style="text-decoration: none;color:white">
+                            <p>
+                                {$randomRecipe->description}
+                            </p>
+                        </a>
+                    {/if}
                 </span>
             </div>
         </div>
