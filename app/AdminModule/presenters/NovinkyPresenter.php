@@ -22,7 +22,7 @@ class NovinkyPresenter extends AdminPresenter {
         $this->setActive("novinky");
     }
 
-    public function startup(){
+    public function startup() {
         parent::startup();
     }
 
@@ -36,13 +36,14 @@ class NovinkyPresenter extends AdminPresenter {
 
     public function renderEdit($id, $language) {
         $data = $this->news->get($id, $language);
+        $this->template->oldLanguage = $data->language;
         b($data);
         $this['edit']->setDefaults($data);
     }
 
     public function handleDelete($id, $language) {
         $this->news->delete($id, $language);
-        $this->flashMessage("Novinka byla úspěšně odstraněna","success");
+        $this->flashMessage("Novinka byla úspěšně odstraněna", "success");
         $this->redirect("Novinky:");
     }
 
@@ -73,6 +74,7 @@ class NovinkyPresenter extends AdminPresenter {
 
     protected function createComponentEdit() {
         $form = new UI\Form();
+        $form->addHidden("oldLanguage");
         $form->addSelect("language", "Jazyk:", Model\Languages::toArray());
         $form->addText("title", "Nadpis:")
                 ->setRequired("Zvolte prosím nadpis novinky");

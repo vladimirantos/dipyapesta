@@ -45,8 +45,10 @@ class NewsManager extends ModelContainer {
 
     public function edit($data) {
         try {
+            $oldLanguage = $data->oldLanguage;
+            unset($data->oldLanguage);
             $data['date'] = $this->database->query("SELECT CURRENT_TIMESTAMP as 'date' FROM dual")->fetch()->date;
-            $this->database->table(self::table)->where(self::id, $data->id_article)->update($data);
+            $this->database->table(self::table)->where(self::id, $data->id_article)->where("language",$oldLanguage)->update($data);
         } catch (\PDOException $e) {
             if ($e->getCode() == 23000)
                 throw new \Nette\InvalidArgumentException("Novinka s tímto nadpisem již existuje");
