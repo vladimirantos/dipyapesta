@@ -85,7 +85,7 @@ class ProduktyPresenter extends AdminPresenter {
         try {
             $this->product->add($data);
             $this->flashMessage("Produkt byl úspěšně vytvořen", 'success');
-            $this->redirect("Produkty:detail", $data->title);
+            $this->redirect("this");//$this->redirect("Produkty:detail", $data->id, $data->language);
         } catch (\Nette\InvalidArgumentException $e) {
             $this->flashMessage($e->getMessage(), 'error');
             $this->redrawControl("messages");
