@@ -41,9 +41,9 @@ class ReceptyPresenter extends AdminPresenter {
         $this['createNew']->setDefaults($data);
         $this['main']->setDefaults($data);
         $session = $this->session->getSection("recipe");
-        $session->id_recipe= $data->id_recipe;
-        $session->language= $data->language;
-        $this->template->ingredients = $this->ingredients->getAll($data->id_recipe,$data->language);
+        $session->id_recipe = $data->id_recipe;
+        $session->language = $data->language;
+        $this->template->ingredients = $this->ingredients->getAll($data->id_recipe, $data->language);
     }
 
     public function handleDelete($id, $language) {
@@ -115,7 +115,7 @@ class ReceptyPresenter extends AdminPresenter {
             }
             if ($action == "done") {
                 $this->flashMessage("Recept byl úspěšně vytvořen", "success");
-                $this->redirect("Recepty:detail", $data->id_recipe,$data->language);
+                $this->redirect("Recepty:detail", $data->id_recipe, $data->language);
             } elseif ($action == "save") {
                 $this->flashMessage("Recept byl úspěšně uložen", "success");
                 $this->redrawControl("messages");
@@ -134,11 +134,12 @@ class ReceptyPresenter extends AdminPresenter {
                 $session->id_recipe = $this->recipes->createId("recipes", "id_recipe");
                 $session->language = "cs";
                 $this->recipes->createEmpty($session->id_recipe, $session->language);
+            } else {
+                if (isset($session->language)) {
+                    $data->language = $session->language;
+                }
+                $this->ingredients->add($data, $session->id_recipe);
             }
-            if (isset($session->language)) {
-                $data->language = $session->language;
-            }
-            $this->ingredients->add($data, $session->id_recipe);
             $this->flashMessage("Ingredience byla přidána.", "success");
             $this->redrawControl("ingredients");
         } catch (Nette\InvalidArgumentException $e) {
@@ -156,7 +157,7 @@ class ReceptyPresenter extends AdminPresenter {
         $session = $this->session->getSection("recipe");
         if (!is_null($data->translate)) {
             $session->id_recipe = $data->translate;
-        }else{
+        } else {
             $session->id_recipe = $this->recipes->createId("recipes", "id_recipe");
         }
         $session->language = $data->language;

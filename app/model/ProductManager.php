@@ -22,7 +22,7 @@ class ProductManager extends ModelContainer {
     }
 
     public function getAllByLang($lang) {
-        return $this->database->table(self::table)->where("language",$lang)->fetchAll();
+        return $this->database->table(self::table)->where("language", $lang)->fetchAll();
     }
 
     public function get($id, $language) {
@@ -38,11 +38,6 @@ class ProductManager extends ModelContainer {
     }
 
     public function update($data, $id, $language) {
-        if (isset($data->main_image)) {
-            $image = $data->main_image;
-            unset($data->main_image);
-        }
-
         try {
             $this->database->table(self::table)->where(array(self::id => $id, "language" => $language))->update($data);
         } catch (\PDOException $e) {
@@ -66,15 +61,18 @@ class ProductManager extends ModelContainer {
         unset($data->translate);
         $title = $data->title;
         try {
+            $id = $this->createId("products", "id_product");
+            $data->id_product = $id;
             $this->database->table(self::table)->insert($data);
             if ($image != null)
-                $this->addMainImage($image, $title);
+                $this->addMainImage($image, $data, $id);
         } catch (\PDOException $e) {
             if ($e->getCode() == 23000)
                 throw new \Nette\InvalidArgumentException("Produkt s tímto nadpisem již existuje");
             else
                 throw new \Exception($e->getMessage());
         }
+        return $id;
     }
 
 ################################################################################
@@ -101,22 +99,27 @@ class ProductManager extends ModelContainer {
      * @param $title
      * @throws \Exception
      */
-    public function addMainImage(\Nette\Http\FileUpload $image, $title) {
+    public function addMainImage(\Nette\Http\FileUpload $image, $data, $id, $lang = null) {
         $imageName = $this->createImageName($image->name);
         $this->path = $this->galleryPath . $imageName;
         $image->move($this->path);
-        $data = array("title" => $title, "main_image" => $imageName);
-        $this->update($data);
+        $data['main_image'] = $imageName;
+        if (is_null($lang)) {
+            $this->update($data, $id, $data->language);
+        } else {
+            $this->update($data, $id, $lang);
+        }
     }
 
-    public function editMainImage(\Nette\Http\FileUpload $image, $title) {
-        $old = $this->get($title);
-        $this->deleteImage($this->galeryPath . $old->main_image);
-        $this->addMainImage($image, $title);
+    public function editMainImage(\Nette\Http\FileUpload $image, $id, $lang) {
+        $old = $this->get($id, $lang);
+        $this->deleteImage($this->galleryPath . $old->main_image);
+        $data = array();
+        $this->addMainImage($image, $data, $id, $lang);
     }
 
     public function deleteImage($path) {
-        if (file_exists($path))
+        if (file_exists($path) and !is_dir($path))
             unlink($path);
     }
 

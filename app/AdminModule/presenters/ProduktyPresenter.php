@@ -83,9 +83,9 @@ class ProduktyPresenter extends AdminPresenter {
     public function createNew(UI\Form $form) {
         $data = $form->getValues();
         try {
-            $this->product->add($data);
+            $id = $this->product->add($data);
             $this->flashMessage("Produkt byl úspěšně vytvořen", 'success');
-            $this->redirect("this");//$this->redirect("Produkty:detail", $data->id, $data->language);
+            $this->redirect("Produkty:detail", $id, $data->language);
         } catch (\Nette\InvalidArgumentException $e) {
             $this->flashMessage($e->getMessage(), 'error');
             $this->redrawControl("messages");
@@ -95,9 +95,16 @@ class ProduktyPresenter extends AdminPresenter {
     public function update(UI\Form $form) {
         $data = $form->getValues();
         $title = $data->title;
+        if (isset($data->main_image)) {
+            $image = $data->main_image;
+            unset($data->main_image);
+        }
         try {
             b($this->params);
             $this->product->update($data, $this->params["id"], $this->params["language"]);
+            if (isset($image)) {
+                $this->product->editMainImage($image, $this->params["id"], $data->language);
+            }
             $this->flashMessage("Produkt byl úspěšně upraven", 'success');
             $this->redirect("Produkty:detail", $this->params["id"], $data->language);
         } catch (\Nette\InvalidArgumentException $e) {

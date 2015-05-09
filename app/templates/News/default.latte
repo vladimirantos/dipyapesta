@@ -12,16 +12,28 @@
     {foreach $news as $new}
         <article class="clearfix">
             {if ($i%2)==0}
-                <span class="right"><img style="width:100%" src="{$basePath}/images/dipy.png"></span>
-                <span class="left">
+                <span class="right" style="width:28%">
+                    {if !empty($new->main_image)}
+                        <img style="width:100%" src="{$basePath}/images/gallery/{$new->main_image}">
+                    {else}
+                        <img style="width:100%" src="{$basePath}/images/dipy.png">
+                    {/if}
+                </span>
+                <span class="left" style="width:65%">
                     <h3 style="text-decoration: underline">{$new->title}</h3>
                     <p>
                         {$new->content}
                     </p>
                 </span>
             {else}
-                <span class="left"><img style="width:100%" src="{$basePath}/images/dipy.png"></span>
-                <span class="right">
+                <span class="left" style="width:28%">
+                    {if !empty($new->main_image)}
+                        <img style="width:100%" src="{$basePath}/images/gallery/{$new->main_image}">
+                    {else}
+                        <img style="width:100%" src="{$basePath}/images/dipy.png">
+                    {/if}
+                </span>
+                <span class="right" style="width:65%">
                     <h3 style="text-decoration: underline">{$new->title}</h3>
                     <p>
                         {$new->content}

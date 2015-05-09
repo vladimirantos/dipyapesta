@@ -36,6 +36,7 @@ class NovinkyPresenter extends AdminPresenter {
 
     public function renderEdit($id, $language) {
         $data = $this->news->get($id, $language);
+        $this->template->new = $data;
         $this->template->oldLanguage = $data->language;
         b($data);
         $this['edit']->setDefaults($data);
@@ -55,6 +56,7 @@ class NovinkyPresenter extends AdminPresenter {
                 ->setRequired("Zvolte prosím nadpis novinky");
         $form->addTextArea("content", "Obsah:")
                 ->setRequired("Zadejte prosím obsah novinky");
+        $form->addUpload("main_image", "Hlavní obrázek");
         $form->addSubmit("submit", "Vytvořit");
         $form->onSubmit[] = $this->createNew;
         return $form;
@@ -80,6 +82,7 @@ class NovinkyPresenter extends AdminPresenter {
                 ->setRequired("Zvolte prosím nadpis novinky");
         $form->addTextArea("content", "Obsah:")
                 ->setRequired("Zadejte prosím obsah novinky");
+        $form->addUpload("main_image", "Hlavní obrázek");
         $form->addHidden("id_article");
         $form->addSubmit("submit", "Upravit");
         $form->onSubmit[] = $this->edit;

@@ -7,21 +7,28 @@
         <img src="{$basePath}/images/titleline.png">
     </h2>
     <article class="clearfix">
-        <span class="left"><img style="width:100%" src="{$basePath}/images/dipy.png"></span>
-        <span class="right">
+        <span class="left" style="width:28%">
+            {if !empty($product->main_image)}
+                <img style="width:100%" src="{$basePath}/images/gallery/{$product->main_image}">
+            {else}
+                <img style="width:100%" src="{$basePath}/images/dipy.png">
+            {/if}
+        </span>
+        <span class="right" style="width:65%">
             <h3>POUŽITÍ</h3>
-            <p>
+            <p class="justify">
                 {$product->description}
             </p>
         </span>
     </article>
     <article class="clearfix">
         <span class="center">
-            <h3 style="text-align: center;">PŘÍPRAVA</h3>
-            <p>
+            <h3 style="text-align: left;">PŘÍPRAVA</h3>
+            <p class="justify">
                 {$product->preparation}
             </p>
         </span>
+        <a class="right color" style="text-align: right; text-decoration: none;font-size: 15pt" n:href="Products:">Zpět</a>
     </article>
     <article class="photos" style="border-top:1px solid black; padding-top: 10px">
         <img class="photo" src="{$basePath}/images/balsamico.png">

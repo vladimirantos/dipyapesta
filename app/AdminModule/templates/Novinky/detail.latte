@@ -3,10 +3,15 @@
 {block content}
 <div id="menu" class="clearfix">
     <a n:href="Novinky:edit $new->id_article, $new->language">Upravit</a>
-    <a onclick="if (!confirm('Opravdu chcete odstranit tuto novinku? Takováto změna již nepůjde vrátit zpět!')) { return false; }"
-    n:href="delete! $new->id_article, $new->language" style="background-color: transparent;"><img src="{$basePath}/images/trash.png"></a>
+    <a onclick="if (!confirm('Opravdu chcete odstranit tuto novinku? Takováto změna již nepůjde vrátit zpět!')) {
+                return false;
+            }"
+       n:href="delete! $new->id_article, $new->language" style="background-color: transparent;"><img src="{$basePath}/images/trash.png"></a>
 </div>
 <h1>#{$new->id_article .' '.$new->title}</h1>
+{if !empty($new->main_image)}
+    <img src="{$basePath}/images/gallery/{$new->main_image}" style="width:20%;">
+{/if}
 <p>{$new->content}</p>
 <h4 style="font-style:italic ">Ze dne: {$new->date}</h4>
 {/block}
