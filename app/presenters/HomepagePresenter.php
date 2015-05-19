@@ -10,13 +10,16 @@ use Nette,
  */
 class HomepagePresenter extends BasePresenter {
 
-    public function renderKontakt() {
+    public function startup(){
+        parent::startup();
+    }
 
+    public function renderKontakt() {
+        $this->setTitle("Kontakt");
         $this->setActive("kontakt");
     }
 
     public function renderDefault() {
-
         $this->setActive("homepage");
     }
 

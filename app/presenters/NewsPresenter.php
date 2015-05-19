@@ -21,7 +21,13 @@ class NewsPresenter extends BasePresenter {
         parent::__construct();
         $this->setActive("news");
     }
+
+    public function startup(){
+        parent::startup();
+    }
+
     public function renderDefault(){
+        $this->setTitle("Novinky");
         $this->template->news = $this->news->getAllByLang('cs');
     }
 }

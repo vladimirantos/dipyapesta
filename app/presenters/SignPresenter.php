@@ -17,6 +17,10 @@ class SignPresenter extends BasePresenter
      */
     public $userManager;
 
+    public function startup(){
+        parent::startup();
+    }
+
 	/**
 	 * Sign-in form factory.
 	 * @return Nette\Application\UI\Form

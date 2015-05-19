@@ -8,7 +8,7 @@
     <head>
         <meta charset="utf-8">
 
-        <title>{ifset #title}{include title|striptags} | {/ifset}Nette Sandbox</title>
+        <title>{ifset #title}{include title|striptags}|{else}{$title}|{/ifset}Dipyapesta.cz</title>
         <link href="{$basePath}/css/front.less" rel="stylesheet" type="text/less"/>
         <link href='http://fonts.googleapis.com/css?family=Roboto&amp;subset=latin,cyrillic' rel='stylesheet' type='text/css'>
         {block scripts}
@@ -34,9 +34,9 @@
                         <li class="{$active['products']} ClickMe"> <a n:href="Products:"></a>PRODUKTY
                             <img src="{$basePath}/images/activemenu.png" alt="">
                         </li>
-                        <li><a href="http://www.eshop.dipyapesta.cz">E-SHOP</a>
-                            <img src="{$basePath}/images/activemenu.png" alt="">
-                        </li>
+                                                <li> <a href="http://eshop.dipyapesta.cz" style="color: white; text-decoration:none" target="blank">ESHOP</a>
+                                                    <img src="{$basePath}/images/activemenu.png" alt="">
+                                                </li>
                         <li class="{$active['news']} ClickMe"> <a n:href="News:"></a>NOVINKY
                             <img src="{$basePath}/images/activemenu.png" alt="">
                         </li>
@@ -79,7 +79,7 @@
                     IČO 01641433<br>
                     DIČ CZ01641433 <br><br>
                     <a href="mailto: info@dipyapesta.cz" style="color: white">info@dipyapesta.cz</a><br>
-                    +412 605 875 129
+                    +420 774 18 90 60
                 </span>
                 <span id="recipe">
                     {if !empty($randomRecipe)}
