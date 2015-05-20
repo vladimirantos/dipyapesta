@@ -28,6 +28,12 @@
                 {$product->preparation}
             </p>
         </span>
+        <span class="center">
+                    <h3 style="text-align: left;">Produkty</h3>
+                    <p class="justify">
+                        {$product->products|noescape}
+                    </p>
+                </span>
         <a class="right color" style="text-align: right; text-decoration: none;font-size: 15pt" n:href="Products:">Zpět</a>
     </article>
    <!-- <div class="photos" style="border-top:1px solid black; padding-top: 10px">
@@ -43,4 +49,3 @@
 -->
 </section>
 {/block}
-

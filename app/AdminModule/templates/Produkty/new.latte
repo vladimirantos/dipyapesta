@@ -30,7 +30,10 @@
             <td>{label preparation/}</td>
             <td>{input preparation style=>'width:100%'}</td>
         </tr>
-
+        <tr>
+            <td>{label products /}</td>
+            <td>{input products id => 'editor1'}</td>
+        </tr>
         <tr>
             <td>{label main_image/}</td>
             <td>{input main_image}</td>
@@ -43,3 +46,9 @@
     
 
 {/form}
+{block script}
+<script src="//cdn.ckeditor.com/4.4.7/standard/ckeditor.js"></script>
+            <script>
+                CKEDITOR.replace( 'editor1' );
+            </script>
+{/block}

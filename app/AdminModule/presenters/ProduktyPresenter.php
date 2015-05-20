@@ -31,7 +31,7 @@ class ProduktyPresenter extends AdminPresenter {
         $this['edit']->setDefaults($data);
     }
 
-    public function handleDelete($id, $language) {
+    public function handleDelete($id, $language){
         $this->product->delete($id, $language);
         $this->flashMessage("Produkt byl úspěšně odstraněn", "success");
         $this->redirect("Produkty:");
@@ -47,9 +47,8 @@ class ProduktyPresenter extends AdminPresenter {
         $form->addTextArea("short_description", "Krátký popis:");
         $form->addTextArea("description", "Popis:")
                 ->setRequired("Zadejte prosím popis produktu");
-        $form->addTextArea("preparation", "Příprava:")
-                ->setRequired("Popiště prosím přípravu produktu");
-
+        $form->addTextArea("preparation", "Příprava:");
+        $form->addTextArea("products", "Produkty");
         $form->addUpload("main_image", "Hlavní obrázek");
 
         $form->addSubmit("submit", "Vytvořit");
@@ -68,9 +67,8 @@ class ProduktyPresenter extends AdminPresenter {
         $form->addTextArea("short_description", "Krátký popis:");
         $form->addTextArea("description", "Popis:")
                 ->setRequired("Zadejte prosím popis produktu");
-        $form->addTextArea("preparation", "Příprava:")
-                ->setRequired("Popiště prosím přípravu produktu");
-
+        $form->addTextArea("preparation", "Příprava:");
+        $form->addTextArea("products", "Produkty");
         $form->addUpload("main_image", "Hlavní obrázek");
 
         $form->addSubmit("submit", "Vytvořit");
