@@ -15,8 +15,9 @@ class RecipesManager extends ModelContainer {
     public function getAll() {
         return $this->database->table(self::table)->fetchAll();
     }
+
     public function getAllByLang($lang) {
-        return $this->database->table(self::table)->where("language",$lang)->fetchAll();
+        return $this->database->table(self::table)->where("language", $lang)->fetchAll();
     }
 
     public function get($id, $language) {
@@ -48,7 +49,7 @@ class RecipesManager extends ModelContainer {
             $this->database->table(self::table)->insert($data);
 
             if ($image != null)
-                $this->addMainImage($image, $data->title);
+                $this->addMainImage($image, $data->id_recipe, $data->language);
             return $data['id_recipe'];
         } catch (\PDOException $e) {
             if ($e->getCode() == 23000)
@@ -60,7 +61,14 @@ class RecipesManager extends ModelContainer {
 
     public function update($data) {
         try {
-            $this->database->table(self::table)->where(array(self::id => $data->id_recipe, "language" => $data->language))->update($data);
+            $image = null;
+            if (isset($data->image) and $data->image->isImage()) {
+                $image = $data->image;
+                unset($data->image);
+            }
+            $this->database->table(self::table)->where(array(self::id => $data['id_recipe'], "language" => $data['language']))->update($data);
+            if ($image != null)
+                $this->editMainImage($image, $data['id_recipe'], $data['language']);
         } catch (\PDOException $e) {
             if ($e->getCode() == 23000)
                 throw new \Nette\InvalidArgumentException("Recept s tímto názvem již existuje");
@@ -96,22 +104,22 @@ class RecipesManager extends ModelContainer {
         return $filename;
     }
 
-    public function addMainImage(\Nette\Http\FileUpload $image, $title) {
+    public function addMainImage(\Nette\Http\FileUpload $image, $id, $lang) {
         $imageName = $this->createImageName($image->name);
         $this->path = $this->galleryPath . $imageName;
         $image->move($this->path);
-        $data = array("title" => $title, "image" => $imageName);
+        $data = array("id_recipe" => $id, "image" => $imageName, "language" => $lang);
         $this->update($data);
     }
 
-    public function editMainImage(\Nette\Http\FileUpload $image, $title) {
-        $old = $this->get($title);
-        $this->deleteImage($this->galeryPath . $old->main_image);
-        $this->addMainImage($image, $title);
+    public function editMainImage(\Nette\Http\FileUpload $image, $id, $lang) {
+        $old = $this->get($id, $lang);
+        $this->deleteImage($this->galleryPath . $old->image);
+        $this->addMainImage($image, $id, $lang);
     }
 
     public function deleteImage($path) {
-        if (file_exists($path))
+        if (file_exists($path) and ! is_dir($path))
             unlink($path);
     }
 

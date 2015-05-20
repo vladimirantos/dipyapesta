@@ -1,4 +1,4 @@
-{* This is the welcome page, you can delete it *}
+﻿{* This is the welcome page, you can delete it *}
 
 {block content}
 <section class="clearfix">
@@ -10,13 +10,15 @@
         <article class="productHolder">
             <h3>{$recipe->title}</h3>
             {if !empty($recipe->image)}
-                <img src="{$basePath}/images/gallery/{$recipe->image}">
+                <img src="{$basePath}/images/recipes/{$recipe->image}">
             {else}
                 <img src="{$basePath}/images/dipy.png">
             {/if}
-            <p>
-                {$recipe->description}
-            </p>
+{if !empty($recipe->description)}
+                <p>
+                    {$recipe->description|truncate:160}
+                </p>
+            {/if}
             <a class="lightButton" n:href="Recipes:detail, $recipe->id_recipe">VÍCE</a>
         </article>
     {/foreach}

@@ -1,22 +1,24 @@
-{* This is the welcome page, you can delete it *}
+﻿{* This is the welcome page, you can delete it *}
 
 {block content}
 <section class="clearfix">
     <h1>KOŘENÍ PRO PŘÍPRAVU PEST A DIPŮ</h1>
-    <h2>U nás naleznete největší nabídku kvalitních koření do Vaší kuchyně
+    <h2>100% přírodní směs koření pro přípravu pest a dipů
         <img src="{$basePath}/images/titleline.png" alt="">
     </h2>
     {foreach $products as $product}
         <article class="productHolder">
             <h3>{$product->title}</h3>
             {if !empty($product->main_image)}
-                <a class="lightButton" n:href="Products:detail, $product->id_product"><img src="{$basePath}/images/gallery/{$product->main_image}"></a>
-            {else}
-                <a class="lightButton" n:href="Products:detail, $product->id_product"><img src="{$basePath}/images/dipy.png"></a>
+                <a class="lightButton" style="border:none;" n:href="Products:detail, $product->id_product"><img src="{$basePath}/images/gallery/{$product->main_image}"></a>
+                {else}
+                <a class="lightButton" style="border:none;" n:href="Products:detail, $product->id_product"><img src="{$basePath}/images/default.png"></a>
+                {/if}
+            {if !empty($product->short_description)}
+                <p>
+                    {$product->short_description|truncate:160}
+                </p>
             {/if}
-            <p>
-                {$product->short_description}
-            </p>
             <a class="lightButton" n:href="Products:detail, $product->id_product">VÍCE</a>
         </article>
     {/foreach}

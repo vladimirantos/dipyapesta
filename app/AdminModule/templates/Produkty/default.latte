@@ -1,4 +1,4 @@
-{* Latte template *}
+﻿{* Latte template *}
 
 {block content}
 <div id="menu" class="clearfix">
@@ -20,8 +20,8 @@
                 <td>{$product->language}</td>
                 <td><a n:href="Produkty:detail $product->id_product, $product->language"></a>{$product->title}</td>
                 <td>{$product->short_description}</td>
-                <td>{$product->date}</td>
-                <td class="noClick">
+                <td style="width:100px">{$product->date|truncate:11,''}</td>
+                <td class="noClick" style="width:120px">
                     <a n:href="Produkty:edit $product->id_product , $product->language">Upravit</a> |
                     <a onclick="if (!confirm('Opravdu chcete odstranit tento produkt? Takováto změna již nepůjde vrátit zpět!')) {
                                 return false;

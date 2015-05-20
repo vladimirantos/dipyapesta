@@ -1,4 +1,4 @@
-{* Latte template *}
+﻿{* Latte template *}
 
 {block content}
 <div id="menu" class="clearfix">
@@ -19,7 +19,7 @@
                 <td>{$recipe->language}</td>
                 <td><a n:href="Recepty:detail $recipe->id_recipe, $recipe->language"></a>{$recipe->title}</td>
                 <td>{$recipe->description}</td>
-                <td class="noClick">
+                <td class="noClick" style="width:120px;">
                     <a n:href="Recepty:edit $recipe->id_recipe, $recipe->language">Upravit</a> |
                     <a onclick="if (!confirm('Opravdu chcete odstranit tento recept? Takováto změna již nepůjde vrátit zpět!')) {
                 return false;

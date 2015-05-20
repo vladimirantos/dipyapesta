@@ -1,31 +1,57 @@
 {* This is the welcome page, you can delete it *}
 
 {block content}
-<img class="main" src="{$basePath}/images/slide/IMG_4341_ToneMapping_2.jpg" alt=""/>
-<section class="clearfix">
-    <article class="photos" style="text-align: center">
-        <img class="photo" src="{$basePath}/images/dipy.png">
-        <img class="photo" src="{$basePath}/images/balsamica.png" style="height:120px;">
-        <img class="photo" src="{$basePath}/images/pesta.png">
+
+<div class="banner">
+    <ul style="margin:0;padding: 0; width:100%;">
+        <li>
+            <img class="main"  src="{$basePath}/images/slide/IMG_4341_ToneMapping_2.jpg" alt="">
+        </li>
+        <li>
+            <img class="main" src="{$basePath}/images/slide/IMG_4343_ToneMapping_2.jpg" alt="">
+        </li>
+        <li>
+            <img class="main" src="{$basePath}/images/slide/IMG_4346_ToneMapping_2.jpg" alt="">
+        </li>
+        <li>
+            <img class="main" src="{$basePath}/images/slide/IMG_4348_ToneMapping_2.jpg" alt="">
+        </li>
+        <li>
+            <img class="main" src="{$basePath}/images/slide/IMG_4351_ToneMapping_2.jpg" alt="">
+        </li>
+    </ul>
+    {*  <ol class="dots"><li class="dot">1</li><li class="dot active">2</li><li class="dot">3</li><li class="dot">4</li></ol> *}
+</div>
+
+<section class="clearfix" style="text-align: center;">
+    <article class="photoMenu" style="text-align: center">
+        <a n:href="Product:detail 6450"><img id="left" class="photo" src="{$basePath}/images/dipy.png"></a>
+        <a n:href="Product:detail 208"><img class="photo bal" src="{$basePath}/images/balsamica.png" ></a>
+        <a n:href="Product:detail 5023"><img class="photo" src="{$basePath}/images/pesta.png"></a>
     </article>
-    <h1>KOŘENÍ PRO PŘÍPRAVU PEST A DIPŮ</h1>
-    <h2>U nás naleznete největší nabídku kvalitních koření do Vaší kuchyně
-        <img src="{$basePath}/images/titleline.png">
+    <img src="{$basePath}/images/titleline.png">
+
+    <h1>Směs bylin a KOŘENÍ PRO PŘÍPRAVU<br>PEST A DIPŮ</h1>
+    <h2>U nás naleznete ucelenou nabídku  100 % přírodních směsí bylin a  koření pro
+        rychlou přípravu pest a dipů
     </h2>
-    <img class="right" src="{$basePath}/images/IMG_4327.jpg"/>
-    <p class="left">
-        Pellentesque efficitur ligula vitae diam euismod, vel dignissim odio viverra. In hac habitasse platea dictumst. Maecenas ac purus ac dui ultricies interdum non ut nulla. Integer vulputate, lorem sit amet fermentum commodo, arcu arcu convallis neque, a vulputate metus nunc vitae est. Sed accumsan, risus in laoreet pretium, orci dolor varius purus, ut ultricies velit ante non felis. Interdum et malesuada fames ac ante ipsum primis in faucibus. Sed eleifend placerat dictum. Sed ac ante ornare, gravida mauris nec, fermentum dolor. Etiam in odio nulla.
-        <br>Suspendisse eleifend dui urna, accumsan suscipit odio tempus eget. Aliquam purus eros, imperdiet in semper tincidunt, posuere id turpis. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nam congue augue vitae vulputate semper. Phasellus id lectus at est scelerisque efficitur. Sed fringilla nibh in scelerisque efficitur. Etiam eu rutrum nisi. Pellentesque scelerisque eros vitae ante condimentum.
-    </p>
+    <img style="width:40%;margin:0 auto;" class="" src="{$basePath}/images/IMG_4327.png"/>
 </section>
 {/block}
-
+{block head}
+<script src="//code.jquery.com/jquery-latest.min.js"></script>
+<script src="//unslider.com/unslider.min.js"></script>
+<style>
+    .banner { position: relative; overflow: auto; }
+    .banner li { list-style: none; }
+    .banner ul li { float: left; }
+</style>
+{/block}
 {block scripts}
 {include parent}
-
-{/block}
-
-
-{block head}
-
+<script>
+    $(function () {
+        $('.banner').unslider({ delay: 4000});
+    });
+</script>
 {/block}

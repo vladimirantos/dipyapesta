@@ -22,7 +22,7 @@ class ProductManager extends ModelContainer {
     }
 
     public function getAllByLang($lang) {
-        return $this->database->table(self::table)->where("language", $lang)->fetchAll();
+        return $this->database->table(self::table)->where("language", $lang)->order("order")->fetchAll();
     }
 
     public function get($id, $language) {

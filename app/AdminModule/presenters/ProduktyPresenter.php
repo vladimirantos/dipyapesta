@@ -95,10 +95,10 @@ class ProduktyPresenter extends AdminPresenter {
     public function update(UI\Form $form) {
         $data = $form->getValues();
         $title = $data->title;
-        if (isset($data->main_image)) {
+        if (isset($data->main_image) && $data->main_image->isImage()) {
             $image = $data->main_image;
-            unset($data->main_image);
         }
+        unset($data->main_image);
         try {
             b($this->params);
             $this->product->update($data, $this->params["id"], $this->params["language"]);

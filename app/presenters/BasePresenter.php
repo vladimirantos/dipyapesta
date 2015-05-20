@@ -16,8 +16,17 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
     public $recipes;
     private $active = array("homepage" => "", "products" => "", "news" => "", "recipes" => "", "kontakt" => "");
 
+    public function startup(){
+        parent::startup();
+        $this->template->title = "Dipy a pesta";
+    }
+
     public function setActive($presenterMame) {
         $this->active[$presenterMame] = "active";
+    }
+
+    public function setTitle($title){
+        $this->template->title = $title;
     }
 
     public function afterRender() {

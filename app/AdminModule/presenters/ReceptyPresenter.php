@@ -70,13 +70,10 @@ class ReceptyPresenter extends AdminPresenter {
         $form = new UI\Form();
         $form->addText("title", "Název:")
                 ->setRequired("Zadejte prosím název receptu");
-
         $form->addTextArea("description", "Popis:")
                 ->setRequired("Popiště prosím recept");
-
         $form->addHidden("action");
         $form->addSubmit("submit", "Vytvořit recept");
-
         $form->addUpload("image", "Obrázek:");
         $form->onSubmit[] = $this->createNew;
         return $form;
@@ -86,13 +83,10 @@ class ReceptyPresenter extends AdminPresenter {
         $form = new UI\Form();
         $form->addText("ingredient", "Ingredience:")
                 ->setRequired("Zadejte prosím ingredienci");
-
         $form->addText("quantity", "Množství:")
                 ->setRequired("Zadejte prosím kolik je potřeba této ingredience");
-
         $form->addText("unit", "Jednotka:")
                 ->setRequired("Zadejte prosím jednotku této ingredience");
-
         $form->addSubmit("submit", "Přidat ingredienci");
         $form->onSubmit[] = $this->newIngredient;
         return $form;
@@ -161,7 +155,12 @@ class ReceptyPresenter extends AdminPresenter {
             $session->id_recipe = $this->recipes->createId("recipes", "id_recipe");
         }
         $session->language = $data->language;
-        $this->recipes->createEmpty($session->id_recipe, $session->language);
+        try {
+            $this->recipes->createEmpty($session->id_recipe, $session->language);
+        } catch (\Nette\InvalidArgumentException $e) {
+            $this->flashMessage("Recept v tomto jazyce již existuje", "error");
+            $this->redrawControl("messages");
+        }
     }
 
 }

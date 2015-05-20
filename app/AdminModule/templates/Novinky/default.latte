@@ -1,4 +1,4 @@
-{* Latte template *}
+﻿{* Latte template *}
 
 {block content}
 <div id="menu" class="clearfix">
@@ -22,8 +22,8 @@
                 <td>{$new->language}</td>
                 <td>{$new->title}</td>
                 <td>{$new->content}</td>
-                <td>{$new->date}</td>
-                <td class="noClick">
+                <td style="width:100px">{$new->date|truncate:11,''}</td>
+                <td class="noClick" style="width:120px">
                     <a n:href="Novinky:edit $new->id_article, $new->language">Upravit</a> |
                     <a onclick="if (!confirm('Opravdu chcete odstranit tuto novinku? Takováto změna již nepůjde vrátit zpět!')) {
                                 return false;

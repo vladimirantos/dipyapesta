@@ -20,6 +20,13 @@ nette:
 	session:
 		expiration: 14 days
 
+	database:
+		dsn: 'mysql:host=localhost;dbname=pomazanky'
+		user: root
+		password: 
+		options:
+			lazy: yes
+
 
 services:
 	- App\Model\UserManager

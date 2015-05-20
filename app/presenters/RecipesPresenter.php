@@ -26,14 +26,18 @@ class RecipesPresenter extends BasePresenter {
         parent::__construct();
         $this->setActive("recipes");
     }
-
+    public function startup(){
+        parent::startup();
+    }
     public function renderDefault() {
+        $this->setTitle("Recepty");
         $this->template->recipes = $this->recipes->getAllByLang("cs");
     }
 
     public function renderDetail($id) {
         $this->template->recipe = $this->recipes->get($id,"cs");
         $this->template->ingredients = $this->ingredients->getAll($id, "cs");
+        $this->setTitle($this->template->recipe->title);
     }
 
 }

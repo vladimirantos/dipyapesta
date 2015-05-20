@@ -8,11 +8,11 @@
 
 .title{
     display: block;
-  -webkit-margin-before: 1.33em;
-  -webkit-margin-after: 1.33em;
-  -webkit-margin-start: 0px;
-  -webkit-margin-end: 0px;
-  font-weight: bold;
+    -webkit-margin-before: 1.33em;
+    -webkit-margin-after: 1.33em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+    font-weight: bold;
 }
 .color{
     color: @light;
@@ -34,9 +34,9 @@
 .light{
     color: @light;
 }
-@media handheld{
+@media (max-width:1024px){
     body{
-        width: 100%;
+        width: 95%;
         font-family: 'Roboto', sans-serif;
         margin:0;
         padding: 0;
@@ -62,15 +62,14 @@
                 height: 50px;
                 #logo{
                     float: left;
-                    width:10%;
-                    height: 100%;
+                    width:5%;
                     text-align: left;
                     img{
-                        height: 100%;
+                        height: 50px;
                     }
                 }
                 #menu{
-                    width:50%;
+                    width:85%;
                     margin-right: 5%;
                     float: right;
                     text-align: center;
@@ -81,7 +80,7 @@
                     }
                     ul{
                         display:none;
-                        width:100%;
+                        width:89.5%;
                         height:10%;
                         margin:0;
                         margin-top:50px;
@@ -130,6 +129,10 @@
                         margin: 0;
                         padding: 0;
                     }
+                    a{
+                        text-decoration: none;
+                        color:white;
+                    }
                 }
                 #contact{
                     width:20%;
@@ -162,7 +165,9 @@
         aside{
             display: none;
         }
-
+        .banner{
+            width:102%;
+        }
         img.main{
             padding-right:2%;
             width: 102%;
@@ -195,7 +200,7 @@
             padding-right:2%;
             width: 100%;
             margin: 0 auto;
-            min-height: 1000px;
+            min-height: 500px;
             margin-bottom:3%;
             .photos{
                 margin-top:3%;
@@ -204,6 +209,16 @@
                     width:95%;
                     margin-left:3%;
                     margin-top: 2%;
+                }
+            }
+            .photoMenu{
+                margin-top:3%;
+                .photo{
+                    display: block;
+                    width:200px;
+                    margin: 0 auto;
+                    margin-top: 2%;
+                    box-shadow: 1px 1px 1px 1px gray;
                 }
             }
 
@@ -287,7 +302,7 @@
 
     }
 }
-@media screen,tv {
+@media (min-width:1024px){
     body{
         font-family: 'Roboto', sans-serif;
         margin:0;
@@ -374,6 +389,10 @@
                         margin: 0;
                         padding: 0;
                     }
+                    a{
+                        text-decoration: none;
+                        color:white;
+                    }
                 }
                 #contact{
                     width:20%;
@@ -455,7 +474,7 @@
             .clearfix;
             width: 1000px;
             margin: 0 auto;
-            min-height:460px;
+            min-height:500px;
             margin-bottom:3%;
             .photos{
                 margin-top:3%;
@@ -463,6 +482,23 @@
                     display: inline-block;
                     width:20%;
                     margin-left:3%;
+                    margin-top: 2%;
+                }
+            }
+            .photoMenu{
+                margin-top:3%;
+                #left{
+                    margin-left:0;
+                }
+                .photo{
+                    display: inline-block;
+                    width:20%;
+                    margin-left:3%;
+                    margin-top: 2%;
+                    box-shadow: 1px 1px 1px 1px gray;
+                }
+                .bal{
+                    height:120px;
                 }
             }
 
@@ -490,7 +526,8 @@
                     text-align: center;
                 }
                 img{
-                    width: 100%;
+                    height: 200px;
+                    max-width: 100%;
                 }
                 p{
                     width:100%;

@@ -1,4 +1,4 @@
-{**
+﻿{**
  * @param string   $basePath web base path
  * @param array    $flashes  flash messages
 *}
@@ -8,7 +8,7 @@
     <head>
         <meta charset="utf-8">
 
-        <title>{ifset #title}{include title|striptags} | {/ifset}Nette Sandbox</title>
+        <title>{ifset #title}{include title|striptags}|{else}{$title}|{/ifset}Dipyapesta.cz</title>
         <link href="{$basePath}/css/front.less" rel="stylesheet" type="text/less"/>
         <link href='http://fonts.googleapis.com/css?family=Roboto&amp;subset=latin,cyrillic' rel='stylesheet' type='text/css'>
         {block scripts}
@@ -34,9 +34,9 @@
                         <li class="{$active['products']} ClickMe"> <a n:href="Products:"></a>PRODUKTY
                             <img src="{$basePath}/images/activemenu.png" alt="">
                         </li>
-                        <li>E-SHOP
-                            <img src="{$basePath}/images/activemenu.png" alt="">
-                        </li>
+                                                <li> <a href="http://eshop.dipyapesta.cz" style="color: white; text-decoration:none" target="blank">ESHOP</a>
+                                                    <img src="{$basePath}/images/activemenu.png" alt="">
+                                                </li>
                         <li class="{$active['news']} ClickMe"> <a n:href="News:"></a>NOVINKY
                             <img src="{$basePath}/images/activemenu.png" alt="">
                         </li>
@@ -53,7 +53,7 @@
         <aside>
             <ul>
                 <li>
-                    <img src="{$basePath}/images/facebook.png" alt="dip it facebook"/>
+                    <a href="https://www.facebook.com/dipyapesta" target="blank"><img src="{$basePath}/images/facebook.png" alt="dip it facebook"/></a>
                 </li>
                 <li>
                     <img src="{$basePath}/images/youtube.png" alt="dip ip youtube"/>
@@ -67,25 +67,25 @@
         <div id="foot">
             <div class="content" style="font-size:10pt;">
                 <span id="nav">
-                    ÚVOD<br>
-                    PRODUKTY<br>
-                    E-SHOP<br>
-                    NOVINKY<br>
-                    RECEPTY<br>
-                    KONTAKT<br>
+                    <a n:href="Homepage:">ÚVOD</a><br>
+                    <a n:href="Products:">PRODUKTY</a><br>
+                    <a href="http://eshop.dipyapesta.cz" target="blank">E-SHOP</a><br>
+                    <a n:href="News:">NOVINKY</a><br>
+                    <a n:href="Recipes">RECEPTY</a><br>
+                    <a n:href="Homepage:kontakt">KONTAKT</a><br>
                 </span>
                 <span id="contact">
-                    NÁZEV SPOLEČNOSTI<br>    
-                    IČO<br>    
-                    DIČ<br><br>    
-                    INFO@DIPIT.CZ<br>    
-                    +412 605 875 129
+                    Minikaravany s.r.o.<br>
+                    IČO 02258510<br>
+                    DIČ CZ02258510 <br><br>
+                    <a href="mailto: info@dipyapesta.cz" style="color: white">info@dipyapesta.cz</a><br>
+                    +420 774 18 90 60
                 </span>
                 <span id="recipe">
                     {if !empty($randomRecipe)}
                         <em class="title">NÁHODNÝ RECEPT | <a class="light" n:href="Recipes:" style="text-decoration: none">všechny recepty</a> </em>
                         <a n:href="Recipes:detail, $randomRecipe->id_recipe" style="text-decoration: none;color:white">
-                            {$randomRecipe->description}
+                            {$randomRecipe->description|truncate:300}
                         </a>
                     {/if}
                 </span>
