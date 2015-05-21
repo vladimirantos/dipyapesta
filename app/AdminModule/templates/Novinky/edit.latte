@@ -16,7 +16,7 @@
 
         <tr>
             <td>{label content/}</td>
-            <td>{input content style=>'width:100%'}</td>
+            <td>{input content style=>'width:100%', id=>'editor1'}</td>
         </tr>
         <tr>
             <td>{label main_image/}</td>
@@ -36,3 +36,9 @@
     <br>
 
 {/form}
+{block script}
+<script src="//cdn.ckeditor.com/4.4.7/standard/ckeditor.js"></script>
+            <script>
+                CKEDITOR.replace( 'editor1' );
+            </script>
+{/block}

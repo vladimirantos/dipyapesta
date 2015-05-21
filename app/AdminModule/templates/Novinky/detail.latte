@@ -12,6 +12,6 @@
 {if !empty($new->main_image)}
     <img src="{$basePath}/images/gallery/{$new->main_image}" style="width:20%;">
 {/if}
-<p>{$new->content}</p>
+<p>{$new->content|noescape}</p>
 <h4 style="font-style:italic ">Ze dne: {$new->date}</h4>
 {/block}
