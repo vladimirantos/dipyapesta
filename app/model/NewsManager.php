@@ -22,7 +22,7 @@ class NewsManager extends ModelContainer {
     }
 
     public function getAllByLang($lang) {
-        return $this->database->table(self::table)->where('language', $lang)->fetchAll();
+        return $this->database->table(self::table)->where('language', $lang)->order("date DESC")->fetchAll();
     }
 
     public function get($id, $language) {
@@ -58,13 +58,14 @@ class NewsManager extends ModelContainer {
         try {
             if ($data->main_image->isImage()) {
                 $image = $data->main_image;
-                unset($data->main_image);
             }
+            unset($data->main_image);
             $oldLanguage = $data->oldLanguage;
             unset($data->oldLanguage);
-            $data['date'] = $this->database->query("SELECT CURRENT_TIMESTAMP as 'date' FROM dual")->fetch()->date;
-            $this->database->table(self::table)->where(self::id, $data->id_article)->where("language", $oldLanguage)->update($data);
-            if (isset($image)) {
+            b($data);
+            //$data['date'] = $this->database->query("SELECT CURRENT_TIMESTAMP as 'date' FROM dual")->fetch()->date;
+            $this->database->table(self::table)->where(array(self::id => $data->id_article, "language" => $oldLanguage))->update($data);
+            if (isset($image) && $image->getName() != null) {
                 $this->editMainImage($image, $data->id_article, $data->language);
             }
         } catch (\PDOException $e) {
