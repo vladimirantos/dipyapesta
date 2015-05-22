@@ -7,8 +7,12 @@
 <html>
     <head>
         <meta charset="utf-8">
+        <meta name="robots" content="ALL,FOLLOW">
+        <meta http-equiv="Cache-Control" content="public">
+        <title>{ifset #title}{include title|striptags} - {else}{$title} - {/ifset}Dipyapesta.cz</title>
+ 	<meta name="description" content="U nás naleznete ucelenou nabídku 100 % přírodních směsí bylin a koření pro rychlou přípravu pest a dipů ">
+        <meta name="keywords" content="dipy, pesta, balsamica">
 
-        <title>{ifset #title}{include title|striptags}|{else}{$title}|{/ifset}Dipyapesta.cz</title>
         <link href="{$basePath}/css/front.less" rel="stylesheet" type="text/less"/>
         <link href='http://fonts.googleapis.com/css?family=Roboto&amp;subset=latin,cyrillic' rel='stylesheet' type='text/css'>
         {block scripts}

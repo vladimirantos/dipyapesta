@@ -18,7 +18,7 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
 
     public function startup(){
         parent::startup();
-        $this->template->title = "Dipy a pesta";
+        $this->template->title = "Dip'it";
     }
 
     public function setActive($presenterMame) {

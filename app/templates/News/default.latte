@@ -21,6 +21,7 @@
                 </span>
                 <span class="left" style="width:65%">
                     <h3 style="text-decoration: underline">{$new->title}</h3>
+                    <p style="font-size: 13px">Datum: {$new->date|date:'d. m. Y H:m'}</p>
                     <p>
                         {$new->content|noescape}
                     </p>
@@ -35,6 +36,7 @@
                 </span>
                 <span class="right" style="width:65%">
                     <h3 style="text-decoration: underline">{$new->title}</h3>
+                    <p style="font-size: 13px">Datum: {$new->date|date:'d. m. Y H:m'}</p>
                     <p>
                         {$new->content|noescape}
                     </p>
