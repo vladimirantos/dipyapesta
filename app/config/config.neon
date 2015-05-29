@@ -36,3 +36,8 @@ services:
 	- App\Model\IngredientsManager
 	- App\RouterFactory
 	router: @App\RouterFactory::createRouter
+
+
+constants:
+    email: 'info@dipyapesta.cz'
+    
