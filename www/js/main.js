@@ -156,7 +156,7 @@ $(document).ready(function () {
             slider.settings = $.extend({}, defaults, options);
             // parse slideWidth setting
             slider.settings.slideWidth = parseInt(slider.settings.slideWidth);
-            // store the original children
+            // Store the original children
             slider.children = el.children(slider.settings.slideSelector);
             // check if actual number of slides is less than minSlides / maxSlides
             if (slider.children.length < slider.settings.minSlides)
@@ -166,9 +166,9 @@ $(document).ready(function () {
             // if random start, set the startSlide setting to random number
             if (slider.settings.randomStart)
                 slider.settings.startSlide = Math.floor(Math.random() * slider.children.length);
-            // store active slide information
+            // Store active slide information
             slider.active = {index: slider.settings.startSlide}
-            // store if the slider is in carousel mode (displaying / moving multiple slides)
+            // Store if the slider is in carousel mode (displaying / moving multiple slides)
             slider.carousel = slider.settings.minSlides > 1 || slider.settings.maxSlides > 1;
             // if carousel, force preloadImages = 'all'
             if (slider.carousel)
@@ -177,7 +177,7 @@ $(document).ready(function () {
             // used to setup and update carousel slides dimensions
             slider.minThreshold = (slider.settings.minSlides * slider.settings.slideWidth) + ((slider.settings.minSlides - 1) * slider.settings.slideMargin);
             slider.maxThreshold = (slider.settings.maxSlides * slider.settings.slideWidth) + ((slider.settings.maxSlides - 1) * slider.settings.slideMargin);
-            // store the current state of the slider (if currently animating, working is true)
+            // Store the current state of the slider (if currently animating, working is true)
             slider.working = false;
             // initialize the controls object
             slider.controls = {};
@@ -219,7 +219,7 @@ $(document).ready(function () {
         var setup = function () {
             // wrap el in a wrapper
             el.wrap('<div class="' + slider.settings.wrapperClass + '"><div class="bx-viewport"></div></div>');
-            // store a namspace reference to .bx-viewport
+            // Store a namspace reference to .bx-viewport
             slider.viewport = el.parent();
             // add a loading div to display while images are loading
             slider.loader = $('<div class="bx-loading" />');
@@ -1187,7 +1187,7 @@ $(document).ready(function () {
                 return;
             // declare that plugin is in motion
             slider.working = true;
-            // store the old index
+            // Store the old index
             slider.oldIndex = slider.active.index;
             // if slideIndex is less than zero, set active index to last child (this happens during infinite loop)
             if (slideIndex < 0) {

@@ -26,6 +26,18 @@
             Pokud s námi chcete spolupracovat jako velkoobchodní odběratel, kontaktujte nás ohledně individuálních podmínek  pomocí e-mailu nebo prostřednictvím kontaktního formuláře uvedeného na této straně. Děkujeme.
         </p>
     </article>
+    <article class="left">
+        <h3>SEZNAM PRODEJEN</h3>
+        <table>
+            {foreach $stores as $store}
+                <tr>
+                    <td>{$store->city}</td>
+                    <td>{$store->name}</td>
+                    <td>{$store->address}, {$store->zipCode} {$store->city}</td>
+                </tr>
+            {/foreach}
+        </table>
+    </article>
     <article class="right contact">
         <h3>KONTAKTNÍ FORMULÁŘ | <font class="light smaller">Údaje označené * jsou povinné</font></h3>
         <div  n:foreach="$flashes as $flash" style="color: green">{$flash->message}</div><br>

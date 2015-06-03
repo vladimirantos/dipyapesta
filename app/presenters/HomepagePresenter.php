@@ -10,6 +10,11 @@ use Nette,
  */
 class HomepagePresenter extends BasePresenter {
 
+    /**
+     * @var Model\StoreManager @inject
+     */
+    public $storeManager;
+
     public function startup(){
         parent::startup();
     }
@@ -17,6 +22,7 @@ class HomepagePresenter extends BasePresenter {
     public function renderKontakt() {
         $this->setTitle("Kontakt");
         $this->setActive("kontakt");
+        $this->template->stores = $this->storeManager->getAll();
     }
 
     protected function createComponentContactForm(){

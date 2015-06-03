@@ -1,0 +1,25 @@
+{block content}
+<h2 class="section">Editovat obchod {$name}</h2>
+{form addStoreForm}
+    <table style="width:50%;" class="center">
+        <tr>
+            <td>{label name /}</td>
+            <td>{input name}</td>
+        </tr>
+        <tr>
+            <td>{label address /}</td>
+            <td>{input address}</td>
+        </tr>
+        <tr>
+            <td>{label city /} </td>
+            <td>{input city} </td>
+        </tr>
+        <tr>
+            <td>{label zipCode /}</td>
+            <td>{input zipCode}</td>
+        </tr>
+        <tr>
+            <td class="textCenter">{input send}</td>
+        </tr>
+    </table>
+{/form}

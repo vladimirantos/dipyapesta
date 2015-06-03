@@ -10,7 +10,7 @@ class AdminPresenter extends \App\Presenters\BasePresenter {
      * @var Model\IngredientsManager @inject
      */
     public $ingredients;
-    private $active = array("novinky" => "", "produkty" => "", "recepty" => "", "odhlasit" => "");
+    private $active = array("novinky" => "", "produkty" => "", "recepty" => "", "odhlasit" => "", "stores"=>"");
 
     public function startup(){
         parent::startup();

@@ -1,0 +1,28 @@
+{block content}
+<div id="menu" class="clearfix">
+    <a n:href="Store:new">Vytvořit</a>
+</div>
+<table class="center" id="dataTable">
+        <thead>
+            <tr>
+                <td>Název</td>
+                <td>Adresa</td>
+                <td>Akce</td>
+            </tr>
+        </thead>
+        <tbody>
+                 {foreach $stores as $store}
+                     <tr class="clickMe">
+                        <td>{$store->name}</td>
+                        <td>{$store->address}, {$store->zipCode} {$store->city}</td>
+                         <td class="noClick" style="width:120px">
+                             <a n:href="Store:edit $store->id_store">Upravit</a> |
+                             <a onclick="if (!confirm('Opravdu chcete odstranit tento produkt? Takováto změna již nepůjde vrátit zpět!')) {
+                                         return false;
+                                     }" n:href="delete! $store->id_store">Odstranit</a>
+                         </td>
+                     </tr>
+                 {/foreach}
+             </tbody>
+</table>
+{/block}

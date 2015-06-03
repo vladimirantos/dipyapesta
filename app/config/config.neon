@@ -34,6 +34,7 @@ services:
 	- App\Model\ProductManager
 	- App\Model\RecipesManager
 	- App\Model\IngredientsManager
+	- App\Model\StoreManager
 	- App\RouterFactory
 	router: @App\RouterFactory::createRouter
 
