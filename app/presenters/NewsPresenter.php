@@ -22,12 +22,38 @@ class NewsPresenter extends BasePresenter {
         $this->setActive("news");
     }
 
-    public function startup(){
+    public function startup() {
         parent::startup();
     }
 
-    public function renderDefault(){
+    public function renderDefault() {
         $this->setTitle("Novinky");
-        $this->template->news = $this->news->getAllByLang('cs');
+        $news = $this->news->getAllByLang('cs');
+        $this->template->news = $news;
+        $words = "";
+        $html = "";
+        $wasWords = false;
+        $wasHtml = false;
+        foreach ($news as $key => $new) {
+            if ($wasWords && !empty($new->words)) {
+                $words .=', ';
+            }
+            if (!empty($new->words)) {
+                $words .=$new->words;
+                $wasWords = true;
+            }
+
+
+            if ($wasHtml && !empty($new->html)) {
+                $html .=', ';
+            }
+            if (!empty($new->html)) {
+                $html .=$new->html;
+                $wasHtml = true;
+            }
+        }
+        $this->setHtmlDesc($html);
+        $this->setKeyWords($words);
     }
+
 }

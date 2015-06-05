@@ -50,7 +50,9 @@ class ProduktyPresenter extends AdminPresenter {
         $form->addTextArea("preparation", "Příprava:");
         $form->addTextArea("products", "Produkty");
         $form->addUpload("main_image", "Hlavní obrázek");
-
+        $form->addText("words", "Klíčová slova")
+                ->setAttribute("placeholder", "Klíčová slova musejí být odděleny čárkou!");
+        $form->addText("html", "Popis pro html");
         $form->addSubmit("submit", "Vytvořit");
 
         $form->onSubmit[] = $this->createNew;
@@ -70,7 +72,9 @@ class ProduktyPresenter extends AdminPresenter {
         $form->addTextArea("preparation", "Příprava:");
         $form->addTextArea("products", "Produkty");
         $form->addUpload("main_image", "Hlavní obrázek");
-
+        $form->addText("words", "Klíčová slova")
+                ->setAttribute("placeholder", "Klíčová slova musejí být odděleny čárkou!");
+        $form->addText("html", "Popis pro html");
         $form->addSubmit("submit", "Vytvořit");
 
         $form->onSubmit[] = $this->update;

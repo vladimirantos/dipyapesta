@@ -57,6 +57,9 @@ class NovinkyPresenter extends AdminPresenter {
         $form->addTextArea("content", "Obsah:")
                 ->setRequired("Zadejte prosím obsah novinky");
         $form->addUpload("main_image", "Hlavní obrázek");
+        $form->addText("words", "Klíčová slova")
+                ->setAttribute("placeholder", "Klíčová slova musejí být odděleny čárkou!");
+        $form->addText("html", "Popis pro html");
         $form->addSubmit("submit", "Vytvořit");
         $form->onSubmit[] = $this->createNew;
         return $form;
@@ -84,6 +87,9 @@ class NovinkyPresenter extends AdminPresenter {
                 ->setRequired("Zadejte prosím obsah novinky");
         $form->addUpload("main_image", "Hlavní obrázek");
         $form->addHidden("id_article");
+        $form->addText("words", "Klíčová slova")
+                ->setAttribute("placeholder", "Klíčová slova musejí být odděleny čárkou!");
+        $form->addText("html", "Popis pro html");
         $form->addSubmit("submit", "Upravit");
         $form->onSubmit[] = $this->edit;
         return $form;

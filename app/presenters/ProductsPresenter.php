@@ -32,6 +32,8 @@ class ProductsPresenter extends BasePresenter {
     public function renderDetail($id){
         $this->template->product = $this->products->get($id, "cs");
         $this->setTitle($this->template->product->title);
+        $this->setKeyWords($this->template->product->words);
+        $this->setHtmlDesc($this->template->product->html);
     }
 
 }

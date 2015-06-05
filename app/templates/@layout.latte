@@ -10,8 +10,16 @@
         <meta name="robots" content="ALL,FOLLOW">
         <meta http-equiv="Cache-Control" content="public">
         <title>{ifset #title}{include title|striptags} - {else}{$title} - {/ifset}Dipyapesta.cz</title>
- 	<meta name="description" content="U nás naleznete ucelenou nabídku 100 % přírodních směsí bylin a koření pro rychlou přípravu pest a dipů ">
-        <meta name="keywords" content="dipy, pesta, balsamica">
+        {if isset($words) && !empty($words)}
+            <meta name="keywords" content="{$words}">
+        {else}
+            <meta name="keywords" content="dipy, pesta, balsamica">
+        {/if}
+        {if isset($html) && !empty($html)}
+            <meta name="description" content="{$html}">
+        {else}
+            <meta name="description" content="U nás naleznete ucelenou nabídku 100 % přírodních směsí bylin a koření pro rychlou přípravu pest a dipů ">
+        {/if}
 
         <link href="{$basePath}/css/front.less" rel="stylesheet" type="text/less"/>
         <link href='http://fonts.googleapis.com/css?family=Roboto&amp;subset=latin,cyrillic' rel='stylesheet' type='text/css'>
@@ -38,12 +46,12 @@
                         <li class="{$active['products']} ClickMe"> <a n:href="Products:"></a>PRODUKTY
                             <img src="{$basePath}/images/activemenu.png" alt="">
                         </li>
-                          <li> ESHOP
-                                                                            <img src="{$basePath}/images/activemenu.png" alt="">
-                                                                        </li>
-                                                {*<li> <a href="http://eshop.dipyapesta.cz" style="color: white; text-decoration:none" target="blank">ESHOP</a>*}
-                                                    {*<img src="{$basePath}/images/activemenu.png" alt="">*}
-                                                {*</li>*}
+                        <li> ESHOP
+                            <img src="{$basePath}/images/activemenu.png" alt="">
+                        </li>
+                        {*<li> <a href="http://eshop.dipyapesta.cz" style="color: white; text-decoration:none" target="blank">ESHOP</a>*}
+                        {*<img src="{$basePath}/images/activemenu.png" alt="">*}
+                        {*</li>*}
                         <li class="{$active['news']} ClickMe"> <a n:href="News:"></a>NOVINKY
                             <img src="{$basePath}/images/activemenu.png" alt="">
                         </li>

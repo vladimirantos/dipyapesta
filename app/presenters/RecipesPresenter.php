@@ -38,6 +38,8 @@ class RecipesPresenter extends BasePresenter {
         $this->template->recipe = $this->recipes->get($id,"cs");
         $this->template->ingredients = $this->ingredients->getAll($id, "cs");
         $this->setTitle($this->template->recipe->title);
+        $this->setKeyWords($this->template->recipe->words);
+        $this->setHtmlDesc($this->template->recipe->html);
     }
 
 }

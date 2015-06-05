@@ -68,6 +68,9 @@ class ReceptyPresenter extends AdminPresenter {
 
     protected function createComponentCreateNew() {
         $form = new UI\Form();
+        $form->addText("words", "Klíčová slova")
+                ->setAttribute("placeholder", "Klíčová slova musejí být odděleny čárkou!");
+        $form->addText("html", "Popis pro html");
         $form->addText("title", "Název:")
                 ->setRequired("Zadejte prosím název receptu");
         $form->addTextArea("description", "Popis:")

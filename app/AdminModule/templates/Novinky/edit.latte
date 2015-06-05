@@ -13,7 +13,14 @@
             <td>{label title/}</td>
             <td>{input title}</td>
         </tr>
-
+        <tr>
+            <td>{label words/}</td>
+            <td>{input words style=>'width:100%'}</td>
+        </tr>
+        <tr>
+            <td>{label html/}</td>
+            <td>{input html style=>'width:100%'}</td>
+        </tr>
         <tr>
             <td>{label content/}</td>
             <td>{input content style=>'width:100%', id=>'editor1'}</td>
@@ -38,7 +45,7 @@
 {/form}
 {block script}
 <script src="//cdn.ckeditor.com/4.4.7/standard/ckeditor.js"></script>
-            <script>
-                CKEDITOR.replace( 'editor1' );
-            </script>
+<script>
+    CKEDITOR.replace('editor1');
+</script>
 {/block}
