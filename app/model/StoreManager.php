@@ -17,6 +17,10 @@ class StoreManager extends ModelContainer{
         $this->database->table(self::TABLE)->insert($data);
     }
 
+    public function update(array $data, $id){
+        $this->database->table(self::TABLE)->where("id_store", $id)->update($data);
+    }
+
     public function getAll(){
         return $this->database->table(self::TABLE);
     }

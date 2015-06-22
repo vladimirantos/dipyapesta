@@ -31,7 +31,7 @@ class StorePresenter extends AdminPresenter {
     public function renderEdit($id){
         $data = $this->storeManager->get($id);
         $this->template->name = $data->name;
-        $this['editStoreForm']->setDefaults($data);
+        $this['addStoreForm']->setDefaults($data);
     }
 
     protected function createComponentAddStoreForm(){
@@ -45,20 +45,14 @@ class StorePresenter extends AdminPresenter {
         return $form;
     }
 
-    protected function createComponentEditStoreForm(){
-        $form = new Form();
-        $form->addText("name", "Název")->setRequired("Nezadal jsi název");
-        $form->addText("address", "Adresa")->setRequired("Nezadal jsi adresu");
-        $form->addText("city", "Město")->setRequired("Nezadal jsi město");
-        $form->addText("zipCode", "PSČ")->setRequired("Nezadal jsi PSČ");
-        $form->addSubmit("send", "Uložit");
-        $form->onSuccess[] = $this->editStoreFormSucceeded;
-        return $form;
-    }
-
     public function addStoreFormSucceeded($form, $values){
-        $this->storeManager->insert((array)$values);
-        $this->flashMessage("Obchod byl úspěšně vytvořen");
+        if(!isset($this->params['id'])){
+            $this->storeManager->insert((array)$values);
+            $this->flashMessage("Obchod byl úspěšně vytvořen");
+        }else{
+            $this->storeManager->update((array)$values, $this->params['id']);
+            $this->flashMessage("Obchod byl úspěšně editován");
+        }
         $this->redirect("this");
     }
 

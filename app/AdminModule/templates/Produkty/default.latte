@@ -23,7 +23,7 @@
                 <td style="width:100px">{$product->date|truncate:11,''}</td>
                 <td class="noClick" style="width:120px">
                     <a n:href="Produkty:edit $product->id_product , $product->language">Upravit</a> |
-                    <a onclick="if (!confirm('Opravdu chcete odstranit tento produkt? Takováto změna již nepůjde vrátit zpět!')) {
+                    <a onclick="if (!confirm('Opravdu chceš tento národ odstranit? tato akce nepůjde vzít zpět!')) {
                                 return false;
                             }" n:href="delete! $product->id_product, $product->language" style="background-color: transparent;">Odstranit</a>
                 </td>
