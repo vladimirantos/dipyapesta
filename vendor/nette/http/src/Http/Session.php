@@ -170,7 +170,7 @@ class Session extends Nette\Object
 
 
 	/**
-	 * Ends the current session and store session data.
+	 * Ends the current session and Store session data.
 	 * @return void
 	 */
 	public function close()

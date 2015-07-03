@@ -282,7 +282,7 @@ class Container extends Nette\ComponentModel\Container implements \ArrayAccess
 
 
 	/**
-	 * Adds hidden form control used to store a non-displayed value.
+	 * Adds hidden form control used to Store a non-displayed value.
 	 * @param  string  control name
 	 * @param  mixed   default value
 	 * @return Nette\Forms\Controls\HiddenField

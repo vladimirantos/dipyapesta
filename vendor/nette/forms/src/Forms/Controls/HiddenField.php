@@ -11,7 +11,7 @@ use Nette;
 
 
 /**
- * Hidden form control used to store a non-displayed value.
+ * Hidden form control used to Store a non-displayed value.
  *
  * @author     David Grudl
  */

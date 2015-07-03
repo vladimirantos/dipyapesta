@@ -22,7 +22,7 @@ class StoreManager extends ModelContainer{
     }
 
     public function getAll(){
-        return $this->database->table(self::TABLE);
+        return $this->database->table(self::TABLE)->order("city ASC, name ASC");
     }
 
     public function get($id){
