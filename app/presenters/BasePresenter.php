@@ -14,7 +14,7 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
      * @var Model\RecipesManager @inject
      */
     public $recipes;
-    private $active = array("homepage" => "", "products" => "", "news" => "", "recipes" => "", "kontakt" => "");
+    private $active = array("homepage" => "", "products" => "", "news" => "", "recipes" => "", "kontakt" => "","prodejny"=>"");
 
     public function startup() {
         parent::startup();

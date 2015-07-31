@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Presenters;
 
 use Nette,
@@ -14,17 +15,22 @@ class HomepagePresenter extends BasePresenter {
      */
     public $storeManager;
 
-    public function startup(){
+    public function startup() {
         parent::startup();
+    }
+
+    public function renderProdejny() {
+        $this->setTitle("Prodejny");
+        $this->setActive("prodejny");
+        $this->template->stores = $this->storeManager->getAll();
     }
 
     public function renderKontakt() {
         $this->setTitle("Kontakt");
         $this->setActive("kontakt");
-        $this->template->stores = $this->storeManager->getAll();
     }
 
-    protected function createComponentContactForm(){
+    protected function createComponentContactForm() {
         $form = new Nette\Application\UI\Form();
         $form->addText("name", "Jméno a příjmení")->setRequired("Nevyplnil jsi jméno");
         $form->addText("email", "Email")->addRule(Nette\Application\UI\Form::EMAIL, "Email má chybný formát")->setRequired("Nevyplnil jsi email");
@@ -34,12 +40,12 @@ class HomepagePresenter extends BasePresenter {
         return $form;
     }
 
-    public function contactFormSucceeded($form, $value){
+    public function contactFormSucceeded($form, $value) {
         $mail = new Nette\Mail\Message();
         $mail->setFrom($value->email)
-            ->addTo(email)
-            ->setSubject('Dotaz od '.$value->name)
-            ->setHTMLBody("Zpráva od: ".$value->name."<br>Email: ".$value->email."<br>Zpráva: ".$value->text);
+                ->addTo(email)
+                ->setSubject('Dotaz od ' . $value->name)
+                ->setHTMLBody("Zpráva od: " . $value->name . "<br>Email: " . $value->email . "<br>Zpráva: " . $value->text);
 
         $mailer = new Nette\Mail\SendmailMailer();
         $mailer->send($mail);
