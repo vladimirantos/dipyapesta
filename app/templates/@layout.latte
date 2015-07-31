@@ -30,6 +30,33 @@
         <script src="{$basePath}/js/main.js"></script>
         {/block}
         <link rel="shortcut icon" href="{$basePath}/favicon.ico">
+        <!-- Include the plugin *after* the jQuery library -->
+        <script src="{$basePath}/js/bjqs.js"></script>
+
+        <!-- Include the basic styles -->
+        <link type="text/css" rel="Stylesheet" href="{$basePath}/css/bjqs.css" />
+        <script>
+
+            jQuery(document).ready(function ($) {
+                var width = $(window).width();
+                if (width >= 1024) {
+                    width = "400px";
+                } else {
+                    width = "200px";
+                }
+
+                $('.banner').bjqs({
+                    width: '100%',
+                    height: width,
+                    animduration: 100,
+                    randomstart: true,
+                    responsive: true,
+                    nexttext: '', // Text for 'next' button (can use HTML)
+                    prevtext: '' // Text for 'previous' button (can use HTML)
+
+                });
+            });
+        </script>
         {block head}{/block}
     </head>
 
@@ -49,7 +76,7 @@
                             <img src="{$basePath}/images/activemenu.png" alt="">
                         </li>
                         <li> <a href="http://eshop.dipyapesta.cz" style="color: white; text-decoration:none" target="blank">ESHOP</a>
-                        <img src="{$basePath}/images/activemenu.png" alt="">
+                            <img src="{$basePath}/images/activemenu.png" alt="">
                         </li>
                         <li class="{$active['news']} ClickMe"> <a n:href="News:"></a>NOVINKY
                             <img src="{$basePath}/images/activemenu.png" alt="">

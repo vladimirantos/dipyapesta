@@ -3,9 +3,9 @@
 {block content}
 
 <div class="banner">
-    <ul style="margin:0;padding: 0; width:100%;">
+    <ul class="bjqs">
         <li>
-            <img class="main"  src="{$basePath}/images/slide/IMG_4341_ToneMapping_2.jpg" alt="">
+            <img class="main" style="height: auto;"  src="{$basePath}/images/slide/IMG_4341_ToneMapping_2.jpg" alt="">
         </li>
         <li>
             <img class="main" src="{$basePath}/images/slide/IMG_4343_ToneMapping_2.jpg" alt="">
@@ -47,12 +47,4 @@
     .banner li { list-style: none; }
     .banner ul li { float: left; }
 </style>
-{/block}
-{block scripts}
-{include parent}
-<script>
-    $(function () {
-        $('.banner').unslider({ delay: 4000});
-    });
-</script>
 {/block}
