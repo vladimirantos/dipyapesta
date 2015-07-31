@@ -91,7 +91,8 @@
                     <a href="http://eshop.dipyapesta.cz" target="blank">E-SHOP</a><br>
                     <a n:href="News:">NOVINKY</a><br>
                     <a n:href="Recipes">RECEPTY</a><br>
-                    <a n:href="Homepage:kontakt">PRODEJNY A KONTAKT</a><br>
+                    <a n:href="Homepage:kontakt">KONTAKT</a><br>
+                    <a n:href="Homepage:prodejny">PRODEJNY</a><br>
                 </span>
                 <span id="contact">
                     Minikaravany s.r.o.<br>
@@ -104,6 +105,7 @@
                     {if !empty($randomRecipe)}
                         <em class="title">NÁHODNÝ RECEPT | <a class="light" n:href="Recipes:" style="text-decoration: none">všechny recepty</a> </em>
                         <a n:href="Recipes:detail, $randomRecipe->id_recipe" style="text-decoration: none;color:white">
+                            <h4 style="margin:0;">{$randomRecipe->title}</h4>
                             {$randomRecipe->description|truncate:300}
                         </a>
                     {/if}
