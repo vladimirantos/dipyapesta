@@ -5,96 +5,115 @@
 
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="utf-8">
-    <meta name="robots" content="ALL,FOLLOW">
-    <meta http-equiv="Cache-Control" content="public">
-    <title>{ifset #title}{include title|striptags} - {else}{$title} - {/ifset}Dipyapesta.cz</title>
-    {if isset($words) && !empty($words)}
-        <meta name="keywords" content="{$words}">
-    {else}
-        <meta name="keywords" content="dipy, pesta, balsamica, balsamika, koření, e-shop dipy, e-shop pesta, e-shop balsamica, e-shop balsamika, e-shop koření, dipy velkoobchod, pesta velkobchod, dipy velkoobchod, dipy maloobchod">
-    {/if}
-    {if isset($html) && !empty($html)}
-        <meta name="description" content="{$html}">
-    {else}
-        <meta name="description" content="U nás naleznete ucelenou nabídku 100 % přírodních směsí bylin a koření pro rychlou přípravu pest a dipů ">
-    {/if}
+    <head>
+        <meta charset="utf-8">
+        <meta name="robots" content="ALL,FOLLOW">
+        <meta http-equiv="Cache-Control" content="public">
+        <title>{ifset #title}{include title|striptags} - {else}{$title} - {/ifset}Dipyapesta.cz</title>
+        {if isset($words) && !empty($words)}
+            <meta name="keywords" content="{$words}">
+        {else}
+            <meta name="keywords" content="dipy, pesta, balsamica, balsamika, koření, e-shop dipy, e-shop pesta, e-shop balsamica, e-shop balsamika, e-shop koření, dipy velkoobchod, pesta velkobchod, dipy velkoobchod, dipy maloobchod">
+        {/if}
+        {if isset($html) && !empty($html)}
+            <meta name="description" content="{$html}">
+        {else}
+            <meta name="description" content="U nás naleznete ucelenou nabídku 100 % přírodních směsí bylin a koření pro rychlou přípravu pest a dipů ">
+        {/if}
 
-    <link href="{$basePath}/css/front.less" rel="stylesheet" type="text/less"/>
-    <link href='http://fonts.googleapis.com/css?family=Roboto&amp;subset=latin,cyrillic' rel='stylesheet' type='text/css'>
-    {block scripts}
+        <link href="{$basePath}/css/front.less" rel="stylesheet" type="text/less"/>
+        <link href='http://fonts.googleapis.com/css?family=Roboto&amp;subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+        {block scripts}
         <script src="{$basePath}/js/libs/less/less.min.js" type="text/javascript"></script>
         <script src="{$basePath}/js/jquery.js"></script>
         <script src="{$basePath}/js/netteForms.js"></script>
         <script src="{$basePath}/js/main.js"></script>
-        <script>
-            (function(i,s,o,g,r,a,m){ i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){ (i[r].q=i[r].q||[]).push(arguments) },i[r].l=1*new Date();a=s.createElement(o),
-                    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m) } )(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        {/block}
+        <link rel="shortcut icon" href="{$basePath}/favicon.ico">
+                <!-- Include the plugin *after* the jQuery library -->
+                <script src="{$basePath}/js/bjqs.js"></script>
+        
+                <!-- Include the basic styles -->
+                <link type="text/css" rel="Stylesheet" href="{$basePath}/css/bjqs.css" />
+                <script>
+        
+                    jQuery(document).ready(function ($) {
+                        var width = $(window).width();
+                        if (width >= 1024) {
+                            width = "400px";
+                        } else {
+                            width = "200px";
+                        }
+        
+                        $('.banner').bjqs({
+                            width: '100%',
+                            height: width,
+                            animduration: 100,
+                            randomstart: true,
+                            responsive: true,
+                            nexttext: '', // Text for 'next' button (can use HTML)
+                            prevtext: '' // Text for 'previous' button (can use HTML)
+        
+                        });
+                    });
+                </script>
+        {block head}{/block}
+    </head>
 
-            ga('create', 'UA-63162623-1', 'auto');
-            ga('send', 'pageview');
-
-        </script>
-    {/block}
-    <link rel="shortcut icon" href="{$basePath}/favicon.ico">
-    {block head}{/block}
-</head>
-
-<body class="clearfix">
-<header>
-    <nav>
-        <div id="logo" class="ClickMe"><a n:href="Homepage:"><img src="{$basePath}/images/logo.gif" alt="dip it logo"/></a></div>
-        <div id="menu">
-            <img src="{$basePath}/images/menu.png" id="menuBtn" alt="">
-            <ul id="menuUl">
-                <li class="{$active['homepage']} ClickMe"> <a n:href="Homepage:"></a>{_messages.menu.item1}
-                    <img src="{$basePath}/images/activemenu.png" alt="">
+    <body class="clearfix">
+        <header>
+            <nav>
+                <div id="logo" class="ClickMe"><a n:href="Homepage:"><img src="{$basePath}/images/logo.gif" alt="dip it logo"/></a></div>
+                <div id="menu">
+                    <img src="{$basePath}/images/menu.png" id="menuBtn" alt="">
+                    <ul id="menuUl">
+                        <li class="{$active['homepage']} ClickMe"> <a n:href="Homepage:"></a>ÚVOD
+                            <img src="{$basePath}/images/activemenu.png" alt="">
+                        </li>
+                        <li class="{$active['products']} ClickMe"> <a n:href="Products:"></a>PRODUKTY
+                            <img src="{$basePath}/images/activemenu.png" alt="">
+                        </li>
+                        <li> <a href="http://eshop.dipyapesta.cz" style="color: white; text-decoration:none" target="blank">ESHOP</a>
+                        <img src="{$basePath}/images/activemenu.png" alt="">
+                        </li>
+                        <li class="{$active['news']} ClickMe"> <a n:href="News:"></a>NOVINKY
+                            <img src="{$basePath}/images/activemenu.png" alt="">
+                        </li>
+                        <li class="{$active['recipes']} ClickMe"> <a n:href="Recipes:"></a>RECEPTY
+                            <img src="{$basePath}/images/activemenu.png" alt="">
+                        </li>
+                        <li class="{$active['kontakt']} ClickMe"> <a n:href="Homepage:kontakt"></a>KONTAKT A PRODEJNY
+                            <img style="height: 11px;margin-top: 6px" src="{$basePath}/images/activemenu.png" alt="">
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <aside>
+            <ul>
+                <li>
+                    <a href="https://www.facebook.com/dipyapesta" target="blank"><img src="{$basePath}/images/facebook.png" alt="dip it facebook"/></a>
                 </li>
-                <li class="{$active['products']} ClickMe"> <a n:href="Products:"></a>{_messages.menu.item2}
-                    <img src="{$basePath}/images/activemenu.png" alt="">
+                <li>
+                    <a href="https://www.youtube.com/channel/UCsAZvaqWm3ncDiFLjUtWRng" target="blank"><img src="{$basePath}/images/youtube.png" alt="dip ip youtube"/></a>
                 </li>
-                <li> <a href="http://eshop.dipyapesta.cz" style="color: white; text-decoration:none" target="blank">{_messages.menu.item3}</a>
-                    <img src="{$basePath}/images/activemenu.png" alt="">
-                </li>
-                <li class="{$active['news']} ClickMe"> <a n:href="News:"></a>{_messages.menu.item4}
-                    <img src="{$basePath}/images/activemenu.png" alt="">
-                </li>
-                <li class="{$active['recipes']} ClickMe"> <a n:href="Recipes:"></a>{_messages.menu.item5}
-                    <img src="{$basePath}/images/activemenu.png" alt="">
-                </li>
-                <li class="{$active['kontakt']} ClickMe"> <a n:href="Homepage:kontakt"></a>{_messages.menu.item6}
-                    <img style="height: 11px;margin-top: 6px" src="{$basePath}/images/activemenu.png" alt="">
+                <li>
+                    <a href="https://instagram.com/dipyapesta.cz/" target="blank"><img src="{$basePath}/images/instagram.png" alt="dip ip youtube"/></a>
                 </li>
             </ul>
-        </div>
-    </nav>
-</header>
-<aside>
-    <ul>
-        <li>
-            <a href="https://www.facebook.com/dipyapesta" target="blank"><img src="{$basePath}/images/facebook.png" alt="dip it facebook"/></a>
-        </li>
-        <li>
-            <a href="https://www.youtube.com/channel/UCsAZvaqWm3ncDiFLjUtWRng" target="blank"><img src="{$basePath}/images/youtube.png" alt="dip it youtube"/></a>
-        </li>
-        <li>
-            <a href="https://instagram.com/dipyapesta.cz/" target="blank"><img src="{$basePath}/images/instagram.png" alt="dip it youtube"/></a>
-        </li>
-    </ul>
-</aside>
-<script> document.documentElement.className += ' js'</script>
-{include content}
+        </aside>
+        <script> document.documentElement.className += ' js'</script>
+        {include content}
 
-<div id="foot">
-    <div class="content" style="font-size:10pt;">
+        <div id="foot">
+            <div class="content" style="font-size:10pt;">
                 <span id="nav">
-                    <a n:href="Homepage:">{_messages.menu.item1}</a><br>
-                    <a n:href="Products:">{_messages.menu.item2}</a><br>
-                    <a href="http://eshop.dipyapesta.cz" target="blank">{_messages.menu.item3}</a><br>
-                    <a n:href="News:">{_messages.menu.item4}</a><br>
-                    <a n:href="Recipes">{_messages.menu.item5}</a><br>
-                    <a n:href="Homepage:kontakt">{_messages.menu.item6}</a><br>
+                    <a n:href="Homepage:">ÚVOD</a><br>
+                    <a n:href="Products:">PRODUKTY</a><br>
+                    <a href="http://eshop.dipyapesta.cz" target="blank">E-SHOP</a><br>
+                    <a n:href="News:">NOVINKY</a><br>
+                    <a n:href="Recipes">RECEPTY</a><br>
+                    <a n:href="Homepage:kontakt">PRODEJNY A KONTAKT</a><br>
                 </span>
                 <span id="contact">
                     Minikaravany s.r.o.<br>
@@ -105,20 +124,21 @@
                 </span>
                 <span id="recipe">
                     {if !empty($randomRecipe)}
-                        <em class="title">{_messages.footer.randRecipe} | <a class="light" n:href="Recipes:" style="text-decoration: none">{_messages.footer.all}</a> </em>
+                        <em class="title">NÁHODNÝ RECEPT | <a class="light" n:href="Recipes:" style="text-decoration: none">všechny recepty</a> </em>
                         <a n:href="Recipes:detail, $randomRecipe->id_recipe" style="text-decoration: none;color:white">
+                            <h4 style="margin:0;">{$randomRecipe->title}</h4>
                             {$randomRecipe->description|truncate:300}
                         </a>
                     {/if}
                 </span>
-    </div>
-</div>
-<footer>
-    <div class="content">
-        <span class="left">&copy; 2015 Dip it | {_messages.footer.text}</span>
-        <span class="right">Code: <i>Bruno Puzják &amp; Vladimír Antoš</i>  |  Graphic: <i>Tomáš Matucha</i></span>
-    </div>
-</footer>
+            </div>
+        </div>
+        <footer>
+            <div class="content">
+                <span class="left">&copy; 2015 Dip it | Všechna práva vyhrazena</span>
+                <span class="right">Code: <i>Bruno Puzják &amp; Vladimír Antoš</i>  |  Graphic: <i>Tomáš Matucha</i></span>                
+            </div>
+        </footer>
 
-</body>
+    </body>
 </html>

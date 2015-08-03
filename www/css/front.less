@@ -34,6 +34,9 @@
 .light{
     color: @light;
 }
+.banner{
+    width: 100%;
+}
 @media (max-width:1024px){
     body{
         width: 95%;
@@ -61,11 +64,15 @@
                 margin: 0 auto;
                 height: 50px;
                 #logo{
+                    cursor: pointer;
                     float: left;
                     width:5%;
                     text-align: left;
                     img{
                         height: 50px;
+                    }
+                    font{
+                        display:none;
                     }
                 }
                 #menu{
@@ -119,10 +126,14 @@
             background-color: @menuColor;
             color:white;
             .content{
+                padding-top:10px;
+                text-align:center;
                 span{
                     display: inline-table;
                 }
                 #nav{
+                    text-align:left;
+
                     width:15%;
                     ul{
                         list-style: none;
@@ -135,10 +146,13 @@
                     }
                 }
                 #contact{
+                    text-align:left;
+
                     width:20%;
                     margin-left: 5%;
                 }
                 #recipe{
+
                     width:50%;
                     margin-left: 5%;
                 }
@@ -165,13 +179,7 @@
         aside{
             display: none;
         }
-        .banner{
-            width:102%;
-        }
-        img.main{
-            padding-right:2%;
-            width: 102%;
-        }
+
 
         .left{
             width:100%;
@@ -248,6 +256,7 @@
                     background-color: @light;
                     color:white;
                     padding: 10px;
+                    height: 40px;
                     text-align: center;
                 }
                 img{
@@ -326,17 +335,22 @@
                 margin: 0 auto;
                 height: 50px;
                 #logo{
+                    cursor: pointer;
                     float: left;
-                    width:10%;
+                    width:20%;
                     height: 100%;
                     text-align: left;
                     img{
                         height: 100%;
                     }
+                    font{
+                        position: relative;
+                        top:-20px;
+                    }
                 }
                 #menu{
                     float:right;
-                    width:90%;
+                    width:80%;
                     text-align: center;
                     height: 100%;
                     ul{
@@ -346,8 +360,8 @@
                         li{
                             cursor: pointer;
                             padding-top:15px;
-                            padding-left:20px;
-                            padding-right:20px;
+                            padding-left:10px;
+                            padding-right:10px;
                             height: 70%;
                             display: inline-block;
                             img{
@@ -379,12 +393,16 @@
             color:white;
             padding-bottom:20px;
             .content{
+                padding-top:10px;
+                text-align:center;
                 span{
                     display: inline-table;
                 }
                 #nav{
                     margin-left:5%;
                     width:15%;
+                    text-align:left;
+
                     ul{
                         list-style: none;
                         margin: 0;
@@ -396,6 +414,8 @@
                     }
                 }
                 #contact{
+                    text-align:left;
+
                     width:20%;
                     margin-left: 5%;
                 }
@@ -444,9 +464,6 @@
             }
         }
 
-        img.main{
-            width: 100%;
-        }
 
         .left{
             width:45%;
@@ -525,6 +542,7 @@
                     background-color: @light;
                     color:white;
                     padding: 10px;
+                    height: 40px;
                     text-align: center;
                 }
                 img{

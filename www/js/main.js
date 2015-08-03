@@ -15,7 +15,7 @@ $(document).ready(function () {
         } else {
             ul.addClass("active");
             ul.css("display", "block");
-            nav.css("height", "260px");
+            nav.css("height", "295px");
             $(this).css("padding-bottom", "10px");
         }
     });

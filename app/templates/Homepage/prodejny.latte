@@ -1,0 +1,23 @@
+{* Latte template *}
+
+{block content}
+<section class="clearfix">
+
+    <article>
+        <h3 style="color:red;">SEZNAM PRODEJEN, KDE MŮŽETE ZKOUPIT NAŠE PRODUKTY</h3>
+        <table rules="rows" border="1px" style="border: none;width:100%;text-align: center">
+            <tr style="background-color: #3b2726;color:white">
+                <td>MĚSTO</td>
+                <td>NÁZEV</td>
+                <td>ADRESA</td>
+            </tr>
+            {foreach $stores as $store}
+                <tr>
+                    <td>{$store->city}</td>
+                    <td>{$store->name}</td>
+                    <td>{$store->address}, {$store->zipCode} {$store->city}</td>
+                </tr>
+            {/foreach}
+        </table>
+    </article>
+</section>

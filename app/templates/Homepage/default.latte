@@ -3,9 +3,9 @@
 {block content}
 
 <div class="banner">
-    <ul style="margin:0;padding: 0; width:100%;">
+    <ul class="bjqs">
         <li>
-            <img class="main"  src="{$basePath}/images/slide/IMG_4341_ToneMapping_2.jpg" alt="">
+            <img class="main" style="height: auto;"  src="{$basePath}/images/slide/IMG_4341_ToneMapping_2.jpg" alt="">
         </li>
         <li>
             <img class="main" src="{$basePath}/images/slide/IMG_4343_ToneMapping_2.jpg" alt="">
@@ -26,7 +26,7 @@
 <section class="clearfix" style="text-align: center;">
     <article class="photoMenu" style="text-align: center">
         <a n:href="Products:detail 6450"><img id="left" class="photo" src="{$basePath}/images/dipy.png"></a>
-        <a n:href="Products:detail 208"><img class="photo bal" src="{$basePath}/images/balsamica.png" ></a>
+        <a n:href="Products:detail 'balsamica'"><img class="photo bal" src="{$basePath}/images/balsamica.png" ></a>
         <a n:href="Products:detail 5023"><img class="photo" src="{$basePath}/images/pesta.png"></a>
     </article>
     <img src="{$basePath}/images/titleline.png">
@@ -46,12 +46,4 @@
     .banner li { list-style: none; }
     .banner ul li { float: left; }
 </style>
-{/block}
-{block scripts}
-{include parent}
-<script>
-    $(function () {
-        $('.banner').unslider({ delay: 4000});
-    });
-</script>
 {/block}
