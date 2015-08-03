@@ -89,6 +89,11 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
         return $template;
     }
 
+    public function handleChangeLocale($locale) {
+        $this->translator->setLocale($locale);
+        $this->redirect('this');
+    }
+
     /**
      * Zkratka pro přeložení textu
      * @param String $message Název proměnné v <category>.<locale>.neon

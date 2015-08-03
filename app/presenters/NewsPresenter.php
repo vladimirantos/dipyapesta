@@ -55,5 +55,4 @@ class NewsPresenter extends BasePresenter {
         $this->setHtmlDesc($html);
         $this->setKeyWords($words);
     }
-
 }
