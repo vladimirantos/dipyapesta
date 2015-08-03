@@ -37,5 +37,4 @@ class ProductsPresenter extends BasePresenter {
         $this->setKeyWords($this->template->product->words);
         $this->setHtmlDesc($this->template->product->html);
     }
-
 }

@@ -2,14 +2,16 @@
 
 {block content}
 <section class="clearfix">
-
+ <h1>{_messages.stores.title}</h1>
+     <h2>{_messages.stores.text}
+         <img src="{$basePath}/images/titleline.png" alt="">
+     </h2>
     <article>
-        <h3 style="color:red;">SEZNAM PRODEJEN, KDE MŮŽETE ZKOUPIT NAŠE PRODUKTY</h3>
         <table rules="rows" border="1px" style="border: none;width:100%;text-align: center">
             <tr style="background-color: #3b2726;color:white">
-                <td>MĚSTO</td>
-                <td>NÁZEV</td>
-                <td>ADRESA</td>
+                <td>{_messages.stores.table.td1}</td>
+                <td>{_messages.stores.table.td2}</td>
+                <td>{_messages.stores.table.td3}</td>
             </tr>
             {foreach $stores as $store}
                 <tr>

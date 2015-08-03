@@ -62,8 +62,10 @@ contact:
         text2: 'Email: '
         text3: 'Zpráva: '
         success: 'Zpráva byla úspěšně odeslána. Děkujeme.'
+stores:
+    title: 'Prodejny'
+    text: 'SEZNAM PRODEJEN, KDE MŮŽETE ZKOUPIT NAŠE PRODUKTY'
     table:
-        title: 'SEZNAM PRODEJEN, KDE MŮŽETE ZKOUPIT NAŠE PRODUKTY'
         td1: 'MĚSTO'
         td2: 'NÁZEV'
         td3: 'ADRESA'

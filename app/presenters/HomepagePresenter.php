@@ -16,12 +16,15 @@ class HomepagePresenter extends BasePresenter {
 
     public function startup(){
         parent::startup();
-        b($this->locale);
     }
 
     public function renderKontakt() {
         $this->setTitle($this->trans('title', 'contact'));
         $this->setActive("kontakt");
+    }
+
+    public function renderStores(){
+        $this->setTitle($this->trans('title', 'stores'));
         $this->template->stores = $this->storeManager->getAll();
     }
 
