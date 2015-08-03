@@ -67,3 +67,10 @@ contact:
         td1: 'MĚSTO'
         td2: 'NÁZEV'
         td3: 'ADRESA'
+stores:
+    title: 'Prodejny'
+    text: 'SEZNAM PRODEJEN, KDE MŮŽETE ZKOUPIT NAŠE PRODUKTY'
+    table:
+        td1: 'MĚSTO'
+        td2: 'NÁZEV'
+        td3: 'ADRESA'
