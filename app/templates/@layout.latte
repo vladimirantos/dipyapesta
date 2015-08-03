@@ -40,14 +40,14 @@
             jQuery(document).ready(function ($) {
                 var width = $(window).width();
                 if (width >= 1024) {
-                    width = "400px";
+                    var height = "400px";
                 } else {
-                    width = "200px";
+                    var height = "200px";
                 }
 
                 $('.banner').bjqs({
-                    width: '100%',
-                    height: width,
+                    height: height,
+                    width: window.screen.width,
                     animduration: 100,
                     randomstart: true,
                     responsive: true,
@@ -65,6 +65,11 @@
             <nav>
                 <div id="logo" class="ClickMe"><a n:href="Homepage:"><img src="{$basePath}/images/logo.gif" alt="dip it logo"/></a>
                     <font>DIPY A PESTA</font>
+                </div>
+                <div id="langs">
+                    <a>EN</a>
+                    <a>SK</a>
+                    <a>PL</a>
                 </div>
                 <div id="menu">
                     <img src="{$basePath}/images/menu.png" id="menuBtn" alt="">
@@ -91,7 +96,9 @@
                             <img style="height: 11px;margin-top: 6px" src="{$basePath}/images/activemenu.png" alt="">
                         </li>
                     </ul>
+
                 </div>
+
             </nav>
         </header>
         <aside>
