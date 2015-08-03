@@ -74,3 +74,5 @@ stores:
         td1: 'MĚSTO'
         td2: 'NÁZEV'
         td3: 'ADRESA'
+develop:
+    title: 'Vývojáři'
