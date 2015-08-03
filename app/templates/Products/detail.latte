@@ -3,7 +3,7 @@
 {block content}
 <section class="clearfix">
     <h1>{$product->title}</h1>
-    <h2>Vytvořte si vlastní dip, který se hodí ke každému salátu
+    <h2>{_messages.products.detail.text}
         <img src="{$basePath}/images/titleline.png" alt="">
     </h2>
     <article class="clearfix">
@@ -15,7 +15,7 @@
             {/if}
         </span>
         <span class="right" style="width:65%">
-            <h3>POUŽITÍ</h3>
+            <h3>{_messages.products.detail.title1}</h3>
             <p class="justify">
                 {$product->description}
             </p>
@@ -23,18 +23,18 @@
     </article>
     <article class="clearfix">
         <span class="center">
-            <h3 style="text-align: left;">PŘÍPRAVA</h3>
+            <h3 style="text-align: left;">{_messages.products.detail.title2}</h3>
             <p class="justify">
                 {$product->preparation}
             </p>
         </span>
         <span class="center">
-                    <h3 style="text-align: left;">Produkty</h3>
+                    <h3 style="text-align: left;">{_messages.products.detail.title3}</h3>
                     <p class="justify">
                         {$product->products|noescape}
                     </p>
                 </span>
-        <a class="right color" style="text-align: right; text-decoration: none;font-size: 15pt" n:href="Products:">Zpět</a>
+        <a class="right color" style="text-align: right; text-decoration: none;font-size: 15pt" n:href="Products:">{_messages.common.back}</a>
     </article>
    <!-- <div class="photos" style="border-top:1px solid black; padding-top: 10px">
         <img class="photo" src="{$basePath}/images/balsamico.png" alt="">

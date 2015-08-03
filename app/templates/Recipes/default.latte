@@ -2,8 +2,8 @@
 
 {block content}
 <section class="clearfix">
-    <h1>KOŘENÍ PRO PŘÍPRAVU PEST A DIPŮ</h1>
-    <h2>U nás naleznete největší nabídku kvalitních koření do Vaší kuchyně
+    <h1>{_messages.recipes.pageTitle}</h1>
+    <h2>{_messages.recipes.text}
         <img src="{$basePath}/images/titleline.png" alt="">
     </h2>
     {foreach $recipes as $recipe}
@@ -19,7 +19,7 @@
                     {$recipe->description|truncate:160}
                 </p>
             {/if}
-            <a class="lightButton" n:href="Recipes:detail, $recipe->id_recipe">VÍCE</a>
+            <a class="lightButton" n:href="Recipes:detail, $recipe->id_recipe">{_messages.common.link}</a>
         </article>
     {/foreach}
 

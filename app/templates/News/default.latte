@@ -2,8 +2,8 @@
 
 {block content}
 <section class="clearfix">
-    <h1>NOVINKY ZE SVĚTA KOŘENÍ</h1>
-    <h2>Co se děje nejen u nás, ale také ve světě koření
+    <h1>{_messages.news.pageTitle}</h1>
+    <h2>{_messages.news.text}
         <img src="{$basePath}/images/titleline.png" alt="">
     </h2>
     <?php
@@ -21,7 +21,7 @@
                 </span>
                 <span class="left" style="width:65%">
                     <h3 style="text-decoration: underline">{$new->title}</h3>
-                    <p style="font-size: 13px">Datum: {$new->date|date:'d. m. Y H:m'}</p>
+                    <p style="font-size: 13px">{_messages.news.date}: {$new->date|date:'d. m. Y H:m'}</p>
                     <p>
                         {$new->content|noescape}
                     </p>

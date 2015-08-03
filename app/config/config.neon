@@ -41,4 +41,12 @@ services:
 
 constants:
     email: 'info@dipyapesta.cz'
+
+extensions:
+	translation: Kdyby\Translation\DI\TranslationExtension
+translation:
+	default: cs
+	whitelist: [cs, pl, sk] #....
+	fallback: [cs_CZ, cs]
+	debugger: on
     

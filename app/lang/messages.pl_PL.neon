@@ -1,0 +1,69 @@
+common:
+    link: 'VÍCE'
+    back: 'Zpět'
+homepage:
+	title:
+		part1: 'SMĚS BYLIN A KOŘENÍ PRO PŘÍPRAVU'
+		part2: 'PEST A DIPŮ'
+	text: 'U nás naleznete ucelenou nabídku 100 % přírodních směsí bylin a koření pro rychlou přípravu pest a dipů'
+menu:
+	item1: 'ÚVOD'
+	item2: 'PRODUKTY'
+	item3: 'ESHOP'
+	item4: 'NOVINKY'
+	item5: 'RECEPTY'
+	item6: 'KONTAKTY A PRODEJNY'
+footer:
+	randRecipe: 'NÁHODNÝ RECEPT'
+	all: 'všechny recepty'
+	text: 'Všechna práva vyhrazena'
+products:
+	title: 'Produkty'
+	pageTitle: 'KOŘENÍ PRO PŘÍPRAVU PEST A DIPŮ'
+	text: '100% přírodní směs koření pro přípravu pest a dipů'
+	detail:
+		text: 'Vytvořte si vlastní dip, který se hodí ke každému salátu'
+		title1: 'POUŽITÍ'
+		title2: 'PŘÍPRAVA'
+		title3: 'Produkty'
+news:
+    title: 'Novinky'
+    pageTitle: 'NOVINKY ZE SVĚTA KOŘENÍ'
+    text: 'Co se děje nejen u nás, ale také ve světě koření'
+    date: 'Datum'
+recipes:
+    title: 'Recepty'
+    pageTitle: 'KOŘENÍ PRO PŘÍPRAVU PEST A DIPŮ'
+    text: 'U nás naleznete největší nabídku kvalitních koření do Vaší kuchyně'
+    detail:
+        pageTitle: 'Vytvořte si vlastní dip, který se hodí ke každému salátu'
+        title1: 'Ingredience'
+        title2: 'Popis'
+contact:
+    title: 'Kontakt'
+    pageTitle: "DIP'IT KONTAKT"
+    text: 'Máte nějaké otázky k našemu koření? Napiště nám'
+    subTitle: 'INFORMACE PRO VELKOOBCHOD'
+    bigText: 'Pokud s námi chcete spolupracovat jako velkoobchodní odběratel, kontaktujte nás ohledně individuálních podmínek  pomocí e-mailu nebo prostřednictvím kontaktního formuláře uvedeného na této straně. Děkujeme.'
+    formTitle: 'KONTAKTNÍ FORMULÁŘ'
+    info: 'Údaje označené * jsou povinné'
+    form:
+        name: 'Jméno a příjmení'
+        nameRequired: 'Nevyplnil jsi své jméno a příjmení'
+        email: 'Email'
+        emailFormatError: 'Email má chybný formát'
+        emailRequired: 'Nevyplnil jsi email'
+        text: 'Váš dotaz'
+        textRequired: 'Nevyplnil jsi dotaz'
+        button: 'Odeslat'
+    email:
+        subject: 'Dotaz od '
+        text1: 'Zpráva od: '
+        text2: 'Email: '
+        text3: 'Zpráva: '
+        success: 'Zpráva byla úspěšně odeslána. Děkujeme.'
+    table:
+        title: 'SEZNAM PRODEJEN, KDE MŮŽETE ZKOUPIT NAŠE PRODUKTY'
+        td1: 'MĚSTO'
+        td2: 'NÁZEV'
+        td3: 'ADRESA'
