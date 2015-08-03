@@ -30,13 +30,13 @@ class RecipesPresenter extends BasePresenter {
         parent::startup();
     }
     public function renderDefault() {
-        $this->setTitle("Recepty");
-        $this->template->recipes = $this->recipes->getAllByLang("cs");
+        $this->setTitle($this->trans('title', 'recipes'));
+        $this->template->recipes = $this->recipes->getAllByLang($this->locale);
     }
 
     public function renderDetail($id) {
-        $this->template->recipe = $this->recipes->get($id,"cs");
-        $this->template->ingredients = $this->ingredients->getAll($id, "cs");
+        $this->template->recipe = $this->recipes->get($id,$this->locale);
+        $this->template->ingredients = $this->ingredients->getAll($id, $this->locale);
         $this->setTitle($this->template->recipe->title);
         $this->setKeyWords($this->template->recipe->words);
         $this->setHtmlDesc($this->template->recipe->html);

@@ -21,16 +21,18 @@ class ProductsPresenter extends BasePresenter {
         parent::__construct();
         $this->setActive("products");
     }
+
     public function startup(){
         parent::startup();
     }
+
     public function renderDefault() {
-        $this->setTitle("Produkty");
-        $this->template->products = $this->products->getAllByLang("cs");
+        $this->setTitle($this->trans('title'));
+        $this->template->products = $this->products->getAllByLang($this->locale);
     }
     
     public function renderDetail($id){
-        $this->template->product = $this->products->get($id, "cs");
+        $this->template->product = $this->products->get($id, $this->locale);
         $this->setTitle($this->template->product->title);
         $this->setKeyWords($this->template->product->words);
         $this->setHtmlDesc($this->template->product->html);

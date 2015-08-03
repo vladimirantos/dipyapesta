@@ -8,7 +8,7 @@ use Nette,
 /**
  * Description of NewsPresenter
  *
- * @author Bruno
+ * @author Bruno Puzjak
  */
 class NewsPresenter extends BasePresenter {
 
@@ -27,8 +27,8 @@ class NewsPresenter extends BasePresenter {
     }
 
     public function renderDefault() {
-        $this->setTitle("Novinky");
-        $news = $this->news->getAllByLang('cs');
+        $this->setTitle($this->trans('title', 'news'));
+        $news = $this->news->getAllByLang($this->locale);
         $this->template->news = $news;
         $words = "";
         $html = "";

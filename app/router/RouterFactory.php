@@ -23,7 +23,7 @@ class RouterFactory {
         $router[] = $admin;
 
 
-        $router[] = new Route('<presenter>/<action>[/<id>]', 'Homepage:default');
+        $router[] = new Route('[<locale=cs cs|de|pl|sk>/]<presenter>/<action>[/<id>]', 'Homepage:default');
         return $router;
     }
 

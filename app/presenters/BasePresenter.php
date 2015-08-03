@@ -16,6 +16,13 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
     public $recipes;
     private $active = array("homepage" => "", "products" => "", "news" => "", "recipes" => "", "kontakt" => "");
 
+
+    /** @persistent */
+    public $locale;
+
+    /** @var \Kdyby\Translation\Translator @inject */
+    public $translator;
+
     public function startup() {
         parent::startup();
         $this->template->title = "Dip'it";
@@ -68,6 +75,34 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
             $text.="...";
         }
         return $text;
+    }
+
+    /**
+     * Nastavení překladače pro latte
+     */
+    protected final function createTemplate($class = NULL) {
+        $template = parent::createTemplate($class);
+
+        $this->translator->createTemplateHelpers()
+            ->register($template->getLatte());
+
+        return $template;
+    }
+
+    /**
+     * Zkratka pro přeložení textu
+     * @param String $message Název proměnné v <category>.<locale>.neon
+     * @param String $category Začátek názvu souboru  <category>.<locale>.neon
+     * Pokud nebude zadán veme se název presenteru
+     * @param Array|String|Int $parameters Parametr/y pro zprávu
+     *
+     * @return String Hodnota proměnné v <category>.<locale>.neon
+     */
+    public final function trans($message, $category = null, $parameters = array()) {
+        if (is_null($category)) {
+            $category = strtolower($this->getPresenter()->name);
+        }
+        return $this->translator->translate('messages.'.$category . "." . $message, $parameters);
     }
 
 }

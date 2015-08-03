@@ -2,8 +2,8 @@
 
 {block content}
 <section class="clearfix">
-    <h1>DIP'IT KONTAKT</h1>
-    <h2>Máte nějaké otázky k našemu koření? Napiště nám
+    <h1>{_messages.contact.pageTitle}</h1>
+    <h2>{_messages.contact.text}
         <img src="{$basePath}/images/titleline.png" alt="">
     </h2>
     <ul class="contact">
@@ -21,13 +21,13 @@
         </li>
     </ul>
     <article class="left">
-        <h3>INFORMACE PRO VELKOOBCHOD</h3>
+        <h3>{_messages.contact.subTitle}</h3>
         <p>
-            Pokud s námi chcete spolupracovat jako velkoobchodní odběratel, kontaktujte nás ohledně individuálních podmínek  pomocí e-mailu nebo prostřednictvím kontaktního formuláře uvedeného na této straně. Děkujeme.
+            {_messages.contact.bigText}
         </p>
     </article>
     <article class="right contact">
-        <h3>KONTAKTNÍ FORMULÁŘ | <font class="light smaller">Údaje označené * jsou povinné</font></h3>
+        <h3>{_messages.contact.formTitle} | <font class="light smaller">{_messages.contact.info}</font></h3>
         <div  n:foreach="$flashes as $flash" style="color: green">{$flash->message}</div><br>
         {form contactForm}
             {label name /} <br>
@@ -41,12 +41,12 @@
 
     </article>
     <article class="left">
-        <h3 style="color:red;">SEZNAM PRODEJEN, KDE MŮŽETE ZKOUPIT NAŠE PRODUKTY</h3>
+        <h3 style="color:red;">{_messages.contact.table.title}</h3>
         <table rules="all" border="1px" style="width:100%;text-align: center">
             <tr>
-                <td>MĚSTO</td>
-                <td>NÁZEV</td>
-                <td>ADRESA</td>
+                <td>{_messages.contact.table.td1}</td>
+                <td>{_messages.contact.table.td2}</td>
+                <td>{_messages.contact.table.td3}</td>
             </tr>
             {foreach $stores as $store}
                 <tr>
