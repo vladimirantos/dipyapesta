@@ -19,7 +19,7 @@
                     {$product->short_description|truncate:160}
                 </p>
             {/if}
-            <a class="lightButton" n:href="Products:detail, $product->id_product">{_messages.common.link}</a>
+            <a class="lightButton" n:href="Products:detail, $product->title">{_messages.common.link}</a>
         </article>
     {/foreach}
 

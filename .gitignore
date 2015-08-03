@@ -3,3 +3,4 @@ temp/*
 .idea/*
 app/config/config.local.neon
 /nbproject/private/*
+vendor/*
