@@ -31,8 +31,8 @@ class ProductsPresenter extends BasePresenter {
         $this->template->products = $this->products->getAllByLang($this->locale);
     }
     
-    public function renderDetail($id){
-        $this->template->product = $this->products->get($id, $this->locale);
+    public function renderDetail($title){
+        $this->template->product = $this->products->get(strtoupper($title), $this->locale);
         $this->setTitle($this->template->product->title);
         $this->setKeyWords($this->template->product->words);
         $this->setHtmlDesc($this->template->product->html);

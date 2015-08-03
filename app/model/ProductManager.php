@@ -25,8 +25,8 @@ class ProductManager extends ModelContainer {
         return $this->database->table(self::table)->where("language", $lang)->order("order")->fetchAll();
     }
 
-    public function get($id, $language) {
-        return $this->database->table(self::table)->where(array(self::id => $id, "language" => $language))->fetch();
+    public function get($title, $language) {
+        return $this->database->table(self::table)->where(array('title' => $title, "language" => $language))->fetch();
     }
 
     public function getAllNewsPair() {
