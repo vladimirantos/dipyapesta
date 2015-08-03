@@ -56,4 +56,8 @@ class HomepagePresenter extends BasePresenter {
         $this->setActive("homepage");
     }
 
+    public function renderDevelop(){
+        $this->setTitle($this->trans('title', 'develop'));
+    }
+
 }
