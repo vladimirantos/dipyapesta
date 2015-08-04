@@ -4,3 +4,4 @@ temp/*
 app/config/config.local.neon
 /nbproject/private/*
 vendor/*
+nbproject/project.properties

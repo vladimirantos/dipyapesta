@@ -36,7 +36,6 @@ function autosave() {
 
 function saveForm(action) {
     if (action === "done") {
-        $("#submit").removeClass("ajax");
         $("#submit > input[name='_action']").val("done");
     } else if (action === "save" && $("#submit").has($(".status"))) {
         $("#submit > input[name='_action']").val("save");

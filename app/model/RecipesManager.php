@@ -38,7 +38,7 @@ class RecipesManager extends ModelContainer {
                 $data['id_recipe'] = $this->createId(self::table, self::id);
             }
             $image = null;
-            if (isset($data->image) and $data->image->isImage()) {
+            if (isset($data->image) and ! empty($data->image->name)) {
                 $image = $data->image;
                 unset($data->image);
             }
@@ -62,10 +62,10 @@ class RecipesManager extends ModelContainer {
     public function update($data) {
         try {
             $image = null;
-            if (isset($data->image) and $data->image->isImage()) {
+            if (isset($data->image) and ! empty($data->image->name)) {
                 $image = $data->image;
-                unset($data->image);
             }
+            unset($data->image);
             $this->database->table(self::table)->where(array(self::id => $data['id_recipe'], "language" => $data['language']))->update($data);
             if ($image != null)
                 $this->editMainImage($image, $data['id_recipe'], $data['language']);
