@@ -43,4 +43,14 @@ class IngredientsManager extends ModelContainer {
         $this->database->table(self::table)->where(self::recipes, $old)->update($data);
     }
 
+    public function sort() {
+        $ingredients = $this->getAllDefault();
+        foreach ($ingredients as $key => $value) {
+           $text = $value->ingredient.' '.$value->a.' '.$value->b;
+           $this->database->table(self::table)->where(self::id,$value->id_ingredient)->update(array("ingredient"=>$text));
+        }
+        
+    }
+    
 }
+
