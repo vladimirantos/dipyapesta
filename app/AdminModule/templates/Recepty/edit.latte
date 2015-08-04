@@ -22,7 +22,7 @@
         {if isset($ingredients)}
             <ul>
                 <li n:foreach="$ingredients as $ingredient" class="ingredient">
-                    {$ingredient->ingredient .' '.$ingredient->quantity.' '.$ingredient->unit} <a class="ajax" n:href="deleteIngredient! $ingredient->id_ingredient"><img src="{$basePath}/images/close.png"></a>
+                    {$ingredient->ingredient} <a class="ajax" n:href="deleteIngredient! $ingredient->id_ingredient"><img src="{$basePath}/images/close.png"></a>
                 </li>
             </ul>
         {/if}
@@ -30,20 +30,9 @@
     <table style="width:50%;" class="center">
 
         <tr>
-            <td>{label ingredient/}</td>
+            <td style="width: 35%;text-align: right">{label ingredient/}</td>
             <td>{input ingredient}</td>
         </tr>
-
-        <tr>
-            <td>{label quantity/}</td>
-            <td>{input quantity}</td>
-        </tr>
-
-        <tr>
-            <td>{label unit/}</td>
-            <td>{input unit}</td>
-        </tr>
-
         <tr>
             <td class="textCenter" colspan="2">{input submit}</td>
         </tr>

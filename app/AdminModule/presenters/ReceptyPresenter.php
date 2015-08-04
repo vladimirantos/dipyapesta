@@ -29,6 +29,9 @@ class ReceptyPresenter extends AdminPresenter {
 
     public function renderNew() {
         $session = $this->session->getSection("recipe");
+        if (!isset($session->language)) {
+            $session->language = "cs";
+        }
         if (isset($session->id_recipe))
             $this->template->ingredients = $this->ingredients->getAll($session->id_recipe, $session->language);
         else
@@ -127,12 +130,8 @@ class ReceptyPresenter extends AdminPresenter {
 
     protected function createComponentIngredients() {
         $form = new UI\Form();
-        $form->addText("ingredient", "Ingredience:")
+        $form->addText("ingredient", "Popis:")
                 ->setRequired("Zadejte prosím ingredienci");
-        $form->addText("quantity", "Množství:")
-                ->setRequired("Zadejte prosím kolik je potřeba této ingredience");
-        $form->addText("unit", "Jednotka:")
-                ->setRequired("Zadejte prosím jednotku této ingredience");
         $form->addSubmit("submit", "Přidat ingredienci");
         $form->onSubmit[] = $this->newIngredient;
         return $form;
@@ -146,12 +145,9 @@ class ReceptyPresenter extends AdminPresenter {
                 $session->id_recipe = $this->recipes->createId("recipes", "id_recipe");
                 $session->language = "cs";
                 $this->recipes->createEmpty($session->id_recipe, $session->language);
-            } else {
-                if (isset($session->language)) {
-                    $data->language = $session->language;
-                }
-                $this->ingredients->add($data, $session->id_recipe);
             }
+            $data->language = $session->language;
+            $this->ingredients->add($data, $session->id_recipe);
             $this->flashMessage("Ingredience byla přidána.", "success");
             $this->redrawControl("ingredients");
         } catch (Nette\InvalidArgumentException $e) {

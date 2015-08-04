@@ -27,7 +27,7 @@ class IngredientsManager extends ModelContainer {
     }
 
     public function add($data, $id_recipe) {
-        $data->recipes = $id_recipe;
+        $data['recipes'] = $id_recipe;
         try {
             $this->database->table(self::table)->insert($data);
         } catch (\PDOException $e) {
