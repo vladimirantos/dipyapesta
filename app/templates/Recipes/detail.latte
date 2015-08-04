@@ -19,7 +19,7 @@
             <ul>
                 {foreach $ingredients as $item}
                     <li>{$item->ingredient}</li>
-                {/foreach}
+                    {/foreach}
             </ul>
         </span>
     </article>
@@ -29,6 +29,11 @@
             <p>
                 {$recipe->description}
             </p>
+            {if isset($code)}
+                <p style="width: 100%;text-align: center;">
+                    <iframe width="640" height="360" src="https://www.youtube.com/embed/{$code}" frameborder="0" allowfullscreen></iframe>
+                <p>
+                {/if}
         </span>
     </article>
 </section>

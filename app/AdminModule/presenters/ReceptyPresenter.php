@@ -23,8 +23,13 @@ class ReceptyPresenter extends AdminPresenter {
     }
 
     public function renderDetail($id, $language) {
-        $this->template->recipe = $this->recipes->get($id, $language);
+        $recipe = $this->recipes->get($id, $language);
+        $this->template->recipe = $recipe;
         $this->template->ingredients = $this->ingredients->getAll($id, $language);
+        if(!empty($recipe->youtube)){
+            $code = explode('=',$recipe->youtube);
+            $this->template->code = $code[1];
+        }
     }
 
     public function renderNew() {
@@ -94,9 +99,10 @@ class ReceptyPresenter extends AdminPresenter {
 
     protected function createComponentCreateNew() {
         $form = new UI\Form();
-        $form->addText("words", "Klíčová slova")
+        $form->addText("words", "Klíčová slova:")
                 ->setAttribute("placeholder", "Klíčová slova musejí být odděleny čárkou!");
-        $form->addText("html", "Popis pro html");
+        $form->addText("html", "Popis pro html:");
+        $form->addText("youtube", "Url videa:");
         $form->addText("title", "Název:")
                 ->setRequired("Zadejte prosím název receptu");
         $form->addTextArea("description", "Popis:")
