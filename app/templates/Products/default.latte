@@ -10,9 +10,9 @@
         <article class="productHolder">
             <h3>{$product->title}</h3>
             {if !empty($product->main_image)}
-                <a class="lightButton" style="border:none;" n:href="Products:detail, $product->id_product"><img src="{$basePath}/images/gallery/{$product->main_image}"></a>
+                <a class="lightButton" style="border:none;" n:href="Products:detail, $product->title"><img src="{$basePath}/images/gallery/{$product->main_image}"></a>
                 {else}
-                <a class="lightButton" style="border:none;" n:href="Products:detail, $product->id_product"><img src="{$basePath}/images/default.png"></a>
+                <a class="lightButton" style="border:none;" n:href="Products:detail, $product->title"><img src="{$basePath}/images/default.png"></a>
                 {/if}
             {if !empty($product->short_description)}
                 <p>

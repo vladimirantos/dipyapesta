@@ -29,7 +29,8 @@ class RecipesPresenter extends BasePresenter {
 
     public function startup() {
         parent::startup();
-                $this->ingredients->sort();
+//                $this->ingredients->sort();
+//        b("sort");
 
     }
 

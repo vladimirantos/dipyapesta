@@ -46,10 +46,10 @@ class IngredientsManager extends ModelContainer {
     public function sort() {
         $ingredients = $this->getAllDefault();
         foreach ($ingredients as $key => $value) {
-           $text = $value->ingredient.' '.$value->a.' '.$value->b;
-           $this->database->table(self::table)->where(self::id,$value->id_ingredient)->update(array("ingredient"=>$text));
+            $text = $value->quantity.' '.$value->unit.' '.lcfirst($value->ingredient);
+            $this->database->table(self::table)->where(self::id,$value->id_ingredient)->update(array("ingredient"=>$text));
         }
-        
+
     }
     
 }
