@@ -6,29 +6,26 @@
     <h2>{_messages.recipes.detail.pageTitle}
         <img src="{$basePath}/images/titleline.png" alt="">
     </h2>
-    <article class="clearfix">
-        <span class="left">
+    <article class="clearfix recept">
             {if !empty($recipe->image)}
-                <img style="width:100%" src="{$basePath}/images/recipes/{$recipe->image}">
+                <img style="width:40%" src="{$basePath}/images/recipes/{$recipe->image}">
             {else}
-                <img style="width:100%" src="{$basePath}/images/dipy.png">
+                <img style="width:40%" src="{$basePath}/images/dipy.png">
             {/if}
-        </span>
-        <span class="right">
             <h3>{_messages.recipes.detail.title1}</h3>
             <ul>
                 {foreach $ingredients as $item}
                     <li>{$item->ingredient}</li>
                     {/foreach}
             </ul>
-        </span>
+
+            <h3 style="padding-left: 40px">{_messages.recipes.detail.title2}</h3>
+            <p style="padding-left: 40px">
+                {$recipe->description}
+            </p>
     </article>
     <article>
         <span class="center">
-            <h3>{_messages.recipes.detail.title2}</h3>
-            <p>
-                {$recipe->description}
-            </p>
             {if isset($code)}
                 <p style="width: 100%;text-align: center;">
                     <iframe width="640" height="360" src="https://www.youtube.com/embed/{$code}" frameborder="0" allowfullscreen></iframe>
