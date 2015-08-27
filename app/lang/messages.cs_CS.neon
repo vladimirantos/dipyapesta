@@ -64,7 +64,7 @@ contact:
         success: 'Zpráva byla úspěšně odeslána. Děkujeme.'
 stores:
     title: 'Prodejny'
-    text: 'SEZNAM PRODEJEN, KDE MŮŽETE ZKOUPIT NAŠE PRODUKTY'
+    text: 'SEZNAM PRODEJEN, KDE MŮŽETE NAKOUPIT NAŠE PRODUKTY'
     table:
         td1: 'MĚSTO'
         td2: 'NÁZEV'
