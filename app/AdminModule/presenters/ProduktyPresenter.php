@@ -75,6 +75,8 @@ class ProduktyPresenter extends AdminPresenter {
         $form->addText("words", "Klíčová slova")
                 ->setAttribute("placeholder", "Klíčová slova musejí být odděleny čárkou!");
         $form->addText("html", "Popis pro html");
+        
+        $form->addHidden("id_product");
         $form->addSubmit("submit", "Vytvořit");
 
         $form->onSubmit[] = $this->update;
@@ -97,15 +99,17 @@ class ProduktyPresenter extends AdminPresenter {
     public function update(UI\Form $form) {
         $data = $form->getValues();
         $title = $data->title;
+        $id = $data->id_product;
+        unset($data->id_product);
         if (isset($data->main_image) && $data->main_image->isImage()) {
             $image = $data->main_image;
         }
         unset($data->main_image);
         try {
             b($this->params);
-            $this->product->update($data, $this->params["id"], $this->params["language"]);
+            $this->product->update($data, $id, $this->params["language"]);
             if (isset($image)) {
-                $this->product->editMainImage($image, $this->params["id"], $data->language);
+                $this->product->editMainImage($image, $id, $data->language);
             }
             $this->flashMessage("Produkt byl úspěšně upraven", 'success');
             $this->redirect("Produkty:detail", $this->params["id"], $data->language);
